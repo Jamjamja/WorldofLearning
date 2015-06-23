@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
-public class GreetingController {
-	@RequestMapping(method = RequestMethod.GET)
-	public String greeting(
-			@RequestParam(value = "name", required = false, defaultValue = "World") String name,
-			Model model) {
-		model.addAttribute("name", name);
+public class HomeController {
+
+	@RequestMapping(value = "/")
+	public String home() {
 		return "index";
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public Model navigation(
+			@RequestParam(value = "link", required = true, defaultValue = "/") String link,
+			Model model) {
+		return model.addAttribute("link", link);
 	}
 }
