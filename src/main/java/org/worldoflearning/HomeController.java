@@ -18,6 +18,7 @@ public class HomeController {
 	public Model navigation(
 			@RequestParam(value = "link", required = true, defaultValue = "/") String link,
 			Model model) {
-		return model.addAttribute("link", link);
+		return model.addAttribute("link", link);  
+		
 	}
 }
