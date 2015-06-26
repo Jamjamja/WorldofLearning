@@ -9,9 +9,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<context:component-scan base-package="
 	org.worldoflearning " />
 	<mvc:annotation-driven />
-	<mvc:resources location="/ressources/images/" mapping="/ressources/images/**" />
-	<mvc:resources location="/ressources/css/" mapping="/ressources/css/**" />
-
+	<mvc:resources mapping="/css/**" location="/ressources/css/" />
+	<mvc:resources mapping="/img/**" location="/ressources/img/" />
 	<!-- enable the thymeleaf framework -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
