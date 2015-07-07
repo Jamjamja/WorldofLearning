@@ -21,19 +21,19 @@ public class Fachbereich {
 	@Column(name = "FACHBEREICH_NAME", length = 20, nullable = true)
 	private String fachbereich_name;
 
-	public int getId() {
+	public int getFachbereich_Id() {
 		return fachbereich_id;
 	}
 
-	public void setId(int fachbereich_id) {
+	public void setFachbereich_Id(int fachbereich_id) {
 		this.fachbereich_id = fachbereich_id;
 	}
 
-	public String getName() {
+	public String getFachbereich_Name() {
 		return fachbereich_name;
 	}
 
-	public void setName(String fachbereich_name) {
+	public void setFachbereich_Name(String fachbereich_name) {
 		this.fachbereich_name = fachbereich_name;
 	}
 
