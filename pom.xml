@@ -29,12 +29,13 @@
 			<version>3.1.0</version>
 		</dependency>
 
-		<!-- SQL Datenbank -->
+		<!-- SQL Datenbank 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
+		-->
 
 		
 		<!-- Hibernate -->
