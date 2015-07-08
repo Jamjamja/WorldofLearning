@@ -1,11 +1,14 @@
 package org.worldoflearning.hibernate.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -26,6 +29,11 @@ public class Thema {
 
 	@Column(name = "insert_time", nullable = true)
 	private Date thema_ErstelltAm;
+	
+	// Verknüpfung zu Forum //
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "FACHBEREICH_ID")
+	private Fachbereich fachbereich;
 
 	public int getThema_Id() {
 		return thema_id;
@@ -57,21 +65,5 @@ public class Thema {
 
 	public void setThema_ErstelltAm(Date themaErstelltAm) {
 		this.thema_ErstelltAm = themaErstelltAm;
-	}
-
-	public void erstelleThema(){
-		
-	}
-	
-	public void bearbeiteThema(){
-		
-	}
-	
-	public void loescheThema(){
-		
-	}
-	
-	public void sucheThema(){
-		
 	}
 }
