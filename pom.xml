@@ -1,140 +1,115 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+	
 	<modelVersion>
-	4.1.6
+	4.0.0
 	</modelVersion>
-
+	
 	<groupId>
 	org.worldoflearning
 	</groupId>
-
+	
 	<artifactId>
 	WorldofLearning
 	</artifactId>
-
+	
 	<version>
 	0.0.1-SNAPSHOT
 	</version>
-
+	
 	<packaging>
 	war
 	</packaging>
-
+	
 	<name>
 	World of Learning
 	</name>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
-		<org.springframework.security.version>4.0.1.RELEASE</org.springframework.security.version>
-		<org.thymeleaf.version>2.1.4.RELEASE</org.thymeleaf.version>
-		<org.apache.maven.plugins.version>3.3</org.apache.maven.plugins.version>
-		<org.apache.commons.version>2.0</org.apache.commons.version>
-		<javax.servlet.version>3.1.0</javax.servlet.version>
-		<mysql.version>5.1.31</mysql.version>
-		<org.hibernate.version>4.2.11.Final</org.hibernate.version>
-	</properties>
-
+	
+	<description>
+	</description>
+	
 	<dependencies>
-        <!-- Security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${org.springframework.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${org.springframework.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>${org.springframework.security.version}</version>
-        </dependency>
-        
-        
+	
 		<!-- Spring webmc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>4.1.6.RELEASE</version>
 		</dependency>
-
+		
 		<!-- Spring tx -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>4.1.6.RELEASE</version>
 		</dependency>
-
+		
 		<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf-spring4</artifactId>
-			<version>${org.thymeleaf.version}</version>
+			<version>2.1.4.RELEASE</version>
 		</dependency>
-
+		
 		<!-- Apache -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
-			<version>${org.apache.commons.version}</version>
+			<version>2.0</version>
 		</dependency>
-
+		
 		<!-- Javaxservlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet.version}</version>
+			<version>3.1.0</version>
 		</dependency>
 
-		<!-- SQL Datenbank -->
+		<!-- SQL Datenbank 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
+		-->
 
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${org.hibernate.version}</version>
+			<version>4.2.11.Final</version>
 		</dependency>
 
 		<!-- JDBC fuer DataSource -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>4.1.6.RELEASE</version>
 		</dependency>
 
 		<!-- Spring ORM & Transaktionen -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>4.1.6.RELEASE</version>
 		</dependency>
-
+		
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 			<plugin>
-
+			
 				<!-- Apache Maven -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${org.apache.maven.plugins.version}</version>
-
+				<version>3.3</version>
+				
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
-
+				
 			</plugin>
 		</plugins>
 	</build>
