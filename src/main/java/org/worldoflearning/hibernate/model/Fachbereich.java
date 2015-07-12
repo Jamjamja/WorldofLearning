@@ -21,6 +21,10 @@ public class Fachbereich {
 	@Column(name = "FACHBEREICH_NAME", length = 20, nullable = true)
 	private String fachbereich_name;
 
+	/*
+	 *  Getter und Setter
+	 */
+	
 	public int getFachbereich_Id() {
 		return fachbereich_id;
 	}

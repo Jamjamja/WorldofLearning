@@ -33,6 +33,10 @@ public class Beitrag {
 	@Column(name = "BEITRAG_ERSTELLTAM", nullable = true)
 	private Date beitrag_erstelltAm;
 	
+	/*
+	 *  Getter und Setter
+	 */
+	
 	public int getId() {
 		return id;
 	}
@@ -73,6 +77,10 @@ public class Beitrag {
 		this.beitrag_erstelltAm = beitrag_erstelltAm;
 		
 	}
+	
+	/*
+	 *  Methoden
+	 */
 	
 	public void loeschenBeitrag(){
 		

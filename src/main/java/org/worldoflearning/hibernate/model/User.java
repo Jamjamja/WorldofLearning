@@ -28,6 +28,10 @@ public class User {
 	@Column(name = "insert_time", nullable = true)
 	private Date insertTime;
 
+	/*
+	 *  Getter und Setter
+	 */
+	
 	public int getId() {
 		return id;
 	}

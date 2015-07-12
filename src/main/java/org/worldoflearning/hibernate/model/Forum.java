@@ -25,6 +25,10 @@ public class Forum {
 	@Column(name = "FORUM_NAME", length = 20, nullable = true)
 	private String forum_name;
 
+	/*
+	 *  Getter und Setter
+	 */
+	
 	public int getId() {
 		return id;
 	}

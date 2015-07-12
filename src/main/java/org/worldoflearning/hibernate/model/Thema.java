@@ -30,6 +30,10 @@ public class Thema {
 	@Column(name = "ERSTELLT_AM", nullable = true)
 	private Date thema_ErstelltAm;
 
+	/*
+	 *  Getter und Setter
+	 */
+	
 	public int getThema_Id() {
 		return thema_id;
 	}
@@ -62,6 +66,10 @@ public class Thema {
 		this.thema_ErstelltAm = themaErstelltAm;
 	}
 
+	/*
+	 *  Methoden
+	 */
+	
 	public void erstelleThema(){
 		
 	}
