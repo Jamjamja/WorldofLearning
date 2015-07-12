@@ -10,12 +10,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 /*
- * 
+ *  
  */
 @Entity
 @Table(name = "Benutzer", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
-public class Benutzer {
+public class Gruppe {
 
-	
 	
 }
