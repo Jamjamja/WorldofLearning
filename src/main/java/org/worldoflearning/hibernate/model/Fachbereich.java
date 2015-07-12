@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = { "FACHBEREICH_ID" }) })
+@Table(name = "Fachbereich", uniqueConstraints = { @UniqueConstraint(columnNames = { "FACHBEREICH_ID" }) })
 public class Fachbereich {
 
 	@Id

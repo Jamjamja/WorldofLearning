@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/*
+ * Nur Getter und Setter sind bereits implementiert. Die anderen Methoden müssen noch implementiert werden. 
+ */
 @Entity
 @Table(name = "Thema", uniqueConstraints = { @UniqueConstraint(columnNames = { "THEMA_ID" }) })
 public class Thema {
@@ -18,13 +21,13 @@ public class Thema {
 	@Column(name = "THEMA_ID", nullable = false, unique = true, length = 11)
 	private int thema_id;
 
-	@Column(name = "THEMA_ERSTELLER", length = 20, nullable = true)
+	@Column(name = "THEMA_ERSTELLER", nullable = false, unique = true, length = 11)
 	private int thema_ersteller;
 
-	@Column(name = "THEMA_INHALT", length = 20, nullable = true)
+	@Column(name = "THEMA_INHALT", nullable = false, unique = true, length = 11)
 	private int thema_inhalt;
 
-	@Column(name = "insert_time", nullable = true)
+	@Column(name = "ERSTELLT_AM", nullable = true)
 	private Date thema_ErstelltAm;
 
 	public int getThema_Id() {
