@@ -49,10 +49,4 @@ public class Achievement {
 		this.achievement_name = achievement_name;
 	}
 	
-	/*
-	 * Methoden
-	 */
-	
-	
-	
 }

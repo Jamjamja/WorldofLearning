@@ -44,15 +44,4 @@ public class Chatraum {
 		this.chatraum_thema = chatraum_thema;
 	}
 	
-	/*
-	 * Methoden
-	 */
-	
-	public void chatraumAlarm(){
-		
-	}
-	
-	public void erstelleChatraum(){
-		
-	}
 }

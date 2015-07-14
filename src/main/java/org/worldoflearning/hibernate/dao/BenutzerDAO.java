@@ -7,10 +7,15 @@ import org.worldoflearning.hibernate.model.Benutzer;
 public interface BenutzerDAO {
 
 	public void hinzufuegenBenutzer(Benutzer b);
+
 	public void updateBenutzer(Benutzer b);
+
 	public List<Benutzer> listBenutzer();
+
 	public Benutzer findeBenutzerNachId(int id);
+
 	public void loescheBenutzer(int id);
+
 	public boolean findeBenutzerNachName(String name);
-	
+
 }

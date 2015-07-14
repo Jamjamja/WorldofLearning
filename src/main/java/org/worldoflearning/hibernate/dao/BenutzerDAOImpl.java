@@ -12,15 +12,14 @@ import org.worldoflearning.hibernate.model.Benutzer;
 @Repository("BenutzerDAO")
 public class BenutzerDAOImpl implements BenutzerDAO {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(BenutzerDAOImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(BenutzerDAOImpl.class);
 
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-	
+
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
@@ -43,8 +42,7 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	@Override
 	public List<Benutzer> listBenutzer() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Benutzer> BenutzersList = session.createQuery("from Benutzer")
-				.list();
+		List<Benutzer> BenutzersList = session.createQuery("from Benutzer").list();
 		for (Benutzer p : BenutzersList) {
 			logger.info("Benutzer List::" + p);
 		}
@@ -63,13 +61,13 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	public boolean findeBenutzerNachName(String name) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Benutzer p = (Benutzer) session.load(Benutzer.class, new String(name));
-		if (p.getName() == name){
-			return true;			
+		if (p.getName() == name) {
+			return true;
 		}
 		logger.info("Benutzer loaded successfully, Benutzer details=" + p);
 		return false;
 	}
-	
+
 	@Override
 	public void loescheBenutzer(int id) {
 		Session session = this.sessionFactory.getCurrentSession();

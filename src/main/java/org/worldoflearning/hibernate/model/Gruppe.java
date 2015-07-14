@@ -33,4 +33,5 @@ public class Gruppe {
 	@OneToMany
 	@JoinColumn(name = "ID")
 	private Benutzer id;
+	
 }

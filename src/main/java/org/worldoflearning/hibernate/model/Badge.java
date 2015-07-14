@@ -51,9 +51,5 @@ public class Badge {
 		this.benoetigte_punkte = benoetigte_punkte;
 	}
 	
-	/*
-	 * Methoden
-	 */
-		
 }
 

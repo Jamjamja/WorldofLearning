@@ -77,20 +77,5 @@ public class Test {
 		this.test_anzahlbewertung = test_anzahlbewertung;
 	}
 
-	/*
-	 * Methoden
-	 */
-
-	public void erstelleTest() {
-
-	}
-
-	public void bearbeiteTest() {
-
-	}
-
-	public void loescheTest() {
-
-	}
 
 }

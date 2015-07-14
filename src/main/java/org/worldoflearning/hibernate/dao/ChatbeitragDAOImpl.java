@@ -19,7 +19,7 @@ public class ChatbeitragDAOImpl implements ChatbeitragDAO {
 
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
-	}	
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -27,7 +27,7 @@ public class ChatbeitragDAOImpl implements ChatbeitragDAO {
 		Session session = getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(Chatbeitrag.class);
-		List<Chatbeitrag> listChat = (List<Chatbeitrag>)criteria.list();
+		List<Chatbeitrag> listChat = (List<Chatbeitrag>) criteria.list();
 		session.getTransaction().commit();
 		return listChat;
 	}

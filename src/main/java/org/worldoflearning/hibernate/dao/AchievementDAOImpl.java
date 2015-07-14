@@ -1,5 +1,6 @@
 package org.worldoflearning.hibernate.dao;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class AchievementDAOImpl implements AchievementDAO {
@@ -16,12 +17,14 @@ public class AchievementDAOImpl implements AchievementDAO {
 	
 	@Override
 	public void erhalteAchievement() {
+		Session session = getSessionFactory().getCurrentSession();
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean hatGenuegendPunkte(int benutzer_punkte) {
+		Session session = getSessionFactory().getCurrentSession();
 		// TODO Auto-generated method stub
 		return false;
 	}
