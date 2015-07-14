@@ -5,6 +5,7 @@ import java.util.List;
 import org.worldoflearning.hibernate.model.Beitrag;
 
 public interface BeitragDAO {
+
 	public void loeschenBeitrag(Beitrag beitrag);
 
 	public void updateBeitrag(Beitrag beitrag);

@@ -49,12 +49,6 @@ public class Quest {
 		this.anzahl_punkte = anzahl_punkte;
 	}
 
-	/*
-	 * Methoden
-	 */
-	
-	public void erfülleQuest(int anzahl_punkte, int benutzer_anzahl_punkte){
-		
-	}
+
 }
 

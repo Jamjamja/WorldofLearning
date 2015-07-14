@@ -86,28 +86,4 @@ public class Teamcombat {
 		this.verwendeter_test_gruppe2 = verwendeter_test_gruppe2;
 	}
 
-	/*
-	 * Methoden
-	 */
-	
-//	public Frage stelleFrage(Test test){
-//		
-//		return;
-//	}
-	
-	public void beantworteFrage(){
-		
-	}
-	
-	public void bekanntmachenErgebnisse(){
-		
-	}
-	
-	public void waehleTest (Test test){
-		
-	}
-	
-	public void erhaltePunkte(){
-		
-	}
 }

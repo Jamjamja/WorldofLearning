@@ -66,23 +66,5 @@ public class Thema {
 		this.thema_ErstelltAm = themaErstelltAm;
 	}
 
-	/*
-	 *  Methoden in ein Interface auslagern
-	 */
-	
-	public void erstelleThema(){
-		
-	}
-	
-	public void bearbeiteThema(){
-		
-	}
-	
-	public void loescheThema(){
-		
-	}
-	
-	public void sucheThema(){
-		
-	}
+
 }

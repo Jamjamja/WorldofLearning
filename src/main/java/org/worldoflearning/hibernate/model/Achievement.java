@@ -49,17 +49,4 @@ public class Achievement {
 		this.achievement_name = achievement_name;
 	}
 	
-	/*
-	 * Methoden
-	 */
-	
-	public void erhalteAchievement(){
-		
-	}
-	
-//	public boolean hatGenuegendPunkte(int benutzer_punkte){
-//		
-//		return true;
-//	}
-	
 }

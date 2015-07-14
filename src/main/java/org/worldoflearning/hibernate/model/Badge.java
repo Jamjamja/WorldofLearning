@@ -51,17 +51,5 @@ public class Badge {
 		this.benoetigte_punkte = benoetigte_punkte;
 	}
 	
-	/*
-	 * Methoden
-	 */
-	
-	public void erhalteBadge(){
-		
-	}
-	
-//	public boolean hatGenuegendPunkte(int benutzer_punkte){
-//		return true;
-//	}
-	
 }
 

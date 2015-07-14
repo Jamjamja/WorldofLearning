@@ -105,19 +105,5 @@ public class Frage {
 	@ManyToOne
 	@JoinColumn(name = "TEST_ID")
 	private Test test_id;
-	/*
-	 * Methoden
-	 */
-
-	public void erstelleFrage() {
-
-	}
-
-	public void bearbeiteFrage() {
-
-	}
-
-	public void loescheFrage() {
-
-	}
+	
 }

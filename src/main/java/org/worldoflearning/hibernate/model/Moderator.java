@@ -20,17 +20,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "Moderator", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Moderator extends Benutzer {
 
-	/*
-	 *  Methoden
-	 */
-	
-	public void bearbeiteGruppe(){
-		
-	}
-	
-	public void loescheGruppe(){
 
-	}
 	
 	
 	@OneToOne
