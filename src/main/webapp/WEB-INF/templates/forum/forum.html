@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Forum</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
+</head>
+<body onload='document.f.j_username.focus();'>
+	<div class="wrapper">
+		<header th:replace="fragments/header :: header">World of
+			Learning</header>
+		<nav th:replace="fragments/navigation :: navigation"></nav>
+		<div class="middle">
+			<div class="container"></div>
+			<div class="content">
+				<h1>Forum</h1>
+				<p>Unten sehen Sie unsere Foren. Wählen Sie einen Thread aus oder erstellen Sie einen neuen.</p>
+				<p><h2>Ankündigungen</h2></p>	
+
+				<p><h2>Allgemeines Diskussionsforum</h2></p>
+					<li><a href="/forum" th:href="@{faq}">FAQ</a></li>
+				<p><h2>Themengebiete</h2></p>
+			
+			
+			</div>
+			<aside class="sidebar">Sidebar</aside>
+		</div>
+		<footer th:replace="fragments/footer :: footer">&copy; 2015
+			Community</footer>
+	</div>
+</body>
+</html>
