@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
  *  
  */
 @Entity
-@Table(name = "Benutzer", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
+@Table(name = "Gruppe", uniqueConstraints = { @UniqueConstraint(columnNames = { "GRUPPE_ID" }) })
 public class Gruppe {
 
 	@Id

@@ -54,14 +54,6 @@ public class Badge {
 	/*
 	 * Methoden
 	 */
-	
-	public void erhalteBadge(){
 		
-	}
-	
-//	public boolean hatGenuegendPunkte(int benutzer_punkte){
-//		return true;
-//	}
-	
 }
 

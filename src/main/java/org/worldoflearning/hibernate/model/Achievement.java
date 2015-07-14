@@ -53,13 +53,6 @@ public class Achievement {
 	 * Methoden
 	 */
 	
-	public void erhalteAchievement(){
-		
-	}
 	
-//	public boolean hatGenuegendPunkte(int benutzer_punkte){
-//		
-//		return true;
-//	}
 	
 }
