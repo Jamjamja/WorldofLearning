@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Beitrag</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
+</head>
+<body onload='document.f.j_username.focus();'>
+	<div class="wrapper">
+		<header th:replace="fragments/header :: header">World of
+			Learning</header>
+		<nav th:replace="fragments/navigation :: navigation"></nav>
+		<div class="middle">
+			<div class="container"></div>
+			<div class="content">
+				<h1>Neuen Beitrag erstellen</h1>
+
+				<form action="subscribe.html" th:attr="action=@{/subscribe}">
+					<fieldset>
+
+						<label for="titel">Titel</label> 
+						<input type="text" name="titel" value="" th:value="${user.name}" /> 
+						
+						<br />
+						
+						<label for="beitrag">Beitrag</label> 
+						<input type="text" name="titel" value="" th:value="${user.name}" /> 
+						
+						<br />
+						
+						<input type="submit" value="Beitrag erstellen" th:attr="value=#{subscribe.submit}" />
+					</fieldset>
+				</form>
+
+
+			</div>
+			<aside class="sidebar">Sidebar</aside>
+		</div>
+		<footer th:replace="fragments/footer :: footer">&copy; 2015
+			Community</footer>
+	</div>
+</body>
+</html>
