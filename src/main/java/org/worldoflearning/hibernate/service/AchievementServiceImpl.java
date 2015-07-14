@@ -1,15 +1,13 @@
 package org.worldoflearning.hibernate.service;
 
-
 import org.worldoflearning.hibernate.dao.AchievementDAO;
-
 
 public class AchievementServiceImpl implements AchievementService {
 
 	private AchievementDAO achievementDAO;
 
-	public void setAchievementDAO(AchievementDAO achievementDao) {
-		this.achievementDAO = achievementDao;
+	public void setAchievementDAO(AchievementDAO achievementDAO) {
+		this.achievementDAO = achievementDAO;
 	}
 
 	@Override
