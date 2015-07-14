@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.Type;
+
 /*
  * 
  */
@@ -16,22 +18,27 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "Benutzer", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Benutzer {
 
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false, unique = true, length = 11)
+	private int id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "ID", nullable = false, unique = true, length = 11)
-private int id;
+	@Column(name = "BENUTZERNAME", length = 40, nullable = true)
+	private String benutzername;
 
-@Column(name = "NAME", length = 20, nullable = true)
-private String name;
+	@Column(name = "PASSWORD", length = 20, nullable = true)
+	private String password;
 
-@Column(name = "ROLE", length = 20, nullable = true)
-private String role;
+	@Column(name = "EMail", length = 40, nullable = true)
+	private String email;
 
-@Column(name = "insert_time", nullable = true)
-private Date insertTime;
 
+	@Column(name = "ROLE", length = 20, nullable = true)
+	private String role;
+
+	@Column(name = "INSERT_TIME", nullable = false)
+	@Type(type="date")
+	private Date insertTime;
 	
 	public int getId() {
 		return id;
@@ -41,14 +48,31 @@ private Date insertTime;
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getBenutzername() {
+		return benutzername;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBenutzername(String benutzername) {
+		this.benutzername = benutzername;
 	}
 
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getRole() {
 		return role;
 	}
@@ -56,7 +80,7 @@ private Date insertTime;
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	
 	public Date getInsertTime() {
 		return insertTime;
 	}
@@ -64,5 +88,5 @@ private Date insertTime;
 	public void setInsertTime(Date insertTime) {
 		this.insertTime = insertTime;
 	}
-}	
 
+}

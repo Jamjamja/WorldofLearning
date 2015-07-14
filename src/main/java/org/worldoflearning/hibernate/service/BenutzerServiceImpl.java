@@ -18,14 +18,14 @@ public class BenutzerServiceImpl implements BenutzerService {
 	
 	@Override
 	@Transactional
-	public void hinzufuegenBenutzer(Benutzer b) {
-		this.benutzerDAO.hinzufuegenBenutzer(b);
+	public void hinzufuegenBenutzer(Benutzer benutzer) {
+		this.benutzerDAO.hinzufuegenBenutzer(benutzer);
 	}
 
 	@Override
 	@Transactional
-	public void updateBenutzer(Benutzer b) {
-		this.benutzerDAO.updateBenutzer(b);
+	public void updateBenutzer(Benutzer benutzer) {
+		this.benutzerDAO.updateBenutzer(benutzer);
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class BenutzerServiceImpl implements BenutzerService {
 	
 	@Override
 	@Transactional
-	public boolean findeBenutzerNachName(String name) {
-		return this.benutzerDAO.findeBenutzerNachName(name);
+	public Benutzer findeBenutzerNachName(String benutzername) {
+		return this.benutzerDAO.findeBenutzerNachName(benutzername);
 	}
 
 	@Override

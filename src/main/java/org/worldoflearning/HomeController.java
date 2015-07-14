@@ -33,32 +33,6 @@ public class HomeController {
 		return "home/chat";
 	}
 
-	@RequestMapping(value = "anmelden", method = RequestMethod.GET)
-	public ModelAndView anmelden(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "abmelden", required = false) String abmelden, HttpServletRequest request) {
 
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
-		}
-
-		if (abmelden != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
-		model.setViewName("home/anmelden");
-
-		return model;
-
-	}
-
-	// customize the error message
-	private String getErrorMessage(HttpServletRequest request, String key) {
-
-		Exception exception = (Exception) request.getSession().getAttribute(key);
-
-			String error = "Invalid username and password!";
-
-		return error;
-	}
-
+	
 }

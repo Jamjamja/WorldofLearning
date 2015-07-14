@@ -31,6 +31,44 @@ public class Gruppe {
 	private Date insertTime;
 
 	@OneToMany
-	@JoinColumn(name = "ID")
+	@JoinColumn(name = "ID", nullable = true)
 	private Benutzer id;
+	
+	
+	
+	public int getGruppe_id() {
+		return gruppe_id;
+	}
+
+	public void setGruppe_id(int gruppe_id) {
+		this.gruppe_id = gruppe_id;
+	}
+
+	public String getGruppename() {
+		return gruppename;
+	}
+
+	public void setGruppename(String gruppename) {
+		this.gruppename = gruppename;
+	}
+
+	public Date getInsertTime() {
+		return insertTime;
+	}
+
+	public void setInsertTime(Date insertTime) {
+		this.insertTime = insertTime;
+	}
+
+	public Benutzer getId() {
+		return id;
+	}
+
+	public void setId(Benutzer id) {
+		this.id = id;
+	}
 }
+
+
+
+

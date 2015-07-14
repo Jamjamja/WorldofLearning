@@ -1,5 +1,6 @@
 package org.worldoflearning.hibernate.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -21,22 +22,24 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		return sessionFactory;
 	}
 	
-	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
+	public void setSessionFactory(SessionFactory sessionfactory) {
+		this.sessionFactory = sessionfactory;
 	}
 
 	@Override
-	public void hinzufuegenBenutzer(Benutzer p) {
+	public void hinzufuegenBenutzer(Benutzer benutzer) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(p);
-		logger.info("Benutzer saved successfully, Benutzer Details=" + p);
+		session.beginTransaction();
+		session.persist(benutzer);
+		logger.info("Benutzer saved successfully, Benutzer Details=" + benutzer);
+		session.getTransaction().commit();
 	}
 
 	@Override
-	public void updateBenutzer(Benutzer p) {
+	public void updateBenutzer(Benutzer benutzer) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(p);
-		logger.info("Benutzer updated successfully, Benutzer Details=" + p);
+		session.update(benutzer);
+		logger.info("Benutzer updated successfully, Benutzer Details=" + benutzer);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,8 +48,8 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Benutzer> BenutzersList = session.createQuery("from Benutzer")
 				.list();
-		for (Benutzer p : BenutzersList) {
-			logger.info("Benutzer List::" + p);
+		for (Benutzer benutzer : BenutzersList) {
+			logger.info("Benutzer List::" + benutzer);
 		}
 		return BenutzersList;
 	}
@@ -54,30 +57,49 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	@Override
 	public Benutzer findeBenutzerNachId(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Benutzer p = (Benutzer) session.load(Benutzer.class, new Integer(id));
-		logger.info("Benutzer loaded successfully, Benutzer details=" + p);
-		return p;
+		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new Integer(id));
+		logger.info("Benutzer loaded successfully, Benutzer details=" + benutzer);
+		return benutzer;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean findeBenutzerNachName(String name) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Benutzer p = (Benutzer) session.load(Benutzer.class, new String(name));
-		if (p.getName() == name){
-			return true;			
+	public Benutzer findeBenutzerNachName(String benutzername) {
+	 
+			List<Benutzer> benutzerlist = new ArrayList<Benutzer>();
+	 
+			benutzerlist = sessionFactory.getCurrentSession()
+				.createQuery("from Benutzer where benutzername=?")
+				.setParameter(0, benutzername)
+				.list();
+	 
+			if (benutzerlist.size() > 0) {
+				return benutzerlist.get(0);
+			} else {
+				return null;
+			}
+	 
 		}
-		logger.info("Benutzer loaded successfully, Benutzer details=" + p);
-		return false;
-	}
 	
 	@Override
 	public void loescheBenutzer(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Benutzer p = (Benutzer) session.load(Benutzer.class, new Integer(id));
-		if (null != p) {
-			session.delete(p);
+		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new Integer(id));
+		if (null != benutzer) {
+			session.delete(benutzer);
 		}
-		logger.info("Benutzer deleted successfully, Benutzer details=" + p);
+		logger.info("Benutzer deleted successfully, Benutzer details=" + benutzer);
+	}
+
+	@Override
+	public boolean findeBenutzerNachEMail(String email) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(email));
+		if (benutzer.getEmail() == email){
+			return true;			
+		}
+		logger.info("Benutzer loaded successfully, Benutzer details=" + benutzer);
+		return false;
 	}
 
 }
