@@ -1,7 +1,7 @@
-package org.worldoflearning.hibernate.dao;
+package org.worldoflearning.hibernate.service;
 
-public interface AchievementDAO {
-	
+public interface AchievementService {
+
 	public void erhalteAchievement();
 	
 	public boolean hatGenuegendPunkte(int benutzer_punkte);
