@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = { "FACHBEREICH_ID" }) })
+@Table(name = "Fachbereich", uniqueConstraints = { @UniqueConstraint(columnNames = { "FACHBEREICH_ID" }) })
 public class Fachbereich {
 
 	@Id
@@ -21,6 +21,10 @@ public class Fachbereich {
 	@Column(name = "FACHBEREICH_NAME", length = 20, nullable = true)
 	private String fachbereich_name;
 
+	/*
+	 *  Getter und Setter
+	 */
+	
 	public int getFachbereich_Id() {
 		return fachbereich_id;
 	}

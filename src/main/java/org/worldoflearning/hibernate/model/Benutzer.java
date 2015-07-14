@@ -9,28 +9,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-
+/*
+ * 
+ */
 @Entity
-@Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
-public class User {
+@Table(name = "Benutzer", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
+public class Benutzer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, unique = true, length = 11)
-	private int id;
+	
 
-	@Column(name = "NAME", length = 20, nullable = true)
-	private String name;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "ID", nullable = false, unique = true, length = 11)
+private int id;
 
-	@Column(name = "ROLE", length = 20, nullable = true)
-	private String role;
+@Column(name = "NAME", length = 20, nullable = true)
+private String name;
 
-	@Column(name = "insert_time", nullable = true)
-	private Date insertTime;
+@Column(name = "ROLE", length = 20, nullable = true)
+private String role;
 
-	/*
-	 *  Getter und Setter
-	 */
+@Column(name = "insert_time", nullable = true)
+private Date insertTime;
+
 	
 	public int getId() {
 		return id;
@@ -63,4 +64,5 @@ public class User {
 	public void setInsertTime(Date insertTime) {
 		this.insertTime = insertTime;
 	}
-}
+}	
+

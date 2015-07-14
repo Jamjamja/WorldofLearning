@@ -28,5 +28,80 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	</bean>
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
-	</bean>	
+	</bean>
+
+	<!-- Hibernate Bean -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>org.worldoflearning.hibernate.model.Benutzer</value>
+				<value>org.worldoflearning.hibernate.model.Chatbeitrag</value>
+			</list>
+		</property>
+		<property name="mappingLocations"
+			value="classpath:org/worldoflearning/hibernate/model*.hbm.xml" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+
+
+	</bean>
+
+	<!-- Datenbank Bean -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/testdb" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+
+	<!-- Benutzer Bean -->
+	<bean id="benutzerDAO" class="org.worldoflearning.hibernate.dao.BenutzerDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="benutzerService"
+		class="org.worldoflearning.hibernate.service.BenutzerServiceImpl">
+		<property name="benutzerDAO" ref="benutzerDAO">
+		</property>
+	</bean>
+
+
+	<!-- Chatbeitrag Bean -->
+	<bean id="chatbeitragDAO" class="org.worldoflearning.hibernate.dao.ChatbeitragDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="chatbeitragService"
+		class="org.worldoflearning.hibernate.service.ChatbeitragServiceImpl">
+		<property name="chatbeitragDAO" ref="chatbeitragDAO">
+		</property>
+	</bean>
+
+
+
+
+
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Bean für eigene Messages wie Fehler... -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+
 </beans>

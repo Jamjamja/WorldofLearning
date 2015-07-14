@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Chat</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" th:object="${chatbeitrag}" th:action="@{/chat/add}"
+		method="post">
+		<table>
+			<tr>
+				<td><label for="nachricht">Nachricht</label>; <input
+					type="text" th:field="*{nachricht}" id="nachricht" name="nachricht"
+					placeholder="Deine Nachrichtl" /></td>
+			</tr>
+			<tr>
+				<td><label for="benutzername">Benutzername</label>; <input
+					type="text" th:field="*{benutzername}" id="benutzername"
+					name="benutzername" placeholder="Dein Benutzername" /></td>
+			</tr>
+		</table>
+		<input type="submit" value="Absenden" />
+	</form>
+	<br></br>
+	<h3>Chat List</h3>
+	<table>
+		<tr>
+			<th width="120">Nachricht</th>
+			<th width="120">Benutzer</th>
+		</tr>
+		<th:block th:each="chatbeitrag : ${listChat}">
+			<tr>
+				<td th:text="${chatbeitrag.nachricht}">Hallo Leute</td>
+				<td th:text="${chatbeitrag.benutzername}">Anonymous</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
