@@ -34,7 +34,7 @@ public class Benutzer {
 
 
 	@Column(name = "ROLE", length = 20, nullable = true)
-	private String role;
+	private String role = "ROLE_USER";
 
 	@Column(name = "INSERT_TIME", nullable = false)
 	@Type(type="date")

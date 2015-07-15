@@ -32,7 +32,7 @@ public class ChatController {
 		this.chatbeitragService = chatbeitragservice;
 	}
 
-	@RequestMapping(value = "chat", method = RequestMethod.GET)
+	@RequestMapping(value = "/chat", method = RequestMethod.GET)
 	public String listChat(Model model) {
 		 model.addAttribute("listChat", new Chatbeitrag());
 		 model.addAttribute("listChat",

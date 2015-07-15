@@ -8,11 +8,10 @@
 </head>
 
 <body>
-	<div th:if="${param.error}">Invalid username and password.</div>
-	<div th:if="${param.abmelden}">You have been logged out.</div>
-	<form th:action="@{anmelden}" method="post">
+<p th:text="${message}"></p>
+	<form th:action="@{/j_spring_security_check}" method="post">
 		<div>
-			<label> User Name : <input type="text" name="username" />
+			<label> User Name : <input type="text" name="benutzername" />
 			</label>
 		</div>
 		<div>
@@ -20,7 +19,7 @@
 			</label>
 		</div>
 		<div>
-			<input type="submit" value="Sign In" />
+			<input type="submit" value="Anmelden" />
 		</div>
 	</form>
 </body>

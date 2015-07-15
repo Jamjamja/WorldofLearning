@@ -22,13 +22,13 @@ public class HomeController {
 		return "home/index";
 	}
 
-	@RequestMapping(value = "impressum")
+	@RequestMapping(value = "/impressum")
 	public String impressum() {
 		return "home/impressum";
 	}
 	
 	
-	@RequestMapping(value = "chat")
+	@RequestMapping(value = "/chat")
 	public String chat() {
 		return "home/chat";
 	}

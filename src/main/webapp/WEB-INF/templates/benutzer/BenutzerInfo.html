@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>BenutzerInfo</title>
+</head>
+<body>
+   <h2>Nachricht</h2>
+ 
+   <div>
+      <h3 th:text="${message}">User Info</h3>
+          |<h3><a href="#" th:href="@{/abmelden}">Abmelden</a></h3>  
+   </div>  
+</body>
+</html>

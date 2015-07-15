@@ -38,85 +38,89 @@ public class BenutzerController {
 		this.benutzerService = benutzerservice;
 	}
 
-	@RequestMapping(value = "benutzer/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/benutzer/list", method = RequestMethod.GET)
 	public String listBenutzers(Model model) {
 		model.addAttribute("listbenutzer", new Benutzer());
 		model.addAttribute("listbenutzer", this.benutzerService.listBenutzer());
 		return "listbenutzer";
 	}
 
-	@RequestMapping(value = "registrieren", method = RequestMethod.GET)
+	@RequestMapping(value = "/registrieren", method = RequestMethod.GET)
 	public String registrieren(Model model) {
 		model.addAttribute(new Benutzer());
 		return "login/registrieren";
 	}
 
 	// For add and update benutzer both
-	@RequestMapping(value = "registrieren", method = RequestMethod.POST)
+	@RequestMapping(value = "/registrieren", method = RequestMethod.POST)
 	public String registrieren(@Valid @ModelAttribute("benutzer") Benutzer benutzer, BindingResult result,
 			Model model) {
 		if (result.hasErrors()) {
-			return "registrieren";
-		}
-
-		/*
-		 * else
-		 * if(benutzerService.findeBenutzerNachName(benutzer.getBenutzername()))
-		 * { model.addAttribute("message",
-		 * "User Name exists. Try another user name"); return "registrierung";}
-		 */ else {
+			return "login/registrieren";
+		} else if (benutzerService.findeBenutzerNachName(benutzer.getBenutzername()) != null) {
+			model.addAttribute("message", "User Name exists. Try another user name");
+			return "login/registrieren";
+		} else {
 			benutzerService.hinzufuegenBenutzer(benutzer);
 			return "redirect:anmelden";
 		}
 	}
 
-	@RequestMapping("benutzer/loeschen/{id}")
+	@RequestMapping("/benutzer/loeschen/{id}")
 	public String loescheBenutzer(@PathVariable("id") int id) {
 
 		this.benutzerService.loescheBenutzer(id);
 		return "redirect:/";
 	}
 
-	@RequestMapping("benutzer/bearbeiten/{id}")
+	@RequestMapping("/benutzer/bearbeiten/{id}")
 	public String editbenutzer(@PathVariable("id") int id, Model model) {
 		model.addAttribute("benutzer", this.benutzerService.findeBenutzerNachId(id));
 		model.addAttribute("listbenutzers", this.benutzerService.listBenutzer());
 		return "/";
 	}
 
-	
-	@RequestMapping(value = "anmelden", method = RequestMethod.GET)
-	public String anmelden(Model model) {
-		model.addAttribute(new Benutzer());
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String adminPage(Model model) {
+		model.addAttribute("title", "Admin");
+		model.addAttribute("message", "Admin Page - This is protected page!");
+		return "login/admin";
+	}
+
+	@RequestMapping(value = "/anmelden", method = RequestMethod.GET)
+	public String loginPage(Model model) {
+		model.addAttribute("title", "Login");
+		model.addAttribute("message", "Enter your username/password:");
 		return "login/anmelden";
 	}
-	
-	@RequestMapping(value = "anmelden", method = RequestMethod.POST)
-	public ModelAndView anmelden(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "abmelden", required = false) String abmelden, HttpServletRequest request) {
 
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
-		}
-
-		if (abmelden != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
-		model.setViewName("login/anmelden");
-
-		return model;
-
+	@RequestMapping(value = "/abmeldenErfolg", method = RequestMethod.GET)
+	public String logoutSuccessfulPage(Model model) {
+		model.addAttribute("title", "Logout");
+		return "login/abmeldenErfolg";
 	}
 
-	// customize the error message
-	private String getErrorMessage(HttpServletRequest request, String key) {
+	@RequestMapping(value = "/BenutzerInfo", method = RequestMethod.GET)
+	public String loginPage(Model model, Benutzer benutzer) {
+		model.addAttribute("title", "User Info");
 
-		Exception exception = (Exception) request.getSession().getAttribute(key);
+		String benuzterName = benutzer.getBenutzername();
 
-		String error = "Invalid username and password!";
+		model.addAttribute("message", "User Info - This is protected page!. Hello " + benuzterName);
 
-		return error;
+		return "benutzer/BenutzerInfo";
 	}
 
+	@RequestMapping(value = "/error/403", method = RequestMethod.GET)
+	public String accessDenied(Model model, Benutzer benutzer) {
+		model.addAttribute("title", "Access Denied!");
+
+		if (benutzer != null) {
+			model.addAttribute("message",
+					"Hi " + benutzer.getBenutzername() + "<br> You do not have permission to access this page!");
+		} else {
+			model.addAttribute("msg", "You do not have permission to access this page!");
+		}
+		return "error/403";
+	}
 }
