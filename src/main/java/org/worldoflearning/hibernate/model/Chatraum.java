@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint;
  *  
  */
 @Entity
-@Table(name = "Chatraum", uniqueConstraints = { @UniqueConstraint(columnNames = { "CHATRAUM_ID" }) })
+@Table(name = "Chatraum", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "CHATRAUM_ID" }) })
 public class Chatraum {
 
 	@Id

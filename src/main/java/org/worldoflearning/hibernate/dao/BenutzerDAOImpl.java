@@ -57,15 +57,6 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		return BenutzersList;
 	}
 
-	@Override
-	public Benutzer findeBenutzerNachId(int id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new Integer(id));
-		session.close();
-		logger.info("Benutzer loaded successfully, Benutzer details=" + benutzer);
-		return benutzer;
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -84,9 +75,9 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	}
 
 	@Override
-	public void loescheBenutzer(int id) {
+	public void loescheBenutzer(String benutzername) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new Integer(id));
+		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(benutzername));
 		if (null != benutzer) {
 			session.delete(benutzer);
 		}

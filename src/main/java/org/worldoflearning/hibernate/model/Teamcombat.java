@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint;
  *  Die Methoden bis auf Getter und Setter müssen noch implementiert werden.
  */
 @Entity
-@Table(name = "Frage", uniqueConstraints = { @UniqueConstraint(columnNames = { "TEAMCOMBAT_ID" }) })
+@Table(name = "Frage", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "TEAMCOMBAT_ID" }) })
 public class Teamcombat {
 
 	@Id

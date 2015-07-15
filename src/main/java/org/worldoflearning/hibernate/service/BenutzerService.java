@@ -9,8 +9,7 @@ public interface BenutzerService {
 	public void hinzufuegenBenutzer(Benutzer benutzer);
 	public void updateBenutzer(Benutzer benutzer);
 	public List<Benutzer> listBenutzer();
-	public Benutzer findeBenutzerNachId(int id);
-	public void loescheBenutzer(int id);
+	public void loescheBenutzer(String name);
 	public Benutzer findeBenutzerNachName(String benutzername);
 	
 }

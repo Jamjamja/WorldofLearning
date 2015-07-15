@@ -1,7 +1,9 @@
 package org.worldoflearning.hibernate.service;
 
+import org.springframework.stereotype.Service;
 import org.worldoflearning.hibernate.dao.ThemaDAO;
 
+@Service("themaService")
 public class ThemaServiceImpl implements ThemaService {
 
 	private ThemaDAO themaDAO;

@@ -2,7 +2,9 @@ package org.worldoflearning.hibernate.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
+@Repository("fragDAO")
 public class FrageDAOImpl implements FrageDAO {
 
 	private SessionFactory sessionFactory;

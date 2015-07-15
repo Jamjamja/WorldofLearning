@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.dao.ChatbeitragDAO;
 import org.worldoflearning.hibernate.model.Chatbeitrag;
 
-@Service
+@Service("chatBeitrag")
 public class ChatbeitragServiceImpl implements ChatbeitragService {
 
 	private ChatbeitragDAO chatbeitragDAO;

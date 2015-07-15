@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
  * Die Klasse "Forum" enth‰lt auﬂer unserer Vorgabe im Entwurf zus‰tzlich noch das Attribut ID.
  */
 @Entity
-@Table(name = "Forum", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
+@Table(name = "Forum", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Forum {
 
 	@Id

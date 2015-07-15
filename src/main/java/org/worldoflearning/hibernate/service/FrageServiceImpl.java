@@ -1,7 +1,9 @@
 package org.worldoflearning.hibernate.service;
 
+import org.springframework.stereotype.Service;
 import org.worldoflearning.hibernate.dao.FrageDAO;
 
+@Service("frageService")
 public class FrageServiceImpl implements FrageService {
 
 	private FrageDAO frageDAO;

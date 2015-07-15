@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
  * Diese Klasse ist noch nicht implementiert.
  */
 @Entity
-@Table(name = "Moderator", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
+@Table(name = "Moderator", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Moderator extends Benutzer {
 
 

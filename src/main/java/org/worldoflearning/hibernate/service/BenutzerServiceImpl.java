@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.dao.BenutzerDAO;
 import org.worldoflearning.hibernate.model.Benutzer;
 
-@Service
+@Service("benutzerService")
 public class BenutzerServiceImpl implements BenutzerService {
 	
 	private BenutzerDAO benutzerDAO;
@@ -33,12 +33,6 @@ public class BenutzerServiceImpl implements BenutzerService {
 	public List<Benutzer> listBenutzer() {
 		return this.benutzerDAO.listBenutzer();
 	}
-
-	@Override
-	@Transactional
-	public Benutzer findeBenutzerNachId(int id) {
-		return this.benutzerDAO.findeBenutzerNachId(id);
-	}
 	
 	@Override
 	@Transactional
@@ -48,8 +42,8 @@ public class BenutzerServiceImpl implements BenutzerService {
 
 	@Override
 	@Transactional
-	public void loescheBenutzer(int id) {
-		this.benutzerDAO.loescheBenutzer(id);
+	public void loescheBenutzer(String benutzername) {
+		this.benutzerDAO.loescheBenutzer(benutzername);
 	}
 
 }

@@ -64,63 +64,21 @@ public class BenutzerController {
 			benutzerService.hinzufuegenBenutzer(benutzer);
 			return "redirect:anmelden";
 		}
+
 	}
 
-	@RequestMapping("/benutzer/loeschen/{id}")
-	public String loescheBenutzer(@PathVariable("id") int id) {
+	@RequestMapping("/benutzer/loeschen/{benutzername}")
+	public String loescheBenutzer(@PathVariable("benutzername") String benutzername) {
 
-		this.benutzerService.loescheBenutzer(id);
+		this.benutzerService.loescheBenutzer(benutzername);
 		return "redirect:/";
 	}
 
-	@RequestMapping("/benutzer/bearbeiten/{id}")
-	public String editbenutzer(@PathVariable("id") int id, Model model) {
-		model.addAttribute("benutzer", this.benutzerService.findeBenutzerNachId(id));
+	@RequestMapping("/benutzer/bearbeiten/{benutzername}")
+	public String editbenutzer(@PathVariable("benutzername") String benutzername, Model model) {
+		model.addAttribute("benutzer", this.benutzerService.findeBenutzerNachName(benutzername));
 		model.addAttribute("listbenutzers", this.benutzerService.listBenutzer());
 		return "/";
 	}
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(Model model) {
-		model.addAttribute("title", "Admin");
-		model.addAttribute("message", "Admin Page - This is protected page!");
-		return "login/admin";
-	}
-
-	@RequestMapping(value = "/anmelden", method = RequestMethod.GET)
-	public String loginPage(Model model) {
-		model.addAttribute("title", "Login");
-		model.addAttribute("message", "Enter your username/password:");
-		return "login/anmelden";
-	}
-
-	@RequestMapping(value = "/abmeldenErfolg", method = RequestMethod.GET)
-	public String logoutSuccessfulPage(Model model) {
-		model.addAttribute("title", "Logout");
-		return "login/abmeldenErfolg";
-	}
-
-	@RequestMapping(value = "/BenutzerInfo", method = RequestMethod.GET)
-	public String loginPage(Model model, Benutzer benutzer) {
-		model.addAttribute("title", "User Info");
-
-		String benuzterName = benutzer.getBenutzername();
-
-		model.addAttribute("message", "User Info - This is protected page!. Hello " + benuzterName);
-
-		return "benutzer/BenutzerInfo";
-	}
-
-	@RequestMapping(value = "/error/403", method = RequestMethod.GET)
-	public String accessDenied(Model model, Benutzer benutzer) {
-		model.addAttribute("title", "Access Denied!");
-
-		if (benutzer != null) {
-			model.addAttribute("message",
-					"Hi " + benutzer.getBenutzername() + "<br> You do not have permission to access this page!");
-		} else {
-			model.addAttribute("msg", "You do not have permission to access this page!");
-		}
-		return "error/403";
-	}
 }

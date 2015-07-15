@@ -12,9 +12,7 @@ public interface BenutzerDAO {
 
 	public List<Benutzer> listBenutzer();
 
-	public Benutzer findeBenutzerNachId(int id);
-
-	public void loescheBenutzer(int id);
+	public void loescheBenutzer(String name);
 
 	public Benutzer findeBenutzerNachName(String benutzername);
 	

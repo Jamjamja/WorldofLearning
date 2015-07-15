@@ -5,9 +5,11 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import org.worldoflearning.hibernate.model.Beitrag;
 import org.worldoflearning.hibernate.model.Chatbeitrag;
 
+@Repository("beitragDAO")
 public class BeitragDAOImpl implements BeitragDAO {
 
 	private SessionFactory sessionFactory;

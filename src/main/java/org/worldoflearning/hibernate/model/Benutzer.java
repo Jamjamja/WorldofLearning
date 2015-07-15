@@ -1,29 +1,31 @@
 package org.worldoflearning.hibernate.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;  
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import org.worldoflearning.hibernate.model.BenutzerRolle;
 
 import org.hibernate.annotations.Type;
-
+import org.springframework.beans.factory.annotation.Autowired;
 /*
  * 
  */
 @Entity
-@Table(name = "Benutzer", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
+@Table(name = "Benutzer", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "BENUTZERNAME" }) })
 public class Benutzer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, unique = true, length = 11)
-	private int id;
-
-	@Column(name = "BENUTZERNAME", length = 40, nullable = true)
+	@Column(name = "BENUTZERNAME",unique = true, length = 40, nullable = true)
 	private String benutzername;
 
 	@Column(name = "PASSWORD", length = 20, nullable = true)
@@ -32,21 +34,13 @@ public class Benutzer {
 	@Column(name = "EMail", length = 40, nullable = true)
 	private String email;
 
-
-	@Column(name = "ROLE", length = 20, nullable = true)
-	private String role = "ROLE_USER";
-
 	@Column(name = "INSERT_TIME", nullable = false)
-	@Type(type="date")
+	@Type(type = "date")
 	private Date insertTime;
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	@Autowired
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
+	private Set<BenutzerRolle> benutzerRolle = new HashSet<BenutzerRolle>(0);
 
 	public String getBenutzername() {
 		return benutzername;
@@ -55,7 +49,6 @@ public class Benutzer {
 	public void setBenutzername(String benutzername) {
 		this.benutzername = benutzername;
 	}
-
 
 	public String getPassword() {
 		return password;
@@ -72,15 +65,15 @@ public class Benutzer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getRole() {
-		return role;
+
+	public Set<BenutzerRolle> BenutzerRolle() {
+		return benutzerRolle;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setBenutzerRolle(Set<BenutzerRolle> benutzerRolle) {
+		this.benutzerRolle = benutzerRolle;
 	}
-	
+
 	public Date getInsertTime() {
 		return insertTime;
 	}

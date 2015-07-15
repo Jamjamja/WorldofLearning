@@ -2,7 +2,9 @@ package org.worldoflearning.hibernate.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
+@Repository("moderatorDAO")
 public class ModeratorDAOImpl implements ModeratorDAO {
 
 	private SessionFactory sessionFactory;

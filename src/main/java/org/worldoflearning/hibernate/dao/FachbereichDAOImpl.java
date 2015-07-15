@@ -1,7 +1,9 @@
 package org.worldoflearning.hibernate.dao;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
+@Repository("fachbereichDAO")
 public class FachbereichDAOImpl implements FachbereichDAO {
 
 	private SessionFactory sessionFactory;

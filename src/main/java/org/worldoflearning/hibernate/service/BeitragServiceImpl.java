@@ -2,10 +2,12 @@ package org.worldoflearning.hibernate.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.dao.BeitragDAO;
 import org.worldoflearning.hibernate.model.Beitrag;
 
+@Service("beitragService")
 public class BeitragServiceImpl implements BeitragService {
 
 	private BeitragDAO beitragDAO;

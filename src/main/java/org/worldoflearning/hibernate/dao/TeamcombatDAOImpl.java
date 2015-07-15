@@ -2,9 +2,11 @@ package org.worldoflearning.hibernate.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import org.worldoflearning.hibernate.model.Frage;
 import org.worldoflearning.hibernate.model.Test;
 
+@Repository("teamcombatDAO")
 public class TeamcombatDAOImpl implements TeamcombatDAO {
 
 	private SessionFactory sessionFactory;

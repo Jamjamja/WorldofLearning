@@ -1,7 +1,9 @@
 package org.worldoflearning.hibernate.service;
 
+import org.springframework.stereotype.Service;
 import org.worldoflearning.hibernate.dao.AchievementDAO;
 
+@Service("achievementService")
 public class AchievementServiceImpl implements AchievementService {
 
 	private AchievementDAO achievementDAO;
