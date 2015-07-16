@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Neue Frage</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
+</head>
+
+<body>
+<p th:text="${message}"></p>
+	<form th:action="@{/j_spring_security_check}" method="post">
+		<div>
+			<label> Frage: <input type="text" name="frage" />
+			</label>
+		</div>
+		<div>
+			<label> Antwort a:<input type="text" name="antwort_a" />
+			</label>
+		</div>
+			<div>
+			<label> Antwort b <input type="text" name="antwort_b" />
+			</label>
+		</div>
+		
+			<div>
+			<label> Answer c: <input type="text" name="antwort_c" />
+			</label>
+		</div>
+		
+			<div>
+			<label> Answer d: <input type="text" name="antwort_d" />
+			</label>
+		</div>
+		
+		<div>
+			<input type="submit" value="Create Question" />
+		</div>
+	</form>
+</body>
+</html>

@@ -32,7 +32,11 @@ public class HomeController {
 	public String chat() {
 		return "home/chat";
 	}
-
+	
+	@RequestMapping(value = "/frage")
+	public String frage() {
+		return "test/frage";
+	}
 
 	
 }
