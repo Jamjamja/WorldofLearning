@@ -148,9 +148,9 @@
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
-				users-by-username-query="select id,benutzername,password from benutzer where benutzername=?"
+				users-by-username-query="select benutzername,password from benutzer where benutzername=?"
 				authorities-by-username-query="select 
-			benutzername, role from benutzer where benutzername=?" />
+			benutzer_rolle_id, benutzername, role from benutzer where benutzername=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 

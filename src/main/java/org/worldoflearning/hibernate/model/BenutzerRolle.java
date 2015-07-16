@@ -9,6 +9,7 @@
     import javax.persistence.JoinColumn;  
     import javax.persistence.ManyToOne;  
     import javax.persistence.Table;  
+    import java.util.ArrayList;
       
     @Entity  
     @Table(name = "benutzer_rolle", catalog = "testdb")  
@@ -23,7 +24,19 @@
      @JoinColumn(name = "benutzername", nullable = false)  
      private Benutzer benutzer;  
       
-     @Column(name = "rolle", nullable = false, length = 45)  
+     public Integer getBenutzerRolleId() {
+		return benutzerRolleId;
+	}
+
+	public void setBenutzerRolleId(Integer benutzerRolleId) {
+		this.benutzerRolleId = benutzerRolleId;
+	}
+
+	public void setBenutzer(Benutzer benutzer) {
+		this.benutzer = benutzer;
+	}
+
+	@Column(name = "rolle", nullable = false, length = 45)  
      private String rolle;  
       
      public Integer getUserRoleId() {  

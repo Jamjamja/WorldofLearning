@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.worldoflearning.hibernate.model.Benutzer;
 
@@ -16,6 +17,7 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(BenutzerDAOImpl.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {

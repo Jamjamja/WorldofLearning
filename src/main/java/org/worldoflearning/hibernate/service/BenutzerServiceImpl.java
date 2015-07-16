@@ -2,6 +2,7 @@ package org.worldoflearning.hibernate.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.dao.BenutzerDAO;
@@ -10,6 +11,7 @@ import org.worldoflearning.hibernate.model.Benutzer;
 @Service("benutzerService")
 public class BenutzerServiceImpl implements BenutzerService {
 	
+	@Autowired
 	private BenutzerDAO benutzerDAO;
 
 	public void setBenutzerDAO(BenutzerDAO benutzerDAO) {

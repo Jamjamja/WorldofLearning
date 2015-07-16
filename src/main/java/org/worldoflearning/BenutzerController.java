@@ -25,6 +25,7 @@ import org.worldoflearning.hibernate.service.BenutzerService;
 @SessionAttributes("benutzer")
 public class BenutzerController {
 
+	@Autowired
 	private BenutzerService benutzerService;
 
 	@ModelAttribute("benutzer")

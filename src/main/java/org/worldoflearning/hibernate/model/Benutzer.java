@@ -38,10 +38,11 @@ public class Benutzer {
 	@Type(type = "date")
 	private Date insertTime;
 
+	
 	@Autowired
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
 	private Set<BenutzerRolle> benutzerRolle = new HashSet<BenutzerRolle>(0);
-
+	
 	public String getBenutzername() {
 		return benutzername;
 	}
