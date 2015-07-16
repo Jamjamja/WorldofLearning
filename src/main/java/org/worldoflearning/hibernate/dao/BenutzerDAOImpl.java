@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -11,11 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.worldoflearning.hibernate.model.Benutzer;
+import org.worldoflearning.hibernate.model.Chatbeitrag;
 
 @Repository("BenutzerDAO")
 public class BenutzerDAOImpl implements BenutzerDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(BenutzerDAOImpl.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(BenutzerDAOImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -42,7 +45,8 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		session.update(benutzer);
-		logger.info("Benutzer updated successfully, Benutzer Details=" + benutzer);
+		logger.info("Benutzer updated successfully, Benutzer Details="
+				+ benutzer);
 		session.getTransaction().commit();
 	}
 
@@ -51,14 +55,11 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	public List<Benutzer> listBenutzer() {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		List<Benutzer> BenutzersList = session.createQuery("from Benutzer").list();
-		for (Benutzer benutzer : BenutzersList) {
-			logger.info("Benutzer List::" + benutzer);
-		}
+		Criteria criteria = session.createCriteria(Benutzer.class);
+		List<Benutzer> listBenutzer = (List<Benutzer>) criteria.list();
 		session.clear();
-		return BenutzersList;
+		return listBenutzer;
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -66,7 +67,8 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Benutzer> benutzerlist = new ArrayList<Benutzer>();
 		session.beginTransaction();
-		benutzerlist = sessionFactory.getCurrentSession().createQuery("from Benutzer where benutzername=?")
+		benutzerlist = sessionFactory.getCurrentSession()
+				.createQuery("from Benutzer where benutzername=?")
 				.setParameter(0, benutzername).list();
 		session.close();
 		if (benutzerlist.size() > 0) {
@@ -79,23 +81,27 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 	@Override
 	public void loescheBenutzer(String benutzername) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(benutzername));
+		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(
+				benutzername));
 		if (null != benutzer) {
 			session.delete(benutzer);
 		}
-		logger.info("Benutzer deleted successfully, Benutzer details=" + benutzer);
+		logger.info("Benutzer deleted successfully, Benutzer details="
+				+ benutzer);
 	}
 
 	@Override
 	public boolean findeBenutzerNachEMail(String email) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(email));
+		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(
+				email));
 		if (benutzer.getEmail() == email) {
 			return true;
 		}
 		session.close();
-		logger.info("Benutzer loaded successfully, Benutzer details=" + benutzer);
+		logger.info("Benutzer loaded successfully, Benutzer details="
+				+ benutzer);
 		return false;
 	}
 

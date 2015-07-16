@@ -44,9 +44,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
+				<value>org.worldoflearning.hibernate.model.Beitrag</value>
 				<value>org.worldoflearning.hibernate.model.BenutzerRolle</value>
 				<value>org.worldoflearning.hibernate.model.Benutzer</value>
 				<value>org.worldoflearning.hibernate.model.Chatbeitrag</value>
+				<value>org.worldoflearning.hibernate.model.Thema</value>
 			</list>
 		</property>
 		<property name="mappingLocations"
@@ -93,6 +95,18 @@
 	<bean id="chatbeitragService"
 		class="org.worldoflearning.hibernate.service.ChatbeitragServiceImpl">
 		<property name="chatbeitragDAO" ref="chatbeitragDAO">
+		</property>
+	</bean>
+
+
+	<!-- Beitrag Bean -->
+	<bean id="beitragDAO" class="org.worldoflearning.hibernate.dao.BeitragDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="beitragService"
+		class="org.worldoflearning.hibernate.service.BeitragServiceImpl">
+		<property name="beitragDAO" ref="beitragDAO">
 		</property>
 	</bean>
 

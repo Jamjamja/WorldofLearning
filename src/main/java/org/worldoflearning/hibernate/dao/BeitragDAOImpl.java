@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.worldoflearning.hibernate.model.Beitrag;
-import org.worldoflearning.hibernate.model.Chatbeitrag;
 
 @Repository("beitragDAO")
 public class BeitragDAOImpl implements BeitragDAO {
@@ -22,27 +21,6 @@ public class BeitragDAOImpl implements BeitragDAO {
 		this.sessionFactory = sf;
 	}
 
-	@Override
-	public void loeschenBeitrag(Beitrag beitrag) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.delete(beitrag);
-		session.getTransaction().commit();
-	}
-
-	@Override
-	public void updateBeitrag(Beitrag beitrag) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.update(beitrag);
-		session.getTransaction().commit();
-	}
-
-	@Override
-	public void updateInhalt(Beitrag beitrag) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void erstelleBeitrag(Beitrag beitrag) {
@@ -52,21 +30,15 @@ public class BeitragDAOImpl implements BeitragDAO {
 		session.getTransaction().commit();
 	}
 
-	@Override
-	public Beitrag findeBeitragNachId(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Beitrag> listBeitrag() {
 		Session session = getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(Beitrag.class);
-		List<Beitrag> ListBeitrag = (List<Beitrag>)criteria.list();
+		List<Beitrag> listBeitrag = (List<Beitrag>)criteria.list();
 		session.getTransaction().commit();
-		return listBeitrag();
+		return listBeitrag;
 	}
 
 }

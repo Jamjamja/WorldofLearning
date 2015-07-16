@@ -1,8 +1,13 @@
 package org.worldoflearning.hibernate.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.model.Chatbeitrag;
+import org.worldoflearning.hibernate.model.Thema;
 
 @Repository("themaDAO")
 public class ThemaDAOImpl implements ThemaDAO {
@@ -18,10 +23,22 @@ public class ThemaDAOImpl implements ThemaDAO {
 	}
 
 	@Override
-	public void erstelleThema() {
+	public void erstelleThema(Thema thema) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		session.save(thema);
+		session.getTransaction().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Thema> listThema() {
 		Session session = getSessionFactory().getCurrentSession();
-		// TODO Auto-generated method stub
-
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(Thema.class);
+		List<Thema> listThema = (List<Thema>) criteria.list();
+		session.getTransaction().commit();
+		return listThema;
 	}
 
 	@Override
@@ -44,5 +61,7 @@ public class ThemaDAOImpl implements ThemaDAO {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 }

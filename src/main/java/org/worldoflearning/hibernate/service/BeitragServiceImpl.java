@@ -27,28 +27,4 @@ public class BeitragServiceImpl implements BeitragService {
 	public void erstelleBeitrag(Beitrag beitrag) {
 		this.beitragDAO.erstelleBeitrag(beitrag);
 	}
-
-	@Override
-	public void loeschenBeitrag(Beitrag beitrag) {
-		this.beitragDAO.loeschenBeitrag(beitrag);
-
-	}
-
-	@Override
-	public void updateBeitrag(Beitrag beitrag) {
-		this.beitragDAO.loeschenBeitrag(beitrag);
-	}
-
-	@Override
-	public void updateInhalt(Beitrag beitrag) {
-		this.beitragDAO.loeschenBeitrag(beitrag);
-
-	}
-
-	@Override
-	public Beitrag findeBeitragNachId(int id) {
-		return this.beitragDAO.findeBeitragNachId(id);
-	}
-	
-
 }

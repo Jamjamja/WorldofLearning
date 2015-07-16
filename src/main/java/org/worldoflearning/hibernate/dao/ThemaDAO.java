@@ -1,8 +1,14 @@
 package org.worldoflearning.hibernate.dao;
 
+import java.util.List;
+
+import org.worldoflearning.hibernate.model.Thema;
+
 public interface ThemaDAO {
 
-	public void erstelleThema();
+	public void erstelleThema(Thema thema);
+
+	public List<Thema> listThema();
 
 	public void bearbeiteThema();
 

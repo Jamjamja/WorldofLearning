@@ -15,20 +15,20 @@
 			<div class="container"></div>
 			<div class="content">
 				<h1>Neuen Beitrag erstellen</h1>
-				<form th:object="${beitrag}" th:action="@{/beitrag/add}" method="post">
+				<form th:object="${thema}" th:action="@{/thema/add}" method="post">
 					<fieldset>
 
-						<label for="beitrag_inhalt">Inhalt</label> 
-						<input type="text" name="beitrag_inhalt" id="beitrag_inhalt" th:field="*{beitrag_inhalt}" /> 
+						<label for="thema_inhalt">Inhalt</label> 
+						<input type="text" name="thema_inhalt" id="thema_inhalt" th:field="*{thema_inhalt}" /> 
 						
 						<br />
 						
-						<label for="beitrag_ersteller">Beitrag Ersteller</label> 
-						<input type="text" name="beitrag_ersteller" id="beitrag_ersteller" th:field="*{beitrag_ersteller}" /> 
+						<label for="thema_ersteller">Beitrag Ersteller</label> 
+						<input type="text" name="thema_ersteller" id="thema_ersteller" th:field="*{thema_ersteller}" /> 
 						
 						<br />
 						
-						<input type="submit" value="Beitrag erstellen" />
+						<input type="submit" value="Thema erstellen" />
 					</fieldset>
 				</form>
 				<h3>Beitrag</h3>
@@ -39,8 +39,8 @@
 					</tr>
 					<th:block th:each="beitrag : ${listBeitrag}">
 						<tr>
-							<td th:text="${beitrag.beitrag_inhalt}">Hallo Leute</td>
-							<td th:text="${beitrag.beitrag_ersteller}">Anonymous</td>
+							<td th:text="${beitrag.thema_inhalt}">Hallo Leute</td>
+							<td th:text="${beitrag.thema_ersteller}">Anonymous</td>
 						</tr>
 					</th:block>
 				</table>

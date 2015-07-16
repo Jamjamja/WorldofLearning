@@ -29,13 +29,13 @@ public class AnmeldenController {
 		return "login/anmelden";
 	}
 
-	@RequestMapping(value = "/abmeldenErfolg", method = RequestMethod.GET)
+	@RequestMapping(value = "/abmeldenerfolg", method = RequestMethod.GET)
 	public String logoutSuccessfulPage(Model model) {
 		model.addAttribute("title", "Abmelden");
-		return "login/abmeldenErfolg";
+		return "login/abmeldenerfolg";
 	}
 
-	@RequestMapping(value = "/BenutzerInfo", method = RequestMethod.GET)
+	@RequestMapping(value = "/benutzerinfo", method = RequestMethod.GET)
 	public String loginPage(Model model, Benutzer benutzer) {
 		model.addAttribute("title", "User Info");
 
@@ -43,7 +43,7 @@ public class AnmeldenController {
 
 		model.addAttribute("message", "User Info - This is protected page!. Hello " + benuzterName);
 
-		return "benutzer/BenutzerInfo";
+		return "benutzer/benutzerinfo";
 	}
 
 	// for 403 access denied page

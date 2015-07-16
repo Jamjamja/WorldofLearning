@@ -1,5 +1,7 @@
 package org.worldoflearning.hibernate.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +21,11 @@ public class Chatbeitrag {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "ID", nullable = true)
+	@Column(name = "ID")
 	private int id;
 	
-	
-	/*
-	@Column(name = "BEITRAG_ERSTELLTAM", nullable = true)
-	private int datum;
-	*/
+//	@Column(name = "BEITRAG_ERSTELLTAM", nullable = true)
+//	private Date datum;
 	
 	@Column(name = "NACHRICHT", length = 255, nullable = true)
 	private String nachricht;
