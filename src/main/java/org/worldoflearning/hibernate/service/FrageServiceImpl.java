@@ -1,9 +1,8 @@
 package org.worldoflearning.hibernate.service;
 
-import org.springframework.stereotype.Service;
 import org.worldoflearning.hibernate.dao.FrageDAO;
+import org.worldoflearning.hibernate.model.Frage;
 
-@Service("frageService")
 public class FrageServiceImpl implements FrageService {
 
 	private FrageDAO frageDAO;
@@ -13,20 +12,20 @@ public class FrageServiceImpl implements FrageService {
 	}
 	
 	@Override
-	public void erstelleFrage() {
-		this.frageDAO.erstelleFrage();
+	public void erstelleFrage(Frage frage) {
+		this.frageDAO.erstelleFrage(frage);
 
 	}
 
 	@Override
-	public void bearbeiteFrage() {
-		this.frageDAO.bearbeiteFrage();
+	public void bearbeiteFrage(Frage frage) {
+		this.frageDAO.bearbeiteFrage(frage);
 
 	}
 
 	@Override
-	public void loescheFrage() {
-		this.frageDAO.loescheFrage();
+	public void loescheFrage(int id) {
+		this.frageDAO.loescheFrage(id);
 
 	}
 

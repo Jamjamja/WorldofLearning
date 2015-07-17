@@ -1,11 +1,13 @@
 package org.worldoflearning.hibernate.service;
 
+import org.worldoflearning.hibernate.model.Frage;
+
 public interface FrageService {
 
-	public void erstelleFrage();
+	public void erstelleFrage(Frage frage);
 
-	public void bearbeiteFrage();
+	public void loescheFrage(int id);
 
-	public void loescheFrage();
+	public void bearbeiteFrage(Frage frage);
 	
 }
