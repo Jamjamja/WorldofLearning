@@ -46,6 +46,7 @@
 			<list>
 				<value>org.worldoflearning.hibernate.model.Benutzer</value>
 				<value>org.worldoflearning.hibernate.model.Chatbeitrag</value>
+				<value>org.worldoflearning.hibernate.model.Frage</value>
 			</list>
 		</property>
 		<property name="mappingLocations"
