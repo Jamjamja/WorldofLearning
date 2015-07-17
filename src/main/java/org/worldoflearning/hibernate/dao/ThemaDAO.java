@@ -14,6 +14,6 @@ public interface ThemaDAO {
 
 	public void loescheThema();
 
-	public void sucheThema();
+	public Thema findeThemanachID(int thema_id);
 
 }

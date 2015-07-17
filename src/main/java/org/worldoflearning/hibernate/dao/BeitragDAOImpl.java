@@ -5,8 +5,10 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.worldoflearning.hibernate.model.Beitrag;
+import org.worldoflearning.hibernate.model.Thema;
 
 @Repository("beitragDAO")
 public class BeitragDAOImpl implements BeitragDAO {
@@ -32,10 +34,10 @@ public class BeitragDAOImpl implements BeitragDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Beitrag> listBeitrag() {
+	public List<Beitrag> listBeitrag(Thema thema) {
 		Session session = getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(Beitrag.class);
+		Criteria criteria = session.createCriteria(Beitrag.class).add( Restrictions.like("thema", thema) );
 		List<Beitrag> listBeitrag = (List<Beitrag>)criteria.list();
 		session.getTransaction().commit();
 		return listBeitrag;

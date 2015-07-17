@@ -17,27 +17,18 @@
 				<h1>Forum</h1>
 				<p>Unten sehen Sie unsere Foren. Wählen Sie einen Thread aus
 					oder erstellen Sie einen neuen.</p>
-				<p>
 				<h2>Ankündigungen</h2>
-				</p>
-
-				<p>
 				<h2>Allgemeines Diskussionsforum</h2>
-				</p>
-				<li><a href="/faq" th:href="@{/faq}">FAQ</a></li>
-
 				<h1>Neuen Beitrag erstellen</h1>
-				<form th:object="${thema}" th:action="@{/thema/add}"
-					method="post">
+				<form th:object="${thema}" th:action="@{/forum/add}" method="post">
 					<fieldset>
 
 						<label for="thema_inhalt">Inhalt</label> <input type="text"
-							name="thema_inhalt" id="thema_inhalt"
-							th:field="*{thema_inhalt}" /> <br /> <label
-							for="thema_ersteller">Beitrag Ersteller</label> <input
+							name="thema_inhalt" id="thema_inhalt" th:field="*{thema_inhalt}" />
+						<br /> <label for="thema_ersteller">Beitrag Ersteller</label> <input
 							type="text" name="thema_ersteller" id="thema_ersteller"
 							th:field="*{thema_ersteller}" /> <br /> <input type="submit"
-							value="Beitrag erstellen" />
+							value="Thema erstellen" />
 					</fieldset>
 				</form>
 				<h3>Themen</h3>
@@ -46,11 +37,14 @@
 						<th width="120">Thema</th>
 						<th width="120"></th>
 					</tr>
+					<tr>
+						<td><a href="/faq" th:href="@{/faq}">FAQ</a></td>
+					</tr>
 					<th:block th:each="thema : ${listThema}">
 						<tr>
 							<td th:text="${thema.thema_inhalt}">Hallo Leute</td>
-							<td th:text="${beitrag.thema_ersteller}">Anonymous</td>
-							<td th:href="@{/{thema_id}/listBeitrag}">anschauen</td>
+							<td th:text="${thema.thema_ersteller}">Anonymous</td>
+							<td><a href="#" th:href="@{'/thema/' + ${thema.thema_id} + '/beitrag'}">anschauen</a></td>
 						</tr>
 					</th:block>
 				</table>

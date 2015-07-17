@@ -8,12 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.worldoflearning.hibernate.model.Thema;
 import org.worldoflearning.hibernate.service.ThemaService;
 
 @Controller
-@SessionAttributes("beitrag")
 public class ThemaController {
 
 	private ThemaService themaService;
@@ -29,15 +27,16 @@ public class ThemaController {
 		this.themaService = themaservice;
 	}
 
-	@RequestMapping(value = "/thema", method = RequestMethod.GET)
-	public String listBeitrag(Model model) {
+	@RequestMapping(value = "/forum", method = RequestMethod.GET)
+	public String listThema(Model model) {
 		model.addAttribute("listThema", new Thema());
 		model.addAttribute("listThema", this.themaService.listThema());
-		return "forum/thema";
+		return "forum/forum";
 	}
 
+	
 	// For add Beitrag
-	@RequestMapping(value = "/thema/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/forum/add", method = RequestMethod.POST)
 	public String beitrag(
 			@ModelAttribute("thema") Thema thema,
 			BindingResult result, Model model) {

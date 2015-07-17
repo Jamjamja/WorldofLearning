@@ -12,7 +12,7 @@ public interface ThemaService {
 
 	public void loescheThema();
 
-	public void sucheThema();
+	public Thema findeThemanachID(int thema_id);
 
 	public List<Thema> listThema();
 	

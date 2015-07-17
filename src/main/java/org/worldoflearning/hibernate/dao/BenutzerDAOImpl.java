@@ -83,7 +83,7 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		Benutzer benutzer = (Benutzer) session.load(Benutzer.class, new String(
 				benutzername));
-		if (null != benutzer) {
+		if (null != benutzername) {
 			session.delete(benutzer);
 		}
 		logger.info("Benutzer deleted successfully, Benutzer details="

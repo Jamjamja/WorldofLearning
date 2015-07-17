@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.dao.BeitragDAO;
 import org.worldoflearning.hibernate.model.Beitrag;
+import org.worldoflearning.hibernate.model.Thema;
 
 @Service("beitragService")
 public class BeitragServiceImpl implements BeitragService {
@@ -18,8 +19,8 @@ public class BeitragServiceImpl implements BeitragService {
 
 	@Override
 	@Transactional
-	public List<Beitrag> listBeitrag() {
-		return this.beitragDAO.listBeitrag();
+	public List<Beitrag> listBeitrag(Thema thema) {
+		return this.beitragDAO.listBeitrag(thema);
 	}
 
 	@Override

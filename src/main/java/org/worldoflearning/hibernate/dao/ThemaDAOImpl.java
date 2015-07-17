@@ -6,7 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import org.worldoflearning.hibernate.model.Chatbeitrag;
 import org.worldoflearning.hibernate.model.Thema;
 
 @Repository("themaDAO")
@@ -56,10 +55,12 @@ public class ThemaDAOImpl implements ThemaDAO {
 	}
 
 	@Override
-	public void sucheThema() {
-		Session session = getSessionFactory().getCurrentSession();
-		// TODO Auto-generated method stub
-
+	public Thema findeThemanachID(int thema_id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		Thema thema = (Thema) session.load(Thema.class, new Integer(thema_id));
+		session.getTransaction().commit();
+		return thema;
 	}
 
 

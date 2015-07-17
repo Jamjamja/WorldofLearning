@@ -111,6 +111,18 @@
 	</bean>
 
 
+	<!-- Thema Bean -->
+	<bean id="themaDAO" class="org.worldoflearning.hibernate.dao.ThemaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="themaService"
+		class="org.worldoflearning.hibernate.service.ThemaServiceImpl">
+		<property name="themaDAO" ref="themaDAO">
+		</property>
+	</bean>
+
+
 	<!-- Transation -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

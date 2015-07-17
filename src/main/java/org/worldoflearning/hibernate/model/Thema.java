@@ -1,14 +1,22 @@
 package org.worldoflearning.hibernate.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "Thema", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "THEMA_ID" }) })
@@ -22,19 +30,21 @@ public class Thema {
 	@Column(name = "THEMA_ERSTELLER", nullable = false, length = 20)
 	private String thema_ersteller;
 
-
-
 	@Column(name = "THEMA_INHALT", nullable = false, length = 255)
 	private String thema_inhalt;
 
 	@Column(name = "ERSTELLT_AM", nullable = true)
 	private Date thema_ErstelltAm;
 
+	@Autowired
+	@OneToMany(mappedBy = "thema")
+	@Cascade({ CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.SAVE_UPDATE })
+	private Set<Beitrag> beitrag = new HashSet<Beitrag>();
+
 	/*
-	 *  Getter und Setter
+	 * Getter und Setter
 	 */
-	
-	
+
 	public int getThema_id() {
 		return thema_id;
 	}
@@ -67,5 +77,12 @@ public class Thema {
 		this.thema_ErstelltAm = themaErstelltAm;
 	}
 
+	public Set<Beitrag> getBeitrag() {
+		return beitrag;
+	}
+
+	public void setBeitrag(Set<Beitrag> beitrag) {
+		this.beitrag = beitrag;
+	}
 
 }

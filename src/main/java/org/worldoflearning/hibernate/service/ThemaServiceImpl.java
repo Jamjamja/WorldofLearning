@@ -32,16 +32,15 @@ public class ThemaServiceImpl implements ThemaService {
 
 	@Override
 	@Transactional
-	public void sucheThema() {
-		this.themaDAO.sucheThema();
+	public Thema findeThemanachID(int thema_id) {
+		return this.themaDAO.findeThemanachID(thema_id);
 
 	}
 
 	@Override
 	@Transactional
 	public List<Thema> listThema() {
-		this.themaDAO.sucheThema();
-		return null;
+		return this.themaDAO.listThema();
 	}
 
 	@Override

@@ -1,15 +1,24 @@
 package org.worldoflearning.hibernate.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /*
  * Nur Getter und Setter sind bereits implementiert. Die anderen Methoden müssen noch implementiert werden.
@@ -32,17 +41,20 @@ public class Beitrag {
 	@Column(name = "BEITRAG_ERSTELLTAM", nullable = true)
 	private Date beitrag_erstelltAm;
 
-	// @ManyToOne
-	// @JoinColumn(name = "THEMA_ID")
-	// private Thema thema_id;
+	@ManyToOne
+	@JoinColumn(name = "thema_id", nullable = false)
+	@Cascade({CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.SAVE_UPDATE })
+	private Thema thema;
 
 	/*
 	 * Getter und Setter
 	 */
 
+
 	public int getId() {
 		return id;
 	}
+
 
 	public void setId(int id) {
 		this.id = id;
@@ -70,6 +82,15 @@ public class Beitrag {
 
 	public void setBeitrag_erstelltAm(Date beitrag_erstelltAm) {
 		this.beitrag_erstelltAm = beitrag_erstelltAm;
+	}
+	
+	public Thema getThema() {
+		return thema;
+	}
+
+
+	public void setThema(Thema thema) {
+		this.thema = thema;
 	}
 
 }
