@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -37,15 +39,26 @@ public class Frage {
 
 	@Column(name = " name ", length = 20, nullable = true)
 	private String frage_korrekte_antwort;
-
 	
-//	@ManyToOne
-//	@JoinColumn(name = "TEST_ID")
-//	private Test test_id;
+	/*
+	 * Beziehungen
+	 */
+	
+	@ManyToOne
+	@JoinColumn(name = "test_id")
+	private Test test;
 	
 	/*
 	 * Getter und Setter
 	 */
+
+	public Test getTest() {
+		return test;
+	}
+
+	public void setTest(Test test) {
+		this.test = test;
+	}
 
 	public String getFrage_name() {
 		return frage_name;

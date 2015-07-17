@@ -1,13 +1,21 @@
 package org.worldoflearning.hibernate.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /*
  *  Die Methoden bis auf Getter und Setter müssen noch implementiert werden.
@@ -34,11 +42,28 @@ public class Test {
 	private int test_anzahlbewertung;
 
 	/*
+	 * Beziehungen
+	 */
+	
+	@Autowired
+	@OneToMany(mappedBy = "test")
+	@Cascade({ CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.SAVE_UPDATE })
+	private Set<Frage> frage = new HashSet<Frage>();
+		
+	/*
 	 * Getter und Setter
 	 */
 
 	public int getFragenanzahl() {
 		return fragenanzahl;
+	}
+
+	public Set<Frage> getFrage() {
+		return frage;
+	}
+
+	public void setFrage(Set<Frage> frage) {
+		this.frage = frage;
 	}
 
 	public void setFragenanzahl(int fragenanzahl) {
