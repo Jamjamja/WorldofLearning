@@ -21,6 +21,7 @@
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/css/**" location="/ressources/css/" />
 	<mvc:resources mapping="/img/**" location="/ressources/img/" />
+		<mvc:resources mapping="/js/**" location="/ressources/js/" />
 	<!-- enable the thymeleaf framework -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
@@ -45,7 +46,6 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>org.worldoflearning.hibernate.model.Beitrag</value>
-				<value>org.worldoflearning.hibernate.model.BenutzerRolle</value>
 				<value>org.worldoflearning.hibernate.model.Benutzer</value>
 				<value>org.worldoflearning.hibernate.model.Chatbeitrag</value>
 				<value>org.worldoflearning.hibernate.model.Thema</value>
@@ -174,9 +174,8 @@
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
-				users-by-username-query="select benutzername,password from benutzer where benutzername=?"
-				authorities-by-username-query="select 
-			benutzer_rolle_id, benutzername, role from benutzer where benutzername=?" />
+				users-by-username-query="select b.benutzername, b.password, 'true' as enabled from benutzer b where b.benutzername=?"
+				authorities-by-username-query="select b.benutzername, b.rolle as authorities from benutzer b where b.benutzername=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 

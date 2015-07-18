@@ -1,22 +1,19 @@
 package org.worldoflearning.hibernate.model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;  
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import org.worldoflearning.hibernate.model.BenutzerRolle;
 
 import org.hibernate.annotations.Type;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 /*
  * 
  */
@@ -25,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Benutzer {
 
 	@Id
-	@Column(name = "BENUTZERNAME",unique = true, length = 40, nullable = true)
+	@Column(name = "BENUTZERNAME", unique = true, length = 40, nullable = true)
 	private String benutzername;
 
 	@Column(name = "PASSWORD", length = 20, nullable = true)
@@ -34,15 +31,13 @@ public class Benutzer {
 	@Column(name = "EMail", length = 40, nullable = true)
 	private String email;
 
+	@Column(name = "Rolle", length = 40, nullable = true)
+	private String rolle = "ROLE_USER";
+
 	@Column(name = "INSERT_TIME", nullable = false)
 	@Type(type = "date")
 	private Date insertTime;
 
-	
-	@Autowired
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "benutzer")
-	private Set<BenutzerRolle> benutzerRolle = new HashSet<BenutzerRolle>(0);
-	
 	public String getBenutzername() {
 		return benutzername;
 	}
@@ -67,12 +62,16 @@ public class Benutzer {
 		this.email = email;
 	}
 
-	public Set<BenutzerRolle> BenutzerRolle() {
-		return benutzerRolle;
+	public String getRolle() {
+		return rolle;
 	}
 
-	public void setBenutzerRolle(Set<BenutzerRolle> benutzerRolle) {
-		this.benutzerRolle = benutzerRolle;
+	public void setRolle(String rolle) {
+		this.rolle = rolle;
+	}
+
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Collections.singleton(new SimpleGrantedAuthority(getRolle()));
 	}
 
 	public Date getInsertTime() {
