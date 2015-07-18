@@ -75,6 +75,11 @@ public class BenutzerController {
 		return "redirect:/";
 	}
 
+	@RequestMapping("/benutzerinfo")
+	public String benutzerinf () {
+		return "benutzer/benutzerinfo";
+	}
+	
 	@RequestMapping("/benutzer/bearbeiten/{benutzername}")
 	public String editbenutzer(@PathVariable("benutzername") String benutzername, Model model) {
 		model.addAttribute("benutzer", this.benutzerService.findeBenutzerNachName(benutzername));

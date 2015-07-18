@@ -47,5 +47,7 @@ public class BenutzerServiceImpl implements BenutzerService {
 	public void loescheBenutzer(String benutzername) {
 		this.benutzerDAO.loescheBenutzer(benutzername);
 	}
+	
 
+	
 }

@@ -21,7 +21,7 @@
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/css/**" location="/ressources/css/" />
 	<mvc:resources mapping="/img/**" location="/ressources/img/" />
-		<mvc:resources mapping="/js/**" location="/ressources/js/" />
+	<mvc:resources mapping="/js/**" location="/ressources/js/" />
 	<!-- enable the thymeleaf framework -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
@@ -36,6 +36,13 @@
 		<property name="templateResolver" ref="templateResolver" />
 	</bean>
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+	</bean>
+
+
+	<bean id="tilesViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="viewClass"
+			value="org.thymeleaf.extras.tiles2.spring4.web.view.ThymeleafTilesView" />
 		<property name="templateEngine" ref="templateEngine" />
 	</bean>
 
@@ -116,8 +123,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="themaService"
-		class="org.worldoflearning.hibernate.service.ThemaServiceImpl">
+	<bean id="themaService" class="org.worldoflearning.hibernate.service.ThemaServiceImpl">
 		<property name="themaDAO" ref="themaDAO">
 		</property>
 	</bean>
@@ -132,25 +138,19 @@
 
 	<!-- Security Config -->
 
-	<security:http auto-config="true">
-		<!-- <intercept-url pattern="/" access="isAnonymous()" /> <intercept-url 
-			pattern="/index" access="isAnonymous()" /> <intercept-url pattern="/anmelden" 
-			access="isAnonymous()" /> <intercept-url pattern="/abmelden" access="isAnonymous()" 
-			/> <intercept-url pattern="/impressum" access="isAnonymous()" /> <intercept-url 
-			pattern="/registrieren" access="isAnonymous()" /> -->
-
-		<security:intercept-url pattern="/benutzerInfo"
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/impressum" access="permitAll" />
+		<security:intercept-url pattern="/benutzerinfo"
 			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin"
 			access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/other/**"
-			access="isAuthenticated()" />
 
 		<security:access-denied-handler
 			error-page="/error/403" />
 
 		<security:form-login login-page='/anmelden'
-			login-processing-url="/j_spring_security_check" default-target-url="/BenutzerInfo"
+			login-processing-url="/j_spring_security_check" default-target-url="/benutzerinfo"
 			always-use-default-target="false" authentication-failure-url="/anmelden?error=true"
 			username-parameter="benutzername" password-parameter="password" />
 
