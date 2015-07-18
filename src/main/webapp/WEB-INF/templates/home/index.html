@@ -3,9 +3,12 @@
 <head>
 <title>Getting Started: Serving Web Content</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
-href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" media="screen" />
-	    <!-- Bootstrap -->
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -18,11 +21,11 @@ href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" media="screen" /
 				<h1>World of Learning</h1>
 				<p>Das Portal fuer dein ganz eigenes Lernerlebnis</p>
 			</div>
-			<aside class="sidebar">Sidebar</aside>
+			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>
 	</div>
-	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

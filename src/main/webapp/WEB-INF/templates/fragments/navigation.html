@@ -3,15 +3,28 @@
 <head>
 </head>
 <body>
-	<div th:fragment="navigation">
-		<ul>
-			<li><a href="/" th:href="@{/}">Startseite</a></li>
-			<li><a href="/impressum" th:href="@{/impressum}">Impressum</a></li>
-			<li><a href="/anmelden" th:href="@{/anmelden}">Anmelden</a></li>
-			<li><a href="/registrieren" th:href="@{/registrieren}">Registrieren</a></li>
-			<li><a href="/chat" th:href="@{/chat}">Chat</a></li>
-			<li><a href="/beitrag" th:href="@{/forum}">Forum</a></li>
-		</ul>
+	<div class="nav" th:fragment="navigation">
+		<div class="sidebar">
+			<div class="nav navbar-nav">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"></a>
+			</div>
+			<div class="nav navbar-nav">
+				<ul class="nav navbar-nav">
+					<li><a href="/" th:href="@{/}">Startseite</a></li>
+					<li><a href="/impressum" th:href="@{/impressum}">Impressum</a></li>
+					<li><a href="/chat" th:href="@{/chat}">Chat</a></li>
+					<li><a href="/beitrag" th:href="@{/forum}">Forum</a></li>
+					<li><a class="btn btn-large btn-success" href="/anmelden" th:href="@{/anmelden}">Anmelden</a></li>
+					<li><a href="/abmelden" th:href="@{/abmelden}">abmelden</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

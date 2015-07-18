@@ -3,8 +3,9 @@ package org.worldoflearning.hibernate.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.model.Frage;
 
-@Repository("fragDAO")
+@Repository("frageDAO")
 public class FrageDAOImpl implements FrageDAO {
 
 	private SessionFactory sessionFactory;
@@ -18,21 +19,21 @@ public class FrageDAOImpl implements FrageDAO {
 	}
 
 	@Override
-	public void erstelleFrage() {
+	public void erstelleFrage(Frage frage) {
 		Session session = getSessionFactory().getCurrentSession();
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void bearbeiteFrage() {
+	public void bearbeiteFrage(Frage frage) {
 		Session session = getSessionFactory().getCurrentSession();
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void loescheFrage() {
+	public void loescheFrage(int id) {
 		Session session = getSessionFactory().getCurrentSession();
 		// TODO Auto-generated method stub
 

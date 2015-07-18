@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 /*
- *  Die Methoden bis auf Getter und Setter müssen noch implementiert werden.
+ *  Die Methoden bis auf Getter und Setter muessen noch implementiert werden.
  */
 @Entity
 @Table(name = "Frage", catalog = "testdb", uniqueConstraints = { @UniqueConstraint(columnNames = { "FRAGE_ID" }) })
@@ -32,8 +32,8 @@ public class Frage {
 	@Column(name = " FRAGE_TEXT", length = 20, nullable = true)
 	private String frage_text;
 
-	@Column(name = " FRAGE_ANTWORT_MÖGLICHKEITEN", length = 20, nullable = true)
-	private String frage_antwort_möglichkeiten;
+	@Column(name = " FRAGE_ANTWORT_Mï¿½GLICHKEITEN", length = 20, nullable = true)
+	private String frage_antwort_moeglichkeiten;
 
 	@Column(name = " name ", length = 20, nullable = true)
 	private String frage_korrekte_antwort;
@@ -87,12 +87,12 @@ public class Frage {
 		this.frage_text = frage_text;
 	}
 
-	public String getFrage_antwort_möglichkeiten() {
-		return frage_antwort_möglichkeiten;
+	public String getFrage_antwort_moeglichkeiten() {
+		return frage_antwort_moeglichkeiten;
 	}
 
-	public void setFrage_antwort_möglichkeiten(String frage_antwort_möglichkeiten) {
-		this.frage_antwort_möglichkeiten = frage_antwort_möglichkeiten;
+	public void setFrage_antwort_moeglichkeiten(String frage_antwort_moeglichkeiten) {
+		this.frage_antwort_moeglichkeiten = frage_antwort_moeglichkeiten;
 	}
 
 	public String getFrage_korrekte_antwort() {
