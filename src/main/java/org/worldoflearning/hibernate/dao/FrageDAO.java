@@ -1,11 +1,13 @@
 package org.worldoflearning.hibernate.dao;
 
+import org.worldoflearning.hibernate.model.Frage;
+
 public interface FrageDAO {
 
-	public void erstelleFrage();
+	public void erstelleFrage(Frage frage);
 
-	public void bearbeiteFrage();
+	public void bearbeiteFrage(Frage frage);
 
-	public void loescheFrage();
+	public void loescheFrage(int id);
 
 }
