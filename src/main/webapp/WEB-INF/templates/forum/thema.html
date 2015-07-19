@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/core.css"
-	th:href="@{css/core.css}" media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
 <!-- Bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 </head>
@@ -27,8 +27,7 @@
 						
 						<br />
 						
-						<label for="beitrag_ersteller">Beitrag Ersteller</label> 
-						<input type="text" name="beitrag_ersteller" id="beitrag_ersteller" th:field="*{beitrag_ersteller}" /> 
+						<input type="hidden" name="beitrag_ersteller" id="beitrag_ersteller" th:value="${#httpServletRequest.remoteUser}"  /> 
 						
 						<br />												
 						<input type="submit" value="Beitrag erstellen" />
@@ -48,7 +47,7 @@
 					</th:block>
 				</table>
 			</div>
-			<aside class="sidebar">Sidebar</aside>
+			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

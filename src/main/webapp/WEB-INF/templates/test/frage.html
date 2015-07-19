@@ -3,40 +3,57 @@
 <head>
 <title>Neue Frage</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<p th:text="${message}"></p>
-	<form th:action="@{/j_spring_security_check}" method="post">
-		<div>
-			<label> Frage: <input type="text" name="frage" />
-			</label>
+	<div class="wrapper">
+		<header th:replace="fragments/header :: header">World of
+			Learning</header>
+		<nav th:replace="fragments/navigation :: navigation"></nav>
+		<div class="middle">
+			<div class="container"></div>
+			<div class="content">
+				<p th:text="${message}"></p>
+				<form th:action="@{/j_spring_security_check}" method="post">
+					<div>
+						<label> Frage: <input type="text" name="frage" />
+						</label>
+					</div>
+					<div>
+						<label> Antwort a:<input type="text" name="antwort_a" />
+						</label>
+					</div>
+					<div>
+						<label> Antwort b <input type="text" name="antwort_b" />
+						</label>
+					</div>
+
+					<div>
+						<label> Answer c: <input type="text" name="antwort_c" />
+						</label>
+					</div>
+
+					<div>
+						<label> Answer d: <input type="text" name="antwort_d" />
+						</label>
+					</div>
+
+					<div>
+						<input type="submit" value="Frage erstellen"
+							name="Frage_erstellen" /> <input type="reset"
+							value="Zurücksetzen" name="Frage_zuruecksetzen" />
+					</div>
+				</form>
+			</div>
+			<aside class="sidebar"></aside>
 		</div>
-		<div>
-			<label> Antwort a:<input type="text" name="antwort_a" />
-			</label>
-		</div>
-			<div>
-			<label> Antwort b <input type="text" name="antwort_b" />
-			</label>
-		</div>
-		
-			<div>
-			<label> Answer c: <input type="text" name="antwort_c" />
-			</label>
-		</div>
-		
-			<div>
-			<label> Answer d: <input type="text" name="antwort_d" />
-			</label>
-		</div>
-		
-		<div>
-			<input type="submit" value="Frage erstellen" name="Frage_erstellen" />
-			<input type="reset" value="Zurücksetzen" name="Frage_zuruecksetzen" />
-		</div>
-	</form>
+		<footer th:replace="fragments/footer :: footer">&copy; 2015
+			Community</footer>
+	</div>
 </body>
 </html>

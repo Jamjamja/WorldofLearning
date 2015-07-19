@@ -31,12 +31,10 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="benutzername" class="col-lg-2 control-label">Benutzername
-								:</label>
 							<div>
-								<input type="text" th:field="*{benutzername}" id="benutzername"
+								<input type="hidden" id="benutzername"
 									name="benutzername" placeholder="Dein Benutzername"
-									th:value="${#httpServletRequest.remoteUser}" class="col-lg-10" />
+									th:value="${#httpServletRequest.remoteUser}" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -63,7 +61,7 @@
 					</tbody>
 				</table>
 			</div>
-			<aside class="sidebar">Sidebar</aside>
+			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

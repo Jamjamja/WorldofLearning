@@ -28,6 +28,9 @@ public class BenutzerController {
 	@Autowired
 	private BenutzerService benutzerService;
 
+	@Autowired
+	private HttpServletRequest request;
+
 	@ModelAttribute("benutzer")
 	public Benutzer getBenutzer() {
 		return new Benutzer();
@@ -52,14 +55,17 @@ public class BenutzerController {
 		return "login/registrieren";
 	}
 
-	// For add and update benutzer both
+	// For add benutzer
 	@RequestMapping(value = "/registrieren", method = RequestMethod.POST)
-	public String registrieren(@Valid @ModelAttribute("benutzer") Benutzer benutzer, BindingResult result,
-			Model model) {
+	public String registrieren(
+			@Valid @ModelAttribute("benutzer") Benutzer benutzer,
+			BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "login/registrieren";
-		} else if (benutzerService.findeBenutzerNachName(benutzer.getBenutzername()) != null) {
-			model.addAttribute("message", "User Name exists. Try another user name");
+		} else if (benutzerService.findeBenutzerNachName(benutzer
+				.getBenutzername()) != null) {
+			model.addAttribute("message",
+					"User Name exists. Try another user name");
 			return "login/registrieren";
 		} else {
 			benutzerService.hinzufuegenBenutzer(benutzer);
@@ -69,22 +75,45 @@ public class BenutzerController {
 	}
 
 	@RequestMapping("/benutzer/loeschen/{benutzername}")
-	public String loescheBenutzer(@PathVariable("benutzername") String benutzername) {
+	public String loescheBenutzer(
+			@PathVariable("benutzername") String benutzername) {
 
 		this.benutzerService.loescheBenutzer(benutzername);
 		return "redirect:/";
 	}
 
 	@RequestMapping("/benutzerinfo")
-	public String benutzerinf () {
-		return "benutzer/benutzerinfo";
+	public Model benutzerinfo(String benutzer, Model model) {
+		benutzer = request.getRemoteUser();
+		model.addAttribute("benutzer/");
+		model.addAttribute(benutzer);
+		return model;
+	}
+
+	
+	@RequestMapping(value = "/benutzerprofil", method = RequestMethod.GET)
+	public String editbenutzer(Model model) {
+		model.addAttribute(new Benutzer());
+		return "benutzer/benutzerprofil";
 	}
 	
-	@RequestMapping("/benutzer/bearbeiten/{benutzername}")
-	public String editbenutzer(@PathVariable("benutzername") String benutzername, Model model) {
-		model.addAttribute("benutzer", this.benutzerService.findeBenutzerNachName(benutzername));
-		model.addAttribute("listbenutzers", this.benutzerService.listBenutzer());
-		return "/";
+	@RequestMapping(value = "/benutzerprofil/edit", method = RequestMethod.POST)
+	public String editbenutzer(
+			@Valid @ModelAttribute("benutzer") Benutzer benutzer,
+			String benutzername, BindingResult result, Model model) {
+		benutzerService.updateBenutzer(benutzer);
+		return "redirect:/benutzerprofil";
+
 	}
+
+	// @RequestMapping("/benutzerinfo/edit")
+	// public String editbenutzer(
+	// @PathVariable("benutzername") String benutzername, Model model) {
+	// benutzername = request.getRemoteUser();
+	// model.addAttribute("benutzer",
+	// this.benutzerService.findeBenutzerNachName(benutzername));
+	// model.addAttribute("listbenutzers", this.benutzerService.listBenutzer());
+	// return "benutzer/benutzerprofil";
+	// }
 
 }

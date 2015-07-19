@@ -3,9 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-  <body>
-    <div th:fragment="footer">
-      &copy; 2015 Eigentum der Freudecommunity 
-    </div>
-  </body>
+<body>
+	<div th:fragment="footer">
+		<div th:if="${#httpServletRequest.remoteUser != null}">
+			<form th:action="@{/abmelden}" method="post">
+				<input type="submit" value="Abmelden"
+					class="btn btn-large btn-danger" />
+			</form>
+		</div>
+		&copy; 2015 Eigentum der Freudecommunity
+	</div>
+</body>
 </html>

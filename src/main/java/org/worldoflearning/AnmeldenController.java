@@ -1,5 +1,7 @@
 package org.worldoflearning;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,7 @@ public class AnmeldenController {
 		return new Benutzer();
 	}
 
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(Model model) {
 		model.addAttribute("title", "Admin");
@@ -23,23 +26,15 @@ public class AnmeldenController {
 	}
 
 	@RequestMapping(value = "/anmelden", method = RequestMethod.GET)
-	public String anmelden(Model model) {
-		model.addAttribute("title", "Anmelden");
-		model.addAttribute("message", "Enter your username/password:");
+	public String anmelden() {
 		return "login/anmelden";
 	}
 
-	@RequestMapping(value = "/abmeldenerfolg", method = RequestMethod.GET)
-	public String logoutSuccessfulPage(Model model) {
-		model.addAttribute("title", "Abmelden");
-		return "login/abmeldenerfolg";
-	}
-
 	@RequestMapping(value = "/benutzerinfo", method = RequestMethod.GET)
-	public String loginPage(Model model, Benutzer benutzer) {
+	public String loginPage(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "User Info");
 
-		String benuzterName = benutzer.getBenutzername();
+		String benuzterName = request.getUserPrincipal().getName();
 
 		model.addAttribute("message", "User Info - This is protected page!. Hello " + benuzterName);
 

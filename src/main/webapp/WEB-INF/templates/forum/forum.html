@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/core.css"
-	th:href="@{css/core.css}" media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
 <!-- Bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 </head>
-<body onload='document.f.j_username.focus();'>
+<body>
 	<div class="wrapper">
 		<header th:replace="fragments/header :: header">World of
 			Learning</header>
@@ -19,9 +19,9 @@
 			<div class="container"></div>
 			<div class="content">
 				<h1>Forum</h1>
-				<p>Unten sehen Sie unsere Foren. Wählen Sie einen Thread aus
+				<p>Unten sehen Sie unsere Foren. Waehlen Sie einen Thread aus
 					oder erstellen Sie einen neuen.</p>
-				<h2>Ankündigungen</h2>
+				<h2>Ankuendigungen</h2>
 				<h2>Allgemeines Diskussionsforum</h2>
 				<h1>Neuen Beitrag erstellen</h1>
 				<form th:object="${thema}" th:action="@{/forum/add}" method="post">
@@ -29,9 +29,12 @@
 
 						<label for="thema_inhalt">Inhalt</label> <input type="text"
 							name="thema_inhalt" id="thema_inhalt" th:field="*{thema_inhalt}" />
-						<br /> <label for="thema_ersteller">Beitrag Ersteller</label> <input
-							type="text" name="thema_ersteller" id="thema_ersteller"
-							th:field="*{thema_ersteller}" /> <br /> <input type="submit"
+						<br /> 
+						<input type="hidden" name="thema_ersteller" id="thema_ersteller"
+							th:value="${#httpServletRequest.remoteUser}"  /> 
+							
+							<br /> 
+							<input type="submit"
 							value="Thema erstellen" />
 					</fieldset>
 				</form>
@@ -53,7 +56,7 @@
 					</th:block>
 				</table>
 			</div>
-			<aside class="sidebar">Sidebar</aside>
+			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

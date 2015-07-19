@@ -140,11 +140,16 @@
 
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/" access="permitAll" />
-		<security:intercept-url pattern="/impressum" access="permitAll" />
+		<security:intercept-url pattern="/impressum"
+			access="permitAll" />
 		<security:intercept-url pattern="/benutzerinfo"
 			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin"
 			access="hasRole('ROLE_ADMIN')" />
+					<security:intercept-url pattern="/chat/**"
+			access="hasRole('ROLE_USER')" />
+					<security:intercept-url pattern="/forum/**"
+			access="hasRole('ROLE_USER')" />
 
 		<security:access-denied-handler
 			error-page="/error/403" />
@@ -155,7 +160,7 @@
 			username-parameter="benutzername" password-parameter="password" />
 
 		<security:logout logout-url="/abmelden"
-			logout-success-url="/abmeldenErfolg" delete-cookies="JSESSIONID"
+			logout-success-url="/" delete-cookies="JSESSIONID"
 			invalidate-session="true" />
 
 	</security:http>
