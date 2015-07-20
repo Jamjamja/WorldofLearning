@@ -4,7 +4,7 @@
 <title>Forum</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
-	th:href="@{css/bootstrap.min.css}" media="screen" />
+	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
 <!-- Bootstrap -->
@@ -16,47 +16,42 @@
 			Learning</header>
 		<nav th:replace="fragments/navigation :: navigation"></nav>
 		<div class="middle">
-			<div class="container"></div>
-			<div class="content">
-				<h1>Forum</h1>
-				<p>Unten sehen Sie unsere Foren. Waehlen Sie einen Thread aus
-					oder erstellen Sie einen neuen.</p>
-				<h2>Ankuendigungen</h2>
-				<h2>Allgemeines Diskussionsforum</h2>
-				<h1>Neuen Beitrag erstellen</h1>
-				<form th:object="${thema}" th:action="@{/forum/add}" method="post">
-					<fieldset>
+			<div class="container">
+				<div class="content">
+					<h1>Forum</h1>
+					<p>Unten sehen Sie unsere Foren. Waehlen Sie einen Thread aus
+						oder erstellen Sie einen neuen.</p>
+					<p>Ankuendigungen</p>
+					<p>Allgemeines Diskussionsforum</p>
+					<p>Neuen Beitrag erstellen</p>
+					<form th:object="${thema}" th:action="@{/forum/add}" method="post">
+						<fieldset>
 
-						<label for="thema_inhalt">Inhalt</label> <input type="text"
-							name="thema_inhalt" id="thema_inhalt" th:field="*{thema_inhalt}" />
-						<br /> 
-						<input type="hidden" name="thema_ersteller" id="thema_ersteller"
-							th:value="${#httpServletRequest.remoteUser}"  /> 
-							
-							<br /> 
-							<input type="submit"
-							value="Thema erstellen" />
-					</fieldset>
-				</form>
-				<h3>Themen</h3>
-				<table>
-					<tr>
-						<th width="120">Thema</th>
-						<th width="120"></th>
-					</tr>
-					<tr>
-						<td><a href="/faq" th:href="@{/faq}">FAQ</a></td>
-					</tr>
-					<th:block th:each="thema : ${listThema}">
+							<label for="thema_inhalt">Inhalt</label> <input type="text"
+								name="thema_inhalt" id="thema_inhalt" th:field="*{thema_inhalt}" />
+							<br /> <input type="hidden" name="thema_ersteller"
+								id="thema_ersteller"
+								th:value="${#httpServletRequest.remoteUser}" /> <br /> <input  class="btn btn-large btn-default"
+								type="submit" value="Thema erstellen" />
+						</fieldset>
+					</form>
+					<h3>Themen</h3>
+					<table class="table">
 						<tr>
-							<td th:text="${thema.thema_inhalt}">Hallo Leute</td>
-							<td th:text="${thema.thema_ersteller}">Anonymous</td>
-							<td><a href="#" th:href="@{'/thema/' + ${thema.thema_id} + '/beitrag'}">anschauen</a></td>
+							<td><a href="/faq" th:href="@{/faq}">FAQ</a></td>
 						</tr>
-					</th:block>
-				</table>
+						<th:block th:each="thema : ${listThema}">
+							<tr>
+								<td th:text="${thema.thema_inhalt}">Hallo Leute</td>
+								<td th:text="${thema.thema_ersteller}">Anonymous</td>
+								<td class="btn btn-large btn-default"><a href="#"
+									th:href="@{'/thema/' + ${thema.thema_id} + '/beitrag'}">anschauen</a></td>
+							</tr>
+						</th:block>
+					</table>
+				</div>
+				<aside class="sidebar"></aside>
 			</div>
-			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

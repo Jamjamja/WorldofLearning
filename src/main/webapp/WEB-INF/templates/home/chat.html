@@ -3,8 +3,8 @@
 <head>
 <title>Chat</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
-	th:href="@{css/bootstrap.min.css}" media="screen" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
 <!-- Bootstrap -->
@@ -16,52 +16,60 @@
 			Learning</header>
 		<nav th:replace="fragments/navigation :: navigation"></nav>
 		<div class="middle">
-			<div class="container"></div>
-			<div class="content">
-				<form action="#"
-					th:object="${chatbeitrag}" th:action="@{/chat/add}" method="post">
-					<fieldset>
-						<div class="form-group">
-							<label for="nachricht" class="col-lg-2 control-label">Nachricht
-								:</label>
-							<div>
-								<input type="text" th:field="*{nachricht}" id="nachricht"
-									name="nachricht" placeholder="Deine Nachrichtl"
-									class="col-lg-10" />
+			<div class="container">
+				<div class="content">
+					<form action="#" th:object="${chatbeitrag}"
+						th:action="@{/chat/add}" method="post">
+						<fieldset>
+							<div class="form-group">
+								<label for="nachricht" class="col-lg-2 control-label">Nachricht
+									:</label>
+								<div>
+									<input type="text" th:field="*{nachricht}" id="nachricht"
+										name="nachricht" placeholder="Deine Nachrichtl"
+										class="col-lg-10" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<div>
-								<input type="hidden" id="benutzername"
-									name="benutzername" placeholder="Dein Benutzername"
-									th:value="${#httpServletRequest.remoteUser}" />
+							<div class="form-group">
+								<div>
+									<input type="hidden" id="benutzername" name="benutzername"
+										placeholder="Dein Benutzername"
+										th:value="${#httpServletRequest.remoteUser}" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-lg-offset-2 col-lg-10">
-								<input type="submit" value="Absenden" />
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<input type="submit" value="Absenden" />
+								</div>
 							</div>
-						</div>
-					</fieldset>
-				</form>
-				<br></br>
-				<h3>Chat List</h3>
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th width="120">Nachricht</th>
-							<th width="40">Benutzer</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="chatbeitrag : ${listChat}">
-							<td th:text="${chatbeitrag.nachricht}">Hallo Leute</td>
-							<td th:text="${chatbeitrag.benutzername}">Anonymous</td>
-						</tr>
-					</tbody>
-				</table>
+						</fieldset>
+					</form>
+					<br></br>
+					<table class="table">
+						<thead>
+						</thead>
+						<tbody>
+							<tr th:each="chatbeitrag : ${listChat}">
+								<td>
+									<div
+										th:if="${#httpServletRequest.remoteUser != chatbeitrag.benutzername}">
+										<p class="label label-success"
+											th:text="${chatbeitrag.nachricht} + ' : '+ ${chatbeitrag.benutzername}"></p>
+									</div>
+								</td>
+								<td>
+									<div
+										th:if="${#httpServletRequest.remoteUser == chatbeitrag.benutzername}">
+										<p class="label label-primary"
+											th:text="${chatbeitrag.nachricht}"></p>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<aside class="sidebar"></aside>
 			</div>
-			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

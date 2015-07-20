@@ -3,8 +3,8 @@
 <head>
 <title>Beitrag</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
-	th:href="@{css/bootstrap.min.css}" media="screen" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
 <!-- Bootstrap -->
@@ -16,38 +16,38 @@
 			Learning</header>
 		<nav th:replace="fragments/navigation :: navigation"></nav>
 		<div class="middle">
-			<div class="container"></div>
-			<div class="content">
-				<h1>Neuen Beitrag erstellen</h1>
-				<form th:object="${beitrag}" th:action="@{'/thema/' + ${thema_id} + '/beitrag/add'}" method="post">
-					<fieldset>
-						
-						<label for="thema_inhalt">Inhalt</label> 
-						<input type="text" name="beitrag_inhalt" id="beitrag_inhalt" th:field="*{beitrag_inhalt}" /> 
-						
-						<br />
-						
-						<input type="hidden" name="beitrag_ersteller" id="beitrag_ersteller" th:value="${#httpServletRequest.remoteUser}"  /> 
-						
-						<br />												
-						<input type="submit" value="Beitrag erstellen" />
-					</fieldset>
-				</form>
-				<h3>Beitrag</h3>
-				<table>
-					<tr>
-						<th width="120">Inhalt</th>
-						<th width="120">Beitrag Ersteller</th>
-					</tr>
-					<th:block th:each="beitrag : ${listBeitrag}">
+			<div class="container">
+				<div class="content">
+					<h1>Neuen Beitrag erstellen</h1>
+					<form th:object="${beitrag}"
+						th:action="@{'/thema/' + ${thema_id} + '/beitrag/add'}"
+						method="post">
+						<fieldset>
+
+							<label for="thema_inhalt">Inhalt</label> <input type="text"
+								name="beitrag_inhalt" id="beitrag_inhalt"
+								th:field="*{beitrag_inhalt}" /> <br /> <input type="hidden"
+								name="beitrag_ersteller" id="beitrag_ersteller"
+								th:value="${#httpServletRequest.remoteUser}" /> <br /> <input  class="btn btn-large btn-default"
+								type="submit" value="Beitrag erstellen" />
+						</fieldset>
+					</form>
+					<h3>Beitrag</h3>
+					<table class="table">
 						<tr>
-							<td th:text="${beitrag.beitrag_inhalt}">Hallo Leute</td>
-							<td th:text="${beitrag.beitrag_ersteller}">Anonymous</td>
+							<th>Inhalt</th>
+							<th>Beitrag Ersteller</th>
 						</tr>
-					</th:block>
-				</table>
+						<th:block th:each="beitrag : ${listBeitrag}">
+							<tr>
+								<td th:text="${beitrag.beitrag_inhalt}">Hallo Leute</td>
+								<td th:text="${beitrag.beitrag_ersteller}">Anonymous</td>
+							</tr>
+						</th:block>
+					</table>
+				</div>
+				<aside class="sidebar"></aside>
 			</div>
-			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

@@ -3,8 +3,8 @@
 	xmlns:security="http://www.springframework.org/security/tags">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"
-	th:href="@{css/bootstrap.min.css}" media="screen" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
 <!-- Bootstrap -->
@@ -17,7 +17,7 @@
 			Learning</header>
 		<nav th:replace="fragments/navigation :: navigation"></nav>
 		<div class="middle">
-			<div class="container"></div>
+			<div class="container">
 			<div class="content">
 				<h2>Nachricht</h2>
 
@@ -31,6 +31,7 @@
 				</div>
 			</div>
 			<aside class="sidebar"></aside>
+		</div>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

@@ -55,7 +55,8 @@
 				<value>org.worldoflearning.hibernate.model.Beitrag</value>
 				<value>org.worldoflearning.hibernate.model.Benutzer</value>
 				<value>org.worldoflearning.hibernate.model.Chatbeitrag</value>
-				<value>org.worldoflearning.hibernate.model.Thema</value>
+				<value>org.worldoflearning.hibernate.model.Thema</value>			
+				<value>org.worldoflearning.hibernate.model.Gruppe</value>
 			</list>
 		</property>
 		<property name="mappingLocations"
