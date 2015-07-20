@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Neue Frage</title>
@@ -11,46 +11,36 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header th:replace="fragments/header :: header">World of
-			Learning</header>
-		<nav th:replace="fragments/navigation :: navigation"></nav>
-		<div class="middle">
-			<div class="container"></div>
-			<div class="content">
-				<p th:text="${message}"></p>
-				<form th:action="@{/j_spring_security_check}" method="post">
-					<div>
-						<label> Frage: <input type="text" name="frage" />
-						</label>
-					</div>
-					<div>
-						<label> Antwort a:<input type="text" name="antwort_a" />
-						</label>
-					</div>
-					<div>
-						<label> Antwort b <input type="text" name="antwort_b" />
-						</label>
-					</div>
 
-					<div>
-						<label> Answer c: <input type="text" name="antwort_c" />
-						</label>
-					</div>
+<p th:text="${message}"></p>
+	<form th:action="@{/frage/add}" th:object="${frage}" method="post">
+		<div>
+			<label for="fragentext"> Frage: </label><input type="text" name="fragetext" id="fragetext" th:field="*{fragetext}" /> <!-- for bezieht sich auf den Attributnamen in der Klasse Frage -->
+		</div>
+		<div>
+			<label for="kategorie"> Kategorie: </label><input type="text" name="kategorie" id="kategorie" th:field="*{kategorie}" /> <!-- for bezieht sich auf den Attributnamen in der Klasse Frage -->
+		</div>
+		<div>
+			<label for="antwort_a"> Antwort a:	</label><input type="text" name="antwort_a" id="antwort_a" th:field="*{antwort_a}"/> <!-- zw. for und = keine Leerzeichen -->
+		</div>
+			<div>
+			<label for="antwort_b"> Antwort b </label><input type="text" name="antwort_b" id="antwort_b" th:field="*{antwort_b}"/>
+		</div>
+		
+			<div>
+			<label for="antwort_c"> Answer c: </label><input type="text" name="antwort_c" id="antwort_c" th:field="*{antwort_c}"/>
+			
+		</div>
+		
+			<div>
+			<label for="antwort_d"> Answer d: </label><input type="text" name="antwort_d" id="antwort_d" th:field="*{antwort_d}"/>
 
-					<div>
-						<label> Answer d: <input type="text" name="antwort_d" />
-						</label>
-					</div>
+		</div>
+		
+		<div>
+			<input type="submit" value="Frage erstellen" name="Frage_erstellen" />
+			<input type="reset" value="Zurücksetzen" name="Frage_zuruecksetzen" />
 
-					<div>
-						<input type="submit" value="Frage erstellen"
-							name="Frage_erstellen" /> <input type="reset"
-							value="Zurücksetzen" name="Frage_zuruecksetzen" />
-					</div>
-				</form>
-			</div>
-			<aside class="sidebar"></aside>
 		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>

@@ -1,4 +1,4 @@
-package org.worldoflearning.hibernate.model;
+﻿package org.worldoflearning.hibernate.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +20,29 @@ public class Frage {
 	@Column(name = "FRAGE_ID", nullable = false, unique = true, length = 11)
 	private int frage_id;
 
+	@Column(name = "FRAGENTEXT", length = 255, nullable = false)
+	private String fragenText;
+	
+	@Column(name = "KATEGORIE", length = 100, nullable = false)
+	private String kategorie;
+//
+//	@Column(name = " BEWERTUNG ", length = 5, nullable = true)
+//	private float bewertung;
+//
+//	@Column(name = " ANZAHLBEWERTUNGEN ", nullable = false, unique = true, length = 11)
+//	private int anzahlBewertungen;
+
+	
+	@Column(name = "ANTWORT_A", length = 255, nullable = false)
+	private String antwort_a;
+
+//	@Column(name = " A_RICHTIG ", nullable = false)
+//	private boolean a_richtig;
+	
+	
+	@Column(name ="ANTWORT_B", length = 255, nullable = false)
+	private String antwort_b;
+
 	@Column(name = " FRAGE_NAME ", length = 20, nullable = true)
 	private String frage_name;
 
@@ -29,23 +52,87 @@ public class Frage {
 	@Column(name = " FRAGE_ANZAHLBEWERTUNG ", nullable = false, unique = true, length = 11)
 	private int frage_anzahlbewertung;
 
+
 	@Column(name = " FRAGE_TEXT", length = 20, nullable = true)
 	private String frage_text;
+
+	@Column(name ="ANTWORT_C", length = 255, nullable = false)
+	private String antwort_c;
 
 	@Column(name = " FRAGE_ANTWORT_M�GLICHKEITEN", length = 20, nullable = true)
 	private String frage_antwort_moeglichkeiten;
 
 	@Column(name = " name ", length = 20, nullable = true)
 	private String frage_korrekte_antwort;
-
 	
 //	@ManyToOne
 //	@JoinColumn(name = "TEST_ID")
 //	private Test test_id;
 	
+	@Column(name ="ANTWORT_D", length = 255, nullable = false)
+	private String antwort_d;
+
+//	@Column(name = " D_RICHTIG ", nullable = false)
+//	private boolean d_richtig;
+
+
 	/*
 	 * Getter und Setter
 	 */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFragenText() {
+		return fragenText;
+	}
+
+	public void setFragenText(String fragenText) {
+		this.fragenText = fragenText;
+	}
+
+	public String getAntwort_a() {
+		return antwort_a;
+	}
+
+	public void setAntwort_a(String antwort_a) {
+		this.antwort_a = antwort_a;
+	}
+
+	public String getAntwort_b() {
+		return antwort_b;
+	}
+
+	public void setAntwort_b(String antwort_b) {
+		this.antwort_b = antwort_b;
+	}
+
+	public String getAntwort_c() {
+		return antwort_c;
+	}
+
+	public void setAntwort_c(String antwort_c) {
+		this.antwort_c = antwort_c;
+	}
+
+	public String getAntwort_d() {
+		return antwort_d;
+	}
+
+	public void setAntwort_d(String antwort_d) {
+		this.antwort_d = antwort_d;
+	}
+	
+	
+//	@ManyToOne
+//	@JoinColumn(name = "TEST_ID")
+//	private Test test_id;
+	
 
 	public String getFrage_name() {
 		return frage_name;

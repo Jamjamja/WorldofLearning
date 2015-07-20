@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Neuer Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
+</head>
+
+<body>
+	<p th:text="${message}"></p>
+	<h1>Fragenliste:</h1>
+	<form th:action="@{/test/add}" th:object="${test}" method="post">
+		<div>
+		<table>
+			<tr>
+				<th>Frage</th>
+				<th>Kategorie</th>
+			</tr>
+			<tr>
+				<td><label for="fragentext"> </label><a href name="fragetext"
+					id="fragetext" th:field="*{fragetext}"> Frage 1 </a> <!-- for bezieht sich auf den Attributnamen in der Klasse Frage --></td>
+				<td><label for="kategorie"> </label><a href name="kategorie"
+					id="kategorie" th:field="*{kategorie}"> Kategorie 1 </a> <!-- for bezieht sich auf den Attributnamen in der Klasse Frage --></td>
+			</tr>
+		</table>
+		</div>
+	</form>
+</body>
+</html>

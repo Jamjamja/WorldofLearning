@@ -1,11 +1,15 @@
 package org.worldoflearning.hibernate.service;
 
+import org.worldoflearning.hibernate.model.Test;
+
 public interface TestService {
 
-	public void erstelleTest();
+	public void erstelleTest(Test test);
 
-	public void bearbeiteTest();
+	public void bearbeiteTest(Test test);
 
-	public void loescheTest();
+	public void loescheTest(int test_id);
+	
+	public void findeTest(String name);
 	
 }

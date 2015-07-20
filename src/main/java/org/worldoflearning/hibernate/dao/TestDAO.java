@@ -1,11 +1,13 @@
 package org.worldoflearning.hibernate.dao;
 
+import org.worldoflearning.hibernate.model.Test;
+
 public interface TestDAO {
 
-	public void erstelleTest();
+	public void erstelleTest(Test test);
 
-	public void bearbeiteTest();
+	public void bearbeiteTest(Test test);
 
-	public void loescheTest();
+	public void loescheTest(int test_id);
 
 }
