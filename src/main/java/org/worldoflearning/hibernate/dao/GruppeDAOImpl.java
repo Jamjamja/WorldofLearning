@@ -51,7 +51,7 @@ public class GruppeDAOImpl implements GruppeDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object findeGruppeNachName(String gruppenname) {
+	public Gruppe findeGruppeNachName(String gruppenname) {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Gruppe> gruppenlist = new ArrayList<Gruppe>();
 		session.beginTransaction();

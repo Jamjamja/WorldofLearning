@@ -35,14 +35,30 @@
 
 							<div class="form-group">
 								<div class="col-lg-offset-2 col-lg-10">
-									<input type="submit" class="btn btn-default" value="Bestaetigen" />
+									<input type="submit" class="btn btn-default"
+										value="Bestaetigen" />
 								</div>
 							</div>
 						</fieldset>
 					</form>
+					
+					<!-- Wenn der User keine Gruppe hat springt es in folgenden Codeblock -->
+					<div>
+					<!-- th:text="${hatGruppe}" --> 
+					<table class="table">
+						<th:block th:each="gruppe : ${listGruppe}">
+							<tr>
+								<td th:text="${gruppe.gruppenname}">Hallo Leute</td>
+								<td class="btn btn-large btn-default"><a href="#"
+									th:href="@{'/gruppe/' + ${gruppe.gruppenname} + '/beitreten'}">beitreten</a></td>
+							</tr>
+						</th:block>
+					</table>
+					
+					</div>
 
-					<h1>World of Learning</h1>
-					<p>Das Portal fuer dein ganz eigenes Lernerlebnis</p>
+					<h1>WoL</h1>
+					<p></p>
 					<p th:text="${#httpServletRequest.remoteUser}"></p>
 				</div>
 				<aside class="sidebar"></aside>

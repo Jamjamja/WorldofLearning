@@ -31,7 +31,7 @@ public class GruppeServiceImpl implements GruppeService {
 	}
 
 	@Override
-	public Object findeGruppeNachName(String gruppename) {
+	public Gruppe findeGruppeNachName(String gruppename) {
 		return this.gruppeDAO.findeGruppeNachName(gruppename);
 	}
 	

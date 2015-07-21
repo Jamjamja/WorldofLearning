@@ -10,6 +10,6 @@ public interface GruppeDAO {
 
 	public void hinzufuegenGruppe(Gruppe gruppe);
 
-	public Object findeGruppeNachName(String gruppename);
+	public Gruppe findeGruppeNachName(String gruppename);
 
 }

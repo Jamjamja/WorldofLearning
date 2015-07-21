@@ -18,7 +18,7 @@
 					<li><a href="/" th:href="@{/}">Startseite</a></li>
 					<li><a href="/impressum" th:href="@{/impressum}">Impressum</a></li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/chat" th:href="@{/chat}">Chat</a></li>
-					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/gruppe" th:href="@{/gruppe}">Gruppe</a></li>
+					<li th:if="${#httpServletRequest.remoteUser != null and hatGruppe != false}"><a href="/gruppe" th:href="@{/gruppe}">Gruppe</a></li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/beitrag" th:href="@{/forum}">Forum</a></li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/benutzerinfo" th:href="@{/benutzerinfo}">Benutzer Info</a></li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/benutzerprofil" th:href="@{/benutzerprofil}">Mein Profil</a></li>
