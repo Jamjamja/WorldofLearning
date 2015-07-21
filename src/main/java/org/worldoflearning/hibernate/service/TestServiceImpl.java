@@ -1,7 +1,9 @@
 package org.worldoflearning.hibernate.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.dao.TestDAO;
+import org.worldoflearning.hibernate.model.Test;
 
 @Service("testService")
 public class TestServiceImpl implements TestService {
@@ -13,20 +15,23 @@ public class TestServiceImpl implements TestService {
 	}
 	
 	@Override
-	public void erstelleTest() {
-		this.testDAO.erstelleTest();
+	@Transactional
+	public void erstelleTest(Test test) {
+		this.testDAO.erstelleTest(test);
 
 	}
 
 	@Override
-	public void bearbeiteTest() {
-		this.testDAO.bearbeiteTest();
+	@Transactional
+	public void bearbeiteTest(Test test) {
+		this.testDAO.bearbeiteTest(test);
 
 	}
 
 	@Override
-	public void loescheTest() {
-		this.testDAO.loescheTest();
+	@Transactional
+	public void loescheTest(int test_id) {
+		this.testDAO.loescheTest(test_id);
 
 	}
 

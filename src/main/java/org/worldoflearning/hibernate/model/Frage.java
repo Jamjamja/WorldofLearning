@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /*
  *  Die Methoden bis auf Getter und Setter muessen noch implementiert werden.
@@ -59,7 +63,7 @@ public class Frage {
 	@Column(name ="ANTWORT_C", length = 255, nullable = false)
 	private String antwort_c;
 
-	@Column(name = " FRAGE_ANTWORT_M�GLICHKEITEN", length = 20, nullable = true)
+	@Column(name = " FRAGE_ANTWORT_MOEGLICHKEITEN", length = 20, nullable = true)
 	private String frage_antwort_moeglichkeiten;
 
 	@Column(name = " name ", length = 20, nullable = true)
@@ -75,18 +79,15 @@ public class Frage {
 //	@Column(name = " D_RICHTIG ", nullable = false)
 //	private boolean d_richtig;
 
-
+	@ManyToOne
+	@Autowired
+	@JoinColumn(name = "TEST_ID")
+	private Test test;
+	
 	/*
 	 * Getter und Setter
 	 */
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFragenText() {
 		return fragenText;
@@ -128,11 +129,7 @@ public class Frage {
 		this.antwort_d = antwort_d;
 	}
 	
-	
-//	@ManyToOne
-//	@JoinColumn(name = "TEST_ID")
-//	private Test test_id;
-	
+		
 
 	public String getFrage_name() {
 		return frage_name;

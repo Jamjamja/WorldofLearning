@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,9 @@ import org.worldoflearning.hibernate.service.FrageService;
 @SessionAttributes("frage") //diese Zeile ist optional
 public class FrageController {
 
+	@Autowired
 	private FrageService frageService;
+	
 	
 	//diese  Methode kommt an den Anfang
 	@ModelAttribute("frage")
@@ -35,8 +36,8 @@ public class FrageController {
 
 	
 	@Autowired(required = true)
-	@Qualifier(value = "frage")
-	public void setFrageService(Frage frage) {
+	@Qualifier(value = "frageService")
+	public void setFrageService(FrageService frageService) {
 		this.frageService = frageService;
 	}
  

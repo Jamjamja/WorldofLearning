@@ -55,8 +55,10 @@
 				<value>org.worldoflearning.hibernate.model.Beitrag</value>
 				<value>org.worldoflearning.hibernate.model.Benutzer</value>
 				<value>org.worldoflearning.hibernate.model.Chatbeitrag</value>
-				<value>org.worldoflearning.hibernate.model.Thema</value>			
+				<value>org.worldoflearning.hibernate.model.Thema</value>
 				<value>org.worldoflearning.hibernate.model.Gruppe</value>
+				<value>org.worldoflearning.hibernate.model.Test</value>
+				<value>org.worldoflearning.hibernate.model.Frage</value>
 			</list>
 		</property>
 		<property name="mappingLocations"
@@ -118,7 +120,6 @@
 		</property>
 	</bean>
 
-
 	<!-- Thema Bean -->
 	<bean id="themaDAO" class="org.worldoflearning.hibernate.dao.ThemaDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -129,6 +130,27 @@
 		</property>
 	</bean>
 
+	<!-- Frage Bean -->
+	<bean id="frageDAO" class="org.worldoflearning.hibernate.dao.FrageDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="frageService"
+		class="org.worldoflearning.hibernate.service.FrageServiceImpl">
+		<property name="frageDAO" ref="frageDAO">
+		</property>
+	</bean>
+
+	<!-- Test Bean -->
+	<bean id="testDAO" class="org.worldoflearning.hibernate.dao.TestDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="testService"
+		class="org.worldoflearning.hibernate.service.TestServiceImpl">
+		<property name="testDAO" ref="testDAO">
+		</property>
+	</bean>
 
 	<!-- Transation -->
 	<bean id="transactionManager"
@@ -136,9 +158,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-
 	<!-- Security Config -->
-
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/impressum"
@@ -147,9 +167,9 @@
 			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 		<security:intercept-url pattern="/admin"
 			access="hasRole('ROLE_ADMIN')" />
-					<security:intercept-url pattern="/chat/**"
+		<security:intercept-url pattern="/chat/**"
 			access="hasRole('ROLE_USER')" />
-					<security:intercept-url pattern="/forum/**"
+		<security:intercept-url pattern="/forum/**"
 			access="hasRole('ROLE_USER')" />
 
 		<security:access-denied-handler
