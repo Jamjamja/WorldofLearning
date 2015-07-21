@@ -1,5 +1,7 @@
 package org.worldoflearning.hibernate.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.worldoflearning.hibernate.dao.GruppeDAO;
 import org.worldoflearning.hibernate.model.Gruppe;
@@ -14,7 +16,7 @@ public class GruppeServiceImpl implements GruppeService {
 	}
 
 	@Override
-	public Gruppe listGruppe() {
+	public List<Gruppe> listGruppe() {
 		return this.gruppeDAO.listGruppe();
 	}
 

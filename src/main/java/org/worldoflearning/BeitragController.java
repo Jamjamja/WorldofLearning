@@ -51,7 +51,6 @@ public class BeitragController {
 	public String beitrag(@PathVariable("thema_id") int thema_id,
 			@ModelAttribute("beitrag") Beitrag beitrag, @ModelAttribute("thema") Thema thema,
 			BindingResult result, Model model) {
-		this.themaService = themaService;
 		thema = themaService.findeThemanachID(thema_id);
 		beitrag.setThema(thema);
 		beitragService.erstelleBeitrag(beitrag);

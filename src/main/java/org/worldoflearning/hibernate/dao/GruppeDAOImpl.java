@@ -3,9 +3,11 @@ package org.worldoflearning.hibernate.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.model.Benutzer;
 import org.worldoflearning.hibernate.model.Gruppe;
 
 
@@ -22,10 +24,15 @@ public class GruppeDAOImpl implements GruppeDAO {
 		this.sessionFactory = sf;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Gruppe listGruppe() {
-		
-		return null;
+	public List<Gruppe> listGruppe() {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(Gruppe.class);
+		List<Gruppe> listGruppe = (List<Gruppe>) criteria.list();
+		session.clear();
+		return listGruppe;
 	}
 
 	@Override

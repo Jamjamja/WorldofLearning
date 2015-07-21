@@ -41,10 +41,8 @@
 							</div>
 						</fieldset>
 					</form>
-					
+
 					<!-- Wenn der User keine Gruppe hat springt es in folgenden Codeblock -->
-					<div>
-					<!-- th:text="${hatGruppe}" --> 
 					<table class="table">
 						<th:block th:each="gruppe : ${listGruppe}">
 							<tr>
@@ -54,22 +52,20 @@
 							</tr>
 						</th:block>
 					</table>
-					
-					</div>
 
-					<h1>WoL</h1>
-					<p></p>
-					<p th:text="${#httpServletRequest.remoteUser}"></p>
-				</div>
-				<aside class="sidebar"></aside>
+				<h1>WoL</h1>
+				<p></p>
+				<p th:text="${#httpServletRequest.remoteUser}"></p>
 			</div>
+			<aside class="sidebar"></aside>
 		</div>
+	</div>
 
 
 
 
-		<footer th:replace="fragments/footer :: footer">&copy; 2015
-			Community</footer>
+	<footer th:replace="fragments/footer :: footer">&copy; 2015
+		Community</footer>
 	</div>
 
 </body>

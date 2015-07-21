@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.worldoflearning.hibernate.service.BenutzerService;
 
 /*
  *  
@@ -56,6 +58,7 @@ public class Gruppe {
 	public void setBenutzer(Set<Benutzer> benutzer) {
 		this.benutzer = benutzer;
 	}
+	
 
 
 }

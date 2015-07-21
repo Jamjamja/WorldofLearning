@@ -46,18 +46,25 @@ public class GruppenController {
 	}
 
 	@RequestMapping(value = "/gruppe", method = RequestMethod.GET)
-	public String listGruppe(Model model) {
-		model.addAttribute("listGruppe", new Gruppe());
-		model.addAttribute("listGruppe",
-		this.gruppeService.listGruppe());
-		return "gruppe/gruppe";
-	}
+	public String listGruppe(Model model, Benutzer benutzer, Gruppe gruppe) {
 
+		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
+				.getRemoteUser());
+		gruppe = benutzer.getGruppe();
+
+		if (gruppe == null) {
+			model.addAttribute("listGruppe", new Gruppe());
+			model.addAttribute("listGruppe", this.gruppeService.listGruppe());
+			return "gruppe/gruppe";
+		} else {
+			return "gruppe/gruppe";
+		}
+	}
 
 	// For add benutzer
 	@RequestMapping(value = "/gruppe", method = RequestMethod.POST)
-	public String registrieren(@Valid @ModelAttribute("gruppe") Gruppe gruppe, Benutzer benutzer, BindingResult result,
-			Model model) {
+	public String registrieren(@Valid @ModelAttribute("gruppe") Gruppe gruppe,
+			Benutzer benutzer, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "gruppe/gruppe";
 		} else if (gruppeService.findeGruppeNachName(gruppe.getGruppenname()) != null) {
@@ -65,7 +72,8 @@ public class GruppenController {
 			return "gruppe/gruppe";
 		} else {
 			gruppeService.hinzufuegenGruppe(gruppe);
-			benutzer = benutzerService.findeBenutzerNachName(httpServletRequest.getRemoteUser());
+			benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
+					.getRemoteUser());
 			benutzer.setGruppe(gruppe);
 			benutzerService.updateBenutzer(benutzer);
 			return "redirect:gruppe";
@@ -74,34 +82,26 @@ public class GruppenController {
 	}
 
 	@RequestMapping("/gruppe/loeschen/{gruppenname}")
-	public String loescheBenutzer(@PathVariable("gruppenname") String gruppenname) {
+	public String loescheBenutzer(
+			@PathVariable("gruppenname") String gruppenname) {
 
 		this.gruppeService.loescheGruppe(gruppenname);
 		return "redirect:/";
 	}
 
 	@RequestMapping("/gruppe/{gruppenname}/beitreten")
-	public String beitretenGruppe(@PathVariable("gruppenname") String gruppenname, Benutzer benutzer, Gruppe gruppe) {
+	public String beitretenGruppe(
+			@PathVariable("gruppenname") String gruppenname, Benutzer benutzer,
+			Gruppe gruppe) {
 
 		gruppe = gruppeService.findeGruppeNachName(gruppenname);
-		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest.getRemoteUser());
+		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
+				.getRemoteUser());
 		benutzer.setGruppe(gruppe);
 		benutzerService.updateBenutzer(benutzer);
-		return "redirect:/";
+		return "redirect:/gruppe/{gruppenname}";
 	}
 
-	@RequestMapping("hatGruppe")
-	public boolean hatGruppe(Benutzer benutzer) {
-
-		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest.getRemoteUser());
-		
-		if(benutzer.getGruppe() != null){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
 	// @RequestMapping("/gruppeninfo")
 	// public Model benutzerinfo(String gruppe, Model model) {
 	// gruppe = request.getRemoteUser();

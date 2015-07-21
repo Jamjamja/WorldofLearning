@@ -1,10 +1,12 @@
 package org.worldoflearning.hibernate.dao;
 
+import java.util.List;
+
 import org.worldoflearning.hibernate.model.Gruppe;
 
 public interface GruppeDAO {
 
-	public Gruppe listGruppe();
+	public List<Gruppe> listGruppe();
 
 	public void loescheGruppe(String gruppenname);
 
