@@ -135,9 +135,18 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="frageService"
-		class="org.worldoflearning.hibernate.service.FrageServiceImpl">
+	<bean id="frageService" class="org.worldoflearning.hibernate.service.FrageServiceImpl">
 		<property name="frageDAO" ref="frageDAO">
+		</property>
+	</bean>
+
+	<!-- Gruppe Bean -->
+	<bean id="gruppeDAO" class="org.worldoflearning.hibernate.dao.GruppeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="gruppeService" class="org.worldoflearning.hibernate.service.GruppeServiceImpl">
+		<property name="gruppeDAO" ref="gruppeDAO">
 		</property>
 	</bean>
 
@@ -146,8 +155,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="testService"
-		class="org.worldoflearning.hibernate.service.TestServiceImpl">
+	<bean id="testService" class="org.worldoflearning.hibernate.service.TestServiceImpl">
 		<property name="testDAO" ref="testDAO">
 		</property>
 	</bean>

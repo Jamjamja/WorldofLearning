@@ -46,6 +46,14 @@ public class Benutzer {
 	@JoinColumn(name = "gruppenname", nullable = true)
 	private Gruppe gruppe;
 
+	public Gruppe getGruppe() {
+		return gruppe;
+	}
+
+	public void setGruppe(Gruppe gruppe) {
+		this.gruppe = gruppe;
+	}
+
 	public String getBenutzername() {
 		return benutzername;
 	}

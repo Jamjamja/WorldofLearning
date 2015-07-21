@@ -23,7 +23,7 @@ public class Gruppe {
 
 	@Id
 	@Column(name = "GRUPPENNAME", length = 40, nullable = true)
-	private String gruppename;
+	private String gruppenname;
 
 	@Column(name = "insert_time", nullable = true)
 	private Date insertTime;
@@ -33,12 +33,12 @@ public class Gruppe {
 	private Set<Benutzer> benutzer = new HashSet<Benutzer>();
 
 
-	public String getGruppename() {
-		return gruppename;
+	public String getGruppenname() {
+		return gruppenname;
 	}
 
-	public void setGruppename(String gruppename) {
-		this.gruppename = gruppename;
+	public void setGruppenname(String gruppenname) {
+		this.gruppenname = gruppenname;
 	}
 
 	public Date getInsertTime() {
@@ -56,5 +56,6 @@ public class Gruppe {
 	public void setBenutzer(Set<Benutzer> benutzer) {
 		this.benutzer = benutzer;
 	}
+
 
 }

@@ -52,7 +52,6 @@ public class BeitragController {
 			@ModelAttribute("beitrag") Beitrag beitrag, @ModelAttribute("thema") Thema thema,
 			BindingResult result, Model model) {
 		this.themaService = themaService;
-		System.out.print(thema_id);
 		thema = themaService.findeThemanachID(thema_id);
 		beitrag.setThema(thema);
 		beitragService.erstelleBeitrag(beitrag);
