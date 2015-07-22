@@ -31,14 +31,13 @@ public class Thema {
 	@Column(name = "THEMA_ERSTELLER", nullable = false, length = 20)
 	private String thema_ersteller;
 
-	
-	@NotNull(message ="Dein Thema hat keinen Titel!")	
-	@Size(min = 3, max = 255, message ="Dein Titel muss zwischen 3 und 255 Zeichen haben.")
+	@NotNull(message = "Dein Thema hat keinen Titel!")
+	@Size(min = 3, max = 255, message = "Dein Titel muss zwischen 3 und 255 Zeichen haben.")
 	@Column(name = "THEMA_TITEL", nullable = false, length = 255)
 	private String thema_titel;
-	
-	@NotNull(message ="Dein Thema hat keinen Namen!")	
-	@Size(min = 3, max = 40, message ="Dein Inhalt muss zwischen 3 und 255 Zeichen haben.")
+
+	@NotNull(message = "Dein Thema hat keinen Namen!")
+	@Size(min = 3, max = 40, message = "Dein Inhalt muss zwischen 3 und 255 Zeichen haben.")
 	@Column(name = "THEMA_INHALT", nullable = false, length = 40)
 	private String thema_inhalt;
 
@@ -92,6 +91,14 @@ public class Thema {
 
 	public void setBeitrag(Set<Beitrag> beitrag) {
 		this.beitrag = beitrag;
+	}
+
+	public String getThema_titel() {
+		return thema_titel;
+	}
+
+	public void setThema_titel(String thema_titel) {
+		this.thema_titel = thema_titel;
 	}
 
 }

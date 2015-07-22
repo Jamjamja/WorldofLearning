@@ -234,6 +234,4 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 
-<
-
 </beans>

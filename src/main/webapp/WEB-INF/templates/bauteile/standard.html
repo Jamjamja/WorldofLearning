@@ -3,8 +3,7 @@
 <head>
 <title>Getting Started: Serving Web Content</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css"
-	href="../../../css/bootstrap.min.css"
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
@@ -18,24 +17,14 @@
 		<nav th:replace="fragments/navigation :: navigation"></nav>
 		<div class="middle">
 			<div class="container">
-				<div class="content">
-				<div th:replace="gruppe/benutzerliste :: content">
-				</div>
-				</div>
-					<h1>World of Learning</h1>
-					<p>Das Portal fuer dein ganz eigenes Lernerlebnis</p>
-					<p th:text="${#httpServletRequest.remoteUser}"></p>
-					<div>Gruppenbeschreibung</div>
-					<div>Benutzerliste</div>
-					<div>Gruppe verlassen</div>
-					<div>Gruppenbadges</div>
-					<div>Gruppe herausfordern / Herausforderung annehmen</div>
-				
-				</div>
-				<aside class="sidebar"></aside>
+			<div class="content" th:replace="ordner/html :: content">
+				<h1>Beispieltext</h1>
+				<p>Beispieltext</p>
+				<p th:text="${#httpServletRequest.remoteUser}"></p>
 			</div>
+			<aside class="sidebar"></aside>
 		</div>
-
+		</div>
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>
 	</div>

@@ -3,7 +3,8 @@
 <head>
 <title>Chat</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"
+<link rel="stylesheet" type="text/css"
+	href="../../../css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
@@ -21,7 +22,8 @@
 					<form action="#" th:object="${chatbeitrag}"
 						th:action="@{/chat/add}" method="post">
 						<fieldset>
-							<div class="form-group" th:classappend="${#fields.hasErrors('nachricht')}? 'has-error'">
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('nachricht')}? 'has-error'">
 								<label for="nachricht" class="col-lg-2 control-label">Nachricht
 									:</label>
 								<div>
@@ -29,8 +31,9 @@
 										name="nachricht" placeholder="Deine Nachrichtl"
 										class="col-lg-10" />
 								</div>
-								<div class="help-block" th:if="${#fields.hasErrors('nachricht')}"
-						th:errors="*{nachricht}">Name Error</div>
+								<div class="help-block"
+									th:if="${#fields.hasErrors('nachricht')}"
+									th:errors="*{nachricht}">Name Error</div>
 							</div>
 							<div class="form-group">
 								<div>
@@ -41,7 +44,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-lg-offset-2 col-lg-10">
-									<input type="submit" value="Absenden" />
+									<input class="btn btn-large btn-default" type="submit" value="Absenden" />
 								</div>
 							</div>
 						</fieldset>

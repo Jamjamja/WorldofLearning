@@ -66,8 +66,7 @@ public class GruppenController {
 
 	// For add Gruppe
 	@RequestMapping(value = "/gruppe", method = RequestMethod.POST)
-	public String registrieren(@Valid Gruppe gruppe,
-			Benutzer benutzer, BindingResult bindingResult, Model model) {
+	public String registrieren(@Valid Gruppe gruppe, Benutzer benutzer, BindingResult bindingResult, Model model) {
 
 		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
 				.getRemoteUser());
@@ -110,30 +109,22 @@ public class GruppenController {
 		benutzerService.updateBenutzer(benutzer);
 		return "gruppe/gruppenprofil";
 	}
-
-	// @RequestMapping("/gruppeninfo")
-	// public Model benutzerinfo(String gruppe, Model model) {
-	// gruppe = request.getRemoteUser();
-	// model.addAttribute("gruppe/");
-	// model.addAttribute(gruppe);
-	// return model;
-	// }
-	//
-	//
-	// @RequestMapping(value = "/benutzerprofil", method = RequestMethod.GET)
-	// public String editbenutzer(Model model) {
-	// model.addAttribute(new Gruppe());
-	// return "benutzer/benutzerprofil";
-	// }
-	//
-	// @RequestMapping(value = "/benutzerprofil/edit", method =
-	// RequestMethod.POST)
-	// public String editbenutzer(
-	// @Valid @ModelAttribute("benutzer") Gruppe benutzer,
-	// String benutzername, BindingResult result, Model model) {
-	// gruppeService.updateBenutzer(benutzer);
-	// return "redirect:/benutzerprofil";
-	//
-	// }
-
+	
+	@RequestMapping(value = "listGruppeBenutzer", method = RequestMethod.GET)
+	public String listGruppeBenutzer(Model model, String gruppenname, Benutzer benutzer) {
+		benutzer = benutzerService.findeBenutzerNachName(request.getRemoteUser());
+		gruppenname = benutzer.getGruppe().getGruppenname();
+		
+		model.addAttribute("listGruppeBenutzer", new Benutzer());
+		model.addAttribute("listGruppeBenutzer", this.gruppeService.findeGruppeNachName(gruppenname));
+		return "listGruppeBenutzer";
+	}
+	
+	@RequestMapping(value = "listbenutzer", method = RequestMethod.GET)
+	public String listBenutzers(Model model) {
+		model.addAttribute("listbenutzer", new Benutzer());
+		model.addAttribute("listbenutzer", this.benutzerService.listBenutzer());
+		return "listbenutzer";
+	}
+	
 }

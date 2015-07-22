@@ -53,6 +53,7 @@ public class TestDAOImpl implements TestDAO {
 		if (null != test) {
 			session.delete(test);
 		}
+		session.getTransaction().commit();
 		logger.info("Test wurde erfolgreich gelöscht, Test Details=" + test);
 
 

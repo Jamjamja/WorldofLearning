@@ -44,6 +44,7 @@ public class GruppeDAOImpl implements GruppeDAO {
 		if (null != gruppenname) {
 			session.delete(gruppe);
 		}
+		session.getTransaction().commit();
 //		logger.info("Benutzer deleted successfully, Benutzer details="
 //				+ gruppe);
 	}
@@ -66,7 +67,7 @@ public class GruppeDAOImpl implements GruppeDAO {
 		gruppenlist = sessionFactory.getCurrentSession()
 				.createQuery("from Gruppe where gruppenname=?")
 				.setParameter(0, gruppenname).list();
-		session.close();
+		session.getTransaction().commit();
 		if (gruppenlist.size() > 0) {
 			return gruppenlist.get(0);
 		} else {

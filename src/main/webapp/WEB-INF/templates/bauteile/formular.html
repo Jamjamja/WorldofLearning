@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="content">
+		<!-- Formular Header die klassen class= sind meistens alle für Bootstrap und es schöner aussehen zu lassen -->
+		<form th:object="${object}" th:action="@{/formular/add}" method="post">
+			<fieldset>
+			
+			<!-- Dies ist ein Eingabe: Feld label steht für Beschreibung des Feldes und der input für ein Eingabe Feld. Das <div> am Ende ist zu Fehlerbehandlung-->
+				<div class="form-group"	th:classappend="${#fields.hasErrors('object_inhalt')}? 'has-error'">								
+					<label for="object_titel">Titel</label> 
+					<input type="text" name="object_titel" id="object_titel" th:field="*{object_titel}" />
+					<div class="help-block" th:if="${#fields.hasErrors('object_inhalt')}" th:errors="*{object_inhalt}">Name Error</div>
+				</div>
+			
+			
+			<!-- Dies ist ein Eingabe Feld: label steht für Beschreibung des Feldes und die Textarea für ein TexxteingabeFeld. Das <div> am Ende ist zu Fehlerbehandlung-->	
+				<div class="form-group"	th:classappend="${#fields.hasErrors('object_inhalt')}? 'has-error'">
+					<label for="object_inhalt">Beschreibung</label>
+					<textarea name="object_inhalt" id="object_inhalt" th:field="*{object_inhalt}"> </textarea>
+					<div class="help-block" th:if="${#fields.hasErrors('object_inhalt')}" th:errors="*{object_inhalt}">Name Error</div>
+				</div>
+					
+					<br /> 
+					<!-- Hier ist eine versteckte übergabe eines Attributs ==> Benutzername-->
+					<input type="hidden" name="object_ersteller" id="object_ersteller" th:value="${#httpServletRequest.remoteUser}" /> 
+					<br /> 
+				
+				<!-- Dies ist der Submit-->
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">						
+					<input class="btn btn-large btn-default" type="submit" value="object erstellen" />
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+					
+</body>
+</html>

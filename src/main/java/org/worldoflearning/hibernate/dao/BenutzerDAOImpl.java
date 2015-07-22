@@ -69,7 +69,7 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		benutzerlist = sessionFactory.getCurrentSession()
 				.createQuery("from Benutzer where benutzername=?")
 				.setParameter(0, benutzername).list();
-		session.close();
+		session.getTransaction().commit();
 		if (benutzerlist.size() > 0) {
 			return benutzerlist.get(0);
 		} else {
@@ -98,7 +98,7 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		if (benutzer.getEmail() == email) {
 			return true;
 		}
-		session.close();
+		session.getTransaction().commit();
 		logger.info("Benutzer loaded successfully, Benutzer details="
 				+ benutzer);
 		return false;
