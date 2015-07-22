@@ -20,9 +20,21 @@
 		<div class="middle">
 			<div class="container">
 				<div class="content">
-					<form class="form-narrow form-horizontal" action="/dateiupload/upload"
-						enctype="multipart/form-data" th:action="@{/dateiupload/upload}  + '?' + ${_csrf.parameterName} + '=' + ${_csrf.token}"
+
+					<form class="form-narrow form-horizontal"
+						action="/dateiupload/upload" enctype="multipart/form-data"
+						th:action="@{/dateiupload/upload}  + '?' + ${_csrf.parameterName} + '=' + ${_csrf.token}"
 						method="post">
+						<th:block th:if="${type != null}">
+							<div class="alert alert-dismissable"
+								th:classappend="'alert-' + ${type}">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-hidden="true">&times;</button>
+								<span th:text="${message}">Es wurde etwas nicht richtig
+									gemacht</span>
+							</div>
+						</th:block>
+
 						Datei zum Hochladen: <input type="file" name="meineDatei" /><br />
 						<button class="btn btn-default" type="submit">Upload</button>
 					</form>
