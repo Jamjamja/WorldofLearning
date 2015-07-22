@@ -3,8 +3,9 @@ package org.worldoflearning.hibernate.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.worldoflearning.hibernate.dao.GruppeDAO;
+import org.worldoflearning.hibernate.daointerface.GruppeDAO;
 import org.worldoflearning.hibernate.model.Gruppe;
+import org.worldoflearning.hibernate.serviceinterface.GruppeService;
 
 @Service("gruppeService")
 public class GruppeServiceImpl implements GruppeService {

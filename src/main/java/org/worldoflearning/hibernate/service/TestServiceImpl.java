@@ -2,8 +2,9 @@ package org.worldoflearning.hibernate.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.worldoflearning.hibernate.dao.TestDAO;
+import org.worldoflearning.hibernate.daointerface.TestDAO;
 import org.worldoflearning.hibernate.model.Test;
+import org.worldoflearning.hibernate.serviceinterface.TestService;
 
 @Service("testService")
 public class TestServiceImpl implements TestService {

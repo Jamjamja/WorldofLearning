@@ -24,13 +24,17 @@
 						th:object="${gruppe}" th:action="@{/gruppe}" method="post">
 						<fieldset>
 							<legend>Erstelle eine Gruppe</legend>
-							<div class="form-group">
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('gruppenname')}? 'has-error'">
 								<label for="gruppenname" class="col-lg-2 control-label"></label>
 								<div class="col-lg-10">
 									<input class="form-control" type="text"
 										th:field="*{gruppenname}" id="gruppenname" name="gruppenname"
 										placeholder="Gruppenname" />
 								</div>
+								<div class="help-block"
+									th:if="${#fields.hasErrors('gruppenname')}"
+									th:errors="*{gruppenname}">Name Error</div>
 							</div>
 
 							<div class="form-group">
@@ -53,19 +57,19 @@
 						</th:block>
 					</table>
 
-				<h1>WoL</h1>
-				<p></p>
-				<p th:text="${#httpServletRequest.remoteUser}"></p>
+					<h1>WoL</h1>
+					<p></p>
+					<p th:text="${#httpServletRequest.remoteUser}"></p>
+				</div>
+				<aside class="sidebar"></aside>
 			</div>
-			<aside class="sidebar"></aside>
 		</div>
-	</div>
 
 
 
 
-	<footer th:replace="fragments/footer :: footer">&copy; 2015
-		Community</footer>
+		<footer th:replace="fragments/footer :: footer">&copy; 2015
+			Community</footer>
 	</div>
 
 </body>

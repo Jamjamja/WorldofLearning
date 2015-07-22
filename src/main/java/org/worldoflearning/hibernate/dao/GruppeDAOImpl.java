@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.GruppeDAO;
 import org.worldoflearning.hibernate.model.Benutzer;
 import org.worldoflearning.hibernate.model.Gruppe;
 

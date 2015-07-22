@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.worldoflearning.hibernate.model.Benutzer;
 import org.worldoflearning.hibernate.model.Gruppe;
-import org.worldoflearning.hibernate.service.BenutzerService;
-import org.worldoflearning.hibernate.service.GruppeService;
+import org.worldoflearning.hibernate.serviceinterface.BenutzerService;
+import org.worldoflearning.hibernate.serviceinterface.GruppeService;
 
 @Controller
 @SessionAttributes("gruppe")
@@ -56,27 +56,36 @@ public class GruppenController {
 			model.addAttribute("listGruppe", new Gruppe());
 			model.addAttribute("listGruppe", this.gruppeService.listGruppe());
 			return "gruppe/gruppe";
+		} else if (benutzer.getGruppe() != null) {
+			gruppe = benutzer.getGruppe();
+			return "gruppe/gruppenprofil";
 		} else {
 			return "gruppe/gruppe";
 		}
 	}
 
-	// For add benutzer
+	// For add Gruppe
 	@RequestMapping(value = "/gruppe", method = RequestMethod.POST)
-	public String registrieren(@Valid @ModelAttribute("gruppe") Gruppe gruppe,
-			Benutzer benutzer, BindingResult result, Model model) {
-		if (result.hasErrors()) {
+	public String registrieren(@Valid Gruppe gruppe,
+			Benutzer benutzer, BindingResult bindingResult, Model model) {
+
+		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
+				.getRemoteUser());
+		if (bindingResult.hasFieldErrors()) {
 			return "gruppe/gruppe";
 		} else if (gruppeService.findeGruppeNachName(gruppe.getGruppenname()) != null) {
 			model.addAttribute("message", "Gruppenname bereits vergeben.");
 			return "gruppe/gruppe";
+		} else if (benutzer.getGruppe() != null) {
+			gruppe = benutzer.getGruppe();
+			return "gruppe/gruppenprofil";
 		} else {
+			gruppe.setModerator(benutzer);
 			gruppeService.hinzufuegenGruppe(gruppe);
-			benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
-					.getRemoteUser());
+
 			benutzer.setGruppe(gruppe);
 			benutzerService.updateBenutzer(benutzer);
-			return "redirect:gruppe";
+			return "gruppe/gruppenprofil";
 		}
 
 	}
@@ -99,7 +108,7 @@ public class GruppenController {
 				.getRemoteUser());
 		benutzer.setGruppe(gruppe);
 		benutzerService.updateBenutzer(benutzer);
-		return "redirect:/gruppe/{gruppenname}";
+		return "gruppe/gruppenprofil";
 	}
 
 	// @RequestMapping("/gruppeninfo")

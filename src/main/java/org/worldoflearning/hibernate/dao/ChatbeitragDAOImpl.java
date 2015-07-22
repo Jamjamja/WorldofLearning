@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.ChatbeitragDAO;
 import org.worldoflearning.hibernate.model.Chatbeitrag;
 
 @Repository("ChatbeitragDAO")

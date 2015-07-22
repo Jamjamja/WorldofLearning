@@ -1,16 +1,13 @@
 package org.worldoflearning.hibernate.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 /*
  *  
  */
@@ -27,6 +24,8 @@ public class Chatbeitrag {
 //	@Column(name = "BEITRAG_ERSTELLTAM", nullable = true)
 //	private Date datum;
 	
+	@NotNull(message ="Dein Beitrag ist leer!")
+	@Size(min = 3, max = 255, message ="Du hast die maximale Anzahl an Zeichen erreicht.")
 	@Column(name = "NACHRICHT", length = 255, nullable = true)
 	private String nachricht;
 	

@@ -3,8 +3,9 @@ package org.worldoflearning.hibernate.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.worldoflearning.hibernate.dao.FrageDAO;
+import org.worldoflearning.hibernate.daointerface.FrageDAO;
 import org.worldoflearning.hibernate.model.Frage;
+import org.worldoflearning.hibernate.serviceinterface.FrageService;
 
 @Service("frageService")
 public class FrageServiceImpl implements FrageService {

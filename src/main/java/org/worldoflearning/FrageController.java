@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.worldoflearning.hibernate.model.Frage;
-import org.worldoflearning.hibernate.service.FrageService;
+import org.worldoflearning.hibernate.serviceinterface.FrageService;
 
 @Controller
 @SessionAttributes("frage") //diese Zeile ist optional

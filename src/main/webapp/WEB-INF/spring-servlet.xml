@@ -74,6 +74,13 @@
 
 	</bean>
 
+	<!-- Validator Bean -->
+	<bean id="validatorFactory" class="javax.validation.Validation"
+		factory-method="buildDefaultValidatorFactory" />
+
+	<bean id="validator" class="javax.validation.Validator"
+		factory-bean="validatorFactory" factory-method="getValidator" />
+
 	<!-- Datenbank Bean -->
 
 	<bean id="dataSource"
@@ -166,6 +173,16 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+
+	<!-- Upload Bean -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max upload size in bytes -->
+		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+		<!-- max size of file in memory (in bytes) -->
+		<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+	</bean>
+
 	<!-- Security Config -->
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/" access="permitAll" />
@@ -173,11 +190,15 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/benutzerinfo"
 			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
-		<security:intercept-url pattern="/admin"
+		<security:intercept-url pattern="/admin/**"
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/chat/**"
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/forum/**"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/gruppe/**"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/benutzer/**"
 			access="hasRole('ROLE_USER')" />
 
 		<security:access-denied-handler

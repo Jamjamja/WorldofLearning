@@ -26,13 +26,19 @@
 					<p>Neuen Beitrag erstellen</p>
 					<form th:object="${thema}" th:action="@{/forum/add}" method="post">
 						<fieldset>
-
-							<label for="thema_inhalt">Inhalt</label> <input type="text"
-								name="thema_inhalt" id="thema_inhalt" th:field="*{thema_inhalt}" />
-							<br /> <input type="hidden" name="thema_ersteller"
-								id="thema_ersteller"
-								th:value="${#httpServletRequest.remoteUser}" /> <br /> <input  class="btn btn-large btn-default"
-								type="submit" value="Thema erstellen" />
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('thema_inhalt')}? 'has-error'">
+								<label for="thema_inhalt">Inhalt</label> <input type="text"
+									name="thema_inhalt" id="thema_inhalt"
+									th:field="*{thema_inhalt}" />
+								<div class="help-block" th:if="${#fields.hasErrors('thema_inhalt')}"
+									th:errors="*{thema_inhalt}">Name Error</div>
+								<br /> <input type="hidden" name="thema_ersteller"
+									id="thema_ersteller"
+									th:value="${#httpServletRequest.remoteUser}" /> <br /> <input
+									class="btn btn-large btn-default" type="submit"
+									value="Thema erstellen" />
+							</div>
 						</fieldset>
 					</form>
 					<h3>Themen</h3>

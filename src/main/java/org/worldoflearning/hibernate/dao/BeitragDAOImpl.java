@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.BeitragDAO;
 import org.worldoflearning.hibernate.model.Beitrag;
 import org.worldoflearning.hibernate.model.Thema;
 

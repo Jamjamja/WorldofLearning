@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.worldoflearning.hibernate.model.Benutzer;
-import org.worldoflearning.hibernate.service.BenutzerService;
+import org.worldoflearning.hibernate.serviceinterface.BenutzerService;
 
 @Controller
 @SessionAttributes("benutzer")
@@ -45,17 +45,15 @@ public class BenutzerController {
 	}
 
 	@RequestMapping(value = "/registrieren", method = RequestMethod.GET)
-	public String registrieren(Model model) {
-		model.addAttribute(new Benutzer());
+	public String registrieren() {
 		return "login/registrieren";
 	}
 
 	// For add benutzer
 	@RequestMapping(value = "/registrieren", method = RequestMethod.POST)
-	public String registrieren(
-			@Valid @ModelAttribute("benutzer") Benutzer benutzer,
-			BindingResult result, Model model) {
-		if (result.hasErrors()) {
+	public String registrieren(@Valid Benutzer benutzer,
+			BindingResult bindingResult, Model model) {
+		if (bindingResult.hasFieldErrors()) {
 			return "login/registrieren";
 		} else if (benutzerService.findeBenutzerNachName(benutzer
 				.getBenutzername()) != null) {
@@ -85,17 +83,14 @@ public class BenutzerController {
 		return model;
 	}
 
-	
 	@RequestMapping(value = "/benutzerprofil", method = RequestMethod.GET)
-	public String editbenutzer(Model model) {
-		model.addAttribute(new Benutzer());
+	public String editbenutzer() {
 		return "benutzer/benutzerprofil";
 	}
-	
+
 	@RequestMapping(value = "/benutzerprofil/edit", method = RequestMethod.POST)
-	public String editbenutzer(
-			@Valid @ModelAttribute("benutzer") Benutzer benutzer,
-			String benutzername, BindingResult result, Model model) {
+	public String editbenutzer(@Valid Benutzer benutzer, String benutzername,
+			BindingResult result, Model model) {
 		benutzerService.updateBenutzer(benutzer);
 		return "redirect:/benutzerprofil";
 

@@ -2,7 +2,8 @@ package org.worldoflearning.hibernate.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.worldoflearning.hibernate.dao.BadgeDAO;
+import org.worldoflearning.hibernate.daointerface.BadgeDAO;
+import org.worldoflearning.hibernate.serviceinterface.BadgeService;
 
 @Service("badgeService")
 public class BadgeServiceImpl implements BadgeService {

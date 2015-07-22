@@ -1,24 +1,21 @@
 package org.worldoflearning.hibernate.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /*
  * Nur Getter und Setter sind bereits implementiert. Die anderen Methoden müssen noch implementiert werden.
@@ -34,7 +31,9 @@ public class Beitrag {
 
 	@Column(name = "BEITRAG_ERSTELLER", length = 20, nullable = true)
 	private String beitrag_ersteller;
-
+	
+	@NotNull(message ="Dein Beitrag ist leer!")
+	@Size(max = 255, message ="Du hast die maximale Anzahl an Zeichen erreicht.")
 	@Column(name = "BEITRAG_INHALT", length = 255, nullable = true)
 	private String beitrag_inhalt;
 

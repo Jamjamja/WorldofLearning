@@ -3,6 +3,7 @@ package org.worldoflearning.hibernate.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.ModeratorDAO;
 
 @Repository("moderatorDAO")
 public class ModeratorDAOImpl implements ModeratorDAO {

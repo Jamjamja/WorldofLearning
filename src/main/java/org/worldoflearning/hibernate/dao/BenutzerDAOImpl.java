@@ -1,6 +1,5 @@
 package org.worldoflearning.hibernate.dao;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.BenutzerDAO;
 import org.worldoflearning.hibernate.model.Benutzer;
-import org.worldoflearning.hibernate.model.Chatbeitrag;
 
 @Repository("BenutzerDAO")
 public class BenutzerDAOImpl implements BenutzerDAO {

@@ -1,6 +1,8 @@
 package org.worldoflearning;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.worldoflearning.hibernate.model.Chatbeitrag;
-import org.worldoflearning.hibernate.service.ChatbeitragService;
+import org.worldoflearning.hibernate.serviceinterface.ChatbeitragService;
 
 @Controller
 @SessionAttributes("chatbeitrag")
@@ -42,10 +44,15 @@ public class ChatController {
 	
 	// For add and update Chatbeitrag both
 	@RequestMapping(value = "/chat/add", method = RequestMethod.POST)
-	public String chatbeitrag(@ModelAttribute("chatbeitrag") Chatbeitrag chatbeitrag, BindingResult result,
-			Model model) {
+	public String chatbeitrag(@Valid Chatbeitrag chatbeitrag, BindingResult bindingResult) {
+		
+		if (bindingResult.hasFieldErrors()) {
+			return "home/chat";
+		}
+		else {
 		chatbeitragService.erstelleChatbeitrag(chatbeitrag);
         return "redirect:/chat";
+		}
     }
 
 }

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -29,6 +31,8 @@ public class Thema {
 	@Column(name = "THEMA_ERSTELLER", nullable = false, length = 20)
 	private String thema_ersteller;
 
+	@NotNull(message ="Dein Thema hat keinen Namen!")	
+	@Size(min = 3, max = 255, message ="Du hast die maximale Anzahl an Zeichen erreicht.")
 	@Column(name = "THEMA_INHALT", nullable = false, length = 255)
 	private String thema_inhalt;
 

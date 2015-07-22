@@ -1,7 +1,8 @@
 package org.worldoflearning.hibernate.service;
 
 import org.springframework.stereotype.Service;
-import org.worldoflearning.hibernate.dao.QuestDAO;
+import org.worldoflearning.hibernate.daointerface.QuestDAO;
+import org.worldoflearning.hibernate.serviceinterface.QuestService;
 
 @Service("questService")
 public class QuestServiceImpl implements QuestService {

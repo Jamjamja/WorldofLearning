@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.worldoflearning.hibernate.model.Test;
-import org.worldoflearning.hibernate.service.TestService;
+import org.worldoflearning.hibernate.serviceinterface.TestService;
 
 @Controller
 @SessionAttributes("test") //diese Zeile ist optional

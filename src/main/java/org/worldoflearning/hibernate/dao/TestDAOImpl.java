@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.TestDAO;
 import org.worldoflearning.hibernate.model.Frage;
 import org.worldoflearning.hibernate.model.Test;
 

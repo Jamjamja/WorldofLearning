@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.worldoflearning.hibernate.dao.ChatbeitragDAO;
+import org.worldoflearning.hibernate.daointerface.ChatbeitragDAO;
 import org.worldoflearning.hibernate.model.Chatbeitrag;
+import org.worldoflearning.hibernate.serviceinterface.ChatbeitragService;
 
 @Service("chatBeitrag")
 public class ChatbeitragServiceImpl implements ChatbeitragService {

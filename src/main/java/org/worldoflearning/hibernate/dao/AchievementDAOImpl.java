@@ -3,6 +3,7 @@ package org.worldoflearning.hibernate.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.AchievementDAO;
 
 @Repository("achievementDAO")
 public class AchievementDAOImpl implements AchievementDAO {

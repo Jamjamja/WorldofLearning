@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.worldoflearning.hibernate.dao.BeitragDAO;
+import org.worldoflearning.hibernate.daointerface.BeitragDAO;
 import org.worldoflearning.hibernate.model.Beitrag;
 import org.worldoflearning.hibernate.model.Thema;
+import org.worldoflearning.hibernate.serviceinterface.BeitragService;
 
 @Service("beitragService")
 public class BeitragServiceImpl implements BeitragService {

@@ -1,7 +1,8 @@
 package org.worldoflearning.hibernate.service;
 
 import org.springframework.stereotype.Service;
-import org.worldoflearning.hibernate.dao.ModeratorDAO;
+import org.worldoflearning.hibernate.daointerface.ModeratorDAO;
+import org.worldoflearning.hibernate.serviceinterface.ModeratorService;
 
 @Service("moderatorService")
 public class ModeratorServiceImpl implements ModeratorService {

@@ -3,6 +3,7 @@ package org.worldoflearning.hibernate.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.QuestDAO;
 
 @Repository("questDAO")
 public class QuestDAOImpl implements QuestDAO {

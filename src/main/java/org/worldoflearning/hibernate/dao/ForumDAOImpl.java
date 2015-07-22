@@ -2,6 +2,7 @@ package org.worldoflearning.hibernate.dao;
 
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.ForumDAO;
 
 @Repository("forumDAO")
 public class ForumDAOImpl implements ForumDAO {

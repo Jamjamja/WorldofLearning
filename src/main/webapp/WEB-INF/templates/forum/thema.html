@@ -3,7 +3,8 @@
 <head>
 <title>Beitrag</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"
+<link rel="stylesheet" type="text/css"
+	href="../../../css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" media="screen" />
 <link rel="stylesheet" type="text/css"
 	href="../../../ressources/css/core.css" th:href="@{/css/core.css}" />
@@ -23,13 +24,19 @@
 						th:action="@{'/thema/' + ${thema_id} + '/beitrag/add'}"
 						method="post">
 						<fieldset>
-
-							<label for="thema_inhalt">Inhalt</label> <input type="text"
-								name="beitrag_inhalt" id="beitrag_inhalt"
-								th:field="*{beitrag_inhalt}" /> <br /> <input type="hidden"
-								name="beitrag_ersteller" id="beitrag_ersteller"
-								th:value="${#httpServletRequest.remoteUser}" /> <br /> <input  class="btn btn-large btn-default"
-								type="submit" value="Beitrag erstellen" />
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('beitrag_inhalt')}? 'has-error'">
+								<label for="thema_inhalt">Inhalt</label> <input type="text"
+									name="beitrag_inhalt" id="beitrag_inhalt"
+									th:field="*{beitrag_inhalt}" />
+								<div class="help-block" th:if="${#fields.hasErrors('beitrag_inhalt')}"
+									th:errors="*{beitrag_inhalt}">Name Error</div>
+								<br /> <input type="hidden" name="beitrag_ersteller"
+									id="beitrag_ersteller"
+									th:value="${#httpServletRequest.remoteUser}" /> <br /> <input
+									class="btn btn-large btn-default" type="submit"
+									value="Beitrag erstellen" />
+							</div>
 						</fieldset>
 					</form>
 					<h3>Beitrag</h3>

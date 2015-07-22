@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.worldoflearning.hibernate.daointerface.ThemaDAO;
 import org.worldoflearning.hibernate.model.Thema;
 
 @Repository("themaDAO")

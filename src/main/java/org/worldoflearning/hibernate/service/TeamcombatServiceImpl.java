@@ -1,9 +1,10 @@
 package org.worldoflearning.hibernate.service;
 
 import org.springframework.stereotype.Service;
-import org.worldoflearning.hibernate.dao.TeamcombatDAO;
+import org.worldoflearning.hibernate.daointerface.TeamcombatDAO;
 import org.worldoflearning.hibernate.model.Frage;
 import org.worldoflearning.hibernate.model.Test;
+import org.worldoflearning.hibernate.serviceinterface.TeamcombatService;
 
 @Service("teamcombatService")
 public class TeamcombatServiceImpl implements TeamcombatService {

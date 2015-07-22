@@ -1,5 +1,7 @@
 package org.worldoflearning;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.worldoflearning.hibernate.model.Thema;
-import org.worldoflearning.hibernate.service.ThemaService;
+import org.worldoflearning.hibernate.serviceinterface.ThemaService;
 
 @Controller
 public class ThemaController {
@@ -34,14 +36,15 @@ public class ThemaController {
 		return "forum/forum";
 	}
 
-	
-	// For add Beitrag
+	// For add Thema
 	@RequestMapping(value = "/forum/add", method = RequestMethod.POST)
-	public String beitrag(
-			@ModelAttribute("thema") Thema thema,
-			BindingResult result, Model model) {
-		themaService.erstelleThema(thema);
-		return "redirect:";
+	public String beitrag(@Valid Thema thema, BindingResult bindingResult) {
+		if (bindingResult.hasFieldErrors()) {
+			return "forum/forum";
+		} else {
+			themaService.erstelleThema(thema);
+			return "redirect:";
+		}
 	}
 
 }
