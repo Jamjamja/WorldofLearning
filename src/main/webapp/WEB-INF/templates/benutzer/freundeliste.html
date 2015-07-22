@@ -22,17 +22,23 @@
 					<h1>World of Learning</h1>
 					<p>Das Portal fuer dein ganz eigenes Lernerlebnis</p>
 					<p th:text="${#httpServletRequest.remoteUser}"></p>
-					<div>Gruppenbeschreibung</div>
-					<div>Benutzerliste</div>
-					<div>Gruppe verlassen</div>
-					<div>Gruppenbadges</div>
-					<div>Gruppe herausfordern / Herausforderung annehmen</div>
-					
+
+
+					<!-- ManyToMany Fragment abfrage von Freunde neuen Table Foreign Freund(Benutzername) Freundvon (Benutzername)   -->
+					<div>Freundeliste</div>
+
+					<!--  th:href=@{delete friend ${Benutzer}}  -->
+					<div>Freunde unfrienden</div>
+
+					<!-- optinal -->
+					<div>Freunde suchen</div>
+
+					<!--  th:href=@{hinzufügen friend ${Benutzer}}  -->
+					<div>Freunde hinzufügen</div>
 				</div>
 				<aside class="sidebar"></aside>
 			</div>
 		</div>
-
 		<footer th:replace="fragments/footer :: footer">&copy; 2015
 			Community</footer>
 	</div>

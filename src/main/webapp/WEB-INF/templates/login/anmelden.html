@@ -15,7 +15,11 @@
 		th:action="@{/j_spring_security_check}" method="post">
 		<th:block th:if="${param.error != null}">
 			<div
-				th:replace="fragments/alert :: alert (type='danger', message='Anmeldefehler. Bitte versuch es erneut.')">Alert</div>
+				th:replace="fragments/alert :: alert (type='danger', message='Anmeldefehler. Bitte versuche es erneut.')">Alert</div>
+		</th:block>
+		<th:block th:if="${param.success != null}">
+			<div
+				th:replace="fragments/alert :: alert (type='success', message='Du wurdest erfolgreich registriert. Melde dich an.')">Alert</div>
 		</th:block>
 		<fieldset>
 			<legend>Please Sign In</legend>

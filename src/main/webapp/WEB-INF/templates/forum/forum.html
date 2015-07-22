@@ -28,6 +28,11 @@
 						<fieldset>
 							<div class="form-group"
 								th:classappend="${#fields.hasErrors('thema_inhalt')}? 'has-error'">
+								<label for="thema_titel">Inhalt</label> <input type="text"
+									name="thema_titel" id="thema_titel"
+									th:field="*{thema_titel}" />
+								<div class="help-block" th:if="${#fields.hasErrors('thema_inhalt')}"
+									th:errors="*{thema_inhalt}">Name Error</div>
 								<label for="thema_inhalt">Inhalt</label> <input type="text"
 									name="thema_inhalt" id="thema_inhalt"
 									th:field="*{thema_inhalt}" />

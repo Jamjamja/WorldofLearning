@@ -62,6 +62,7 @@ public class BenutzerController {
 			return "login/registrieren";
 		} else {
 			benutzerService.hinzufuegenBenutzer(benutzer);
+			model.addAttribute("success", "");
 			return "redirect:anmelden";
 		}
 
@@ -84,26 +85,20 @@ public class BenutzerController {
 	}
 
 	@RequestMapping(value = "/benutzerprofil", method = RequestMethod.GET)
-	public String editbenutzer() {
+	public String editbenutzer(Model model) {
+        model.addAttribute("benutzer", this.benutzerService.findeBenutzerNachName(request.getRemoteUser()));
 		return "benutzer/benutzerprofil";
 	}
 
 	@RequestMapping(value = "/benutzerprofil/edit", method = RequestMethod.POST)
-	public String editbenutzer(@Valid Benutzer benutzer, String benutzername,
-			BindingResult result, Model model) {
+	public String editbenutzer(@Valid Benutzer benutzer, BindingResult result) {
+		if (result.hasFieldErrors()) {
+			return "benutzer/benutzerprofil";
+		}
+		else {
 		benutzerService.updateBenutzer(benutzer);
-		return "redirect:/benutzerprofil";
-
+		return "benutzer/benutzerprofil";
+		}
 	}
-
-	// @RequestMapping("/benutzerinfo/edit")
-	// public String editbenutzer(
-	// @PathVariable("benutzername") String benutzername, Model model) {
-	// benutzername = request.getRemoteUser();
-	// model.addAttribute("benutzer",
-	// this.benutzerService.findeBenutzerNachName(benutzername));
-	// model.addAttribute("listbenutzers", this.benutzerService.listBenutzer());
-	// return "benutzer/benutzerprofil";
-	// }
 
 }

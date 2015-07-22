@@ -31,9 +31,15 @@ public class Thema {
 	@Column(name = "THEMA_ERSTELLER", nullable = false, length = 20)
 	private String thema_ersteller;
 
+	
+	@NotNull(message ="Dein Thema hat keinen Titel!")	
+	@Size(min = 3, max = 255, message ="Dein Titel muss zwischen 3 und 255 Zeichen haben.")
+	@Column(name = "THEMA_TITEL", nullable = false, length = 255)
+	private String thema_titel;
+	
 	@NotNull(message ="Dein Thema hat keinen Namen!")	
-	@Size(min = 3, max = 255, message ="Du hast die maximale Anzahl an Zeichen erreicht.")
-	@Column(name = "THEMA_INHALT", nullable = false, length = 255)
+	@Size(min = 3, max = 40, message ="Dein Inhalt muss zwischen 3 und 255 Zeichen haben.")
+	@Column(name = "THEMA_INHALT", nullable = false, length = 40)
 	private String thema_inhalt;
 
 	@Column(name = "ERSTELLT_AM", nullable = true)
