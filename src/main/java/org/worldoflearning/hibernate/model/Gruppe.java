@@ -30,7 +30,10 @@ public class Gruppe {
 	@Id
 	@Column(name = "GRUPPENNAME", length = 40, nullable = true)
 	private String gruppenname;
-
+	
+	@Column(name = "KATEGORIE", length = 60, nullable = true)
+	private String kategorie;
+	
 	@Column(name = "insert_time", nullable = true)
 	private Date insertTime;
 
@@ -39,11 +42,18 @@ public class Gruppe {
 	@JoinColumn(name = "moderator")
 	private Benutzer moderator;
 
-
 	@Autowired
 	@OneToMany(mappedBy = "gruppe")
 	private Set<Benutzer> benutzer = new HashSet<Benutzer>();
 
+	public String getKategorie() {
+		return kategorie;
+	}
+
+	public void setKategorie(String kategorie) {
+		this.kategorie = kategorie;
+	}
+	
 	public String getGruppenname() {
 		return gruppenname;
 	}

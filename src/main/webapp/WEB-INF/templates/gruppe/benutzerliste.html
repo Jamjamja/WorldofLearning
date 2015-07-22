@@ -16,6 +16,16 @@
 					<td th:text="${benutzer.benutzername}">Hallo Leute</td>
 				</tr>
 			</th:block>
+			
+			
+			<th:block th:each="gruppe : ${listGruppe}">
+				<tr>
+					<!-- th:text gibt einen Text aus. Das $ steht für ein Objekt. {Modelklasse.ModellAttribut} Dies wird dann angezeigt wie im Modell beispeil user.name gibt den Namen des Users an 			-->
+					<td th:text="${gruppe.gruppenname}">Hallo Leute</td>
+					<td th:text="${gruppe.kategorie}">Hallo Leute</td>
+				</tr>
+			</th:block>
+
 		</table>
 
 		<div>Dateiliste</div>

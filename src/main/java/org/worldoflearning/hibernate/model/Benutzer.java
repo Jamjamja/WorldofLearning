@@ -45,6 +45,10 @@ public class Benutzer {
 	@Pattern(regexp="[A-Za-z0-9._%+-]+@+[A-Za-z0-9.-]+.+[A-Za-z]{2,4}", message="Invalid email address.")
 	@Column(name = "EMail", length = 40, nullable = false)
 	private String email;
+	
+	@Column(name = "BESCHREIBUNG", length = 255, nullable = true)
+	private String beschreibung; // Beschreibung, die der Benutzer selber verfassen kann
+
 
 	@Column(name = "Rolle", length = 40, nullable = false)
 	private String rolle = "ROLE_USER";
@@ -78,7 +82,13 @@ public class Benutzer {
 		this.benutzername = benutzername;
 	}
 
-	
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
 
 	public String getPassword() {
 		return password;
