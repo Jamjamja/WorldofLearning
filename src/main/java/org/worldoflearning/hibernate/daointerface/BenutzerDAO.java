@@ -3,6 +3,7 @@ package org.worldoflearning.hibernate.daointerface;
 import java.util.List;
 
 import org.worldoflearning.hibernate.model.Benutzer;
+import org.worldoflearning.hibernate.model.Gruppe;
 
 public interface BenutzerDAO {
 
@@ -18,4 +19,6 @@ public interface BenutzerDAO {
 	
 	public boolean findeBenutzerNachEMail(String email);
 	
+	public List<Benutzer> listBenutzer(Gruppe gruppe);
 }
+	

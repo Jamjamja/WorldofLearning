@@ -33,11 +33,18 @@ public class ChatController {
 	}
 
 	@RequestMapping(value = "/chat", method = RequestMethod.GET)
+	public String chat(Model model) {
+				listChat(model);
+				return "home/chat";
+	}
+	
+	
+	@RequestMapping(value = "listChat", method = RequestMethod.GET)
 	public String listChat(Model model) {
 		 model.addAttribute("listChat", new Chatbeitrag());
 		 model.addAttribute("listChat",
 		 this.chatbeitragService.listChat());
-		return "home/chat";
+		return "listChat";
 	}
 
  

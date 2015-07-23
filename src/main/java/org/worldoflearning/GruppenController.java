@@ -45,20 +45,26 @@ public class GruppenController {
 		this.gruppeService = gruppeservice;
 	}
 
+	@RequestMapping(value = "listGruppe", method = RequestMethod.GET)
+	public String listGruppe(Model model) {
+		model.addAttribute("listGruppe", new Gruppe());
+		model.addAttribute("listGruppe", this.gruppeService.listGruppe());
+		return "listGruppe";
+	}
+
 	@RequestMapping(value = "/gruppe", method = RequestMethod.GET)
-	public String listGruppe(Model model, Benutzer benutzer, Gruppe gruppe) {
+	public String homeGruppe(Model model, Benutzer benutzer, Gruppe gruppe) {
 
 		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
 				.getRemoteUser());
 		gruppe = benutzer.getGruppe();
-
 		if (gruppe == null) {
-			model.addAttribute("listGruppe", new Gruppe());
-			model.addAttribute("listGruppe", this.gruppeService.listGruppe());
+			;
+			listGruppe(model);
 			return "gruppe/gruppe";
 		} else if (benutzer.getGruppe() != null) {
 			gruppe = benutzer.getGruppe();
-			return "gruppe/gruppenprofil";
+			return "redirect:/gruppenprofil";
 		} else {
 			return "gruppe/gruppe";
 		}
@@ -66,7 +72,8 @@ public class GruppenController {
 
 	// For add Gruppe
 	@RequestMapping(value = "/gruppe", method = RequestMethod.POST)
-	public String registrieren(@Valid Gruppe gruppe, Benutzer benutzer, BindingResult bindingResult, Model model) {
+	public String registrieren(@Valid Gruppe gruppe, Benutzer benutzer,
+			BindingResult bindingResult, Model model) {
 
 		benutzer = benutzerService.findeBenutzerNachName(httpServletRequest
 				.getRemoteUser());
@@ -77,7 +84,7 @@ public class GruppenController {
 			return "gruppe/gruppe";
 		} else if (benutzer.getGruppe() != null) {
 			gruppe = benutzer.getGruppe();
-			return "gruppe/gruppenprofil";
+			return "redirect:/gruppenprofil";
 		} else {
 			gruppe.setModerator(benutzer);
 			gruppeService.hinzufuegenGruppe(gruppe);
@@ -109,22 +116,15 @@ public class GruppenController {
 		benutzerService.updateBenutzer(benutzer);
 		return "gruppe/gruppenprofil";
 	}
-	
-	@RequestMapping(value = "listGruppeBenutzer", method = RequestMethod.GET)
-	public String listGruppeBenutzer(Model model, String gruppenname, Benutzer benutzer) {
+
+	@RequestMapping(value = "/gruppenprofil", method = RequestMethod.GET)
+	public String listGruppeBenutzer(Model model, Gruppe gruppe, @ModelAttribute Benutzer benutzer) {
 		benutzer = benutzerService.findeBenutzerNachName(request.getRemoteUser());
-		gruppenname = benutzer.getGruppe().getGruppenname();
-		
+		gruppe = benutzer.getGruppe();
+		model.addAttribute("gruppe", benutzer.getGruppe());
 		model.addAttribute("listGruppeBenutzer", new Benutzer());
-		model.addAttribute("listGruppeBenutzer", this.gruppeService.findeGruppeNachName(gruppenname));
-		return "listGruppeBenutzer";
+		model.addAttribute("listGruppeBenutzer", this.benutzerService.listBenutzer(gruppe));
+		return "gruppe/gruppenprofil";
+		
 	}
-	
-	@RequestMapping(value = "listbenutzer", method = RequestMethod.GET)
-	public String listBenutzers(Model model) {
-		model.addAttribute("listbenutzer", new Benutzer());
-		model.addAttribute("listbenutzer", this.benutzerService.listBenutzer());
-		return "listbenutzer";
-	}
-	
 }

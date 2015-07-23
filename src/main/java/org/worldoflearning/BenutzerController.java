@@ -37,8 +37,8 @@ public class BenutzerController {
 		this.benutzerService = benutzerservice;
 	}
 
-	@RequestMapping(value = "/benutzer/list", method = RequestMethod.GET)
-	public String listBenutzers(Model model) {
+	@RequestMapping(value = "listbenutzer", method = RequestMethod.GET)
+	public String listBenutzer(Model model) {
 		model.addAttribute("listbenutzer", new Benutzer());
 		model.addAttribute("listbenutzer", this.benutzerService.listBenutzer());
 		return "listbenutzer";
