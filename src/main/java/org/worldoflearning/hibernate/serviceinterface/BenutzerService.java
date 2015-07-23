@@ -13,5 +13,6 @@ public interface BenutzerService {
 	public void loescheBenutzer(String name);
 	public Benutzer findeBenutzerNachName(String benutzername);
 	public List<Benutzer> listBenutzer(Gruppe gruppe);
-	
+	public List<Benutzer> listBenutzer(Benutzer benutzer);
+	public List<Benutzer> listnichtBenutzer(Benutzer benutzer);
 }

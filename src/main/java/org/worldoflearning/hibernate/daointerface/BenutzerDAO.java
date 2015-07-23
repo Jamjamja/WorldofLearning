@@ -20,5 +20,9 @@ public interface BenutzerDAO {
 	public boolean findeBenutzerNachEMail(String email);
 	
 	public List<Benutzer> listBenutzer(Gruppe gruppe);
+		
+	public List<Benutzer> listBenutzer(Benutzer benutzer);
+	
+	public List<Benutzer> listnichtBenutzer(Benutzer benutzer);
 }
 	

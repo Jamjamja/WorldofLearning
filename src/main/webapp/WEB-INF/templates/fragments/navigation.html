@@ -23,6 +23,7 @@
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/benutzerinfo" th:href="@{/benutzerinfo}">Benutzer Info</a></li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/benutzerprofil" th:href="@{/benutzerprofil}">Mein Profil</a></li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/dateiupload" th:href="@{/dateiupload}">Upload</a></li>
+					<li th:if="${#httpServletRequest.remoteUser != null}"><a href="/freunde" th:href="@{/freunde}">Upload</a></li>
 					<li th:if="${#httpServletRequest.remoteUser == null}"><a
 						class="btn btn-large btn-success" href="/anmelden"
 						th:href="@{/anmelden}">Anmelden</a></li>

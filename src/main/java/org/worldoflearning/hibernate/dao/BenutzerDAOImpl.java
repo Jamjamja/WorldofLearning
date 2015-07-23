@@ -1,7 +1,9 @@
 package org.worldoflearning.hibernate.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -158,5 +160,43 @@ public class BenutzerDAOImpl implements BenutzerDAO {
 		}
 		return null;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Benutzer> listBenutzer(Benutzer benutzer) {
+		Session session = getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Criteria criteria = session.createCriteria(Benutzer.class).add(
+					Restrictions.like("benutzer", benutzer));
+			List<Benutzer> listBenutzer = (List<Benutzer>) criteria.list();
+			session.getTransaction().commit();
+			return listBenutzer;
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Benutzer> listnichtBenutzer(Benutzer benutzer) {
+		Session session = getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Criteria criteria = session.createCriteria(Benutzer.class).add(
+					Restrictions.ilike("benutzer", benutzer));
+			List<Benutzer> listBenutzer = (List<Benutzer>) criteria.list();
+			session.getTransaction().commit();
+			return listBenutzer;
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
+		return null;
+	}
+
+
 
 }

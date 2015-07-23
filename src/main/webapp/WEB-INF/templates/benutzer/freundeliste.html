@@ -25,16 +25,44 @@
 
 
 					<!-- ManyToMany Fragment abfrage von Freunde neuen Table Foreign Freund(Benutzername) Freundvon (Benutzername)   -->
-					<div>Freundeliste</div>
+					<table class="table">
+						<!-- wichtig hier das listObject muss genauso im Controller stehen als Variable wenn er sie zurückgibt -->
+						<th:block th:each="benutzer : ${listFreunde}">
+							<tr>
 
-					<!--  th:href=@{delete friend ${Benutzer}}  -->
-					<div>Freunde unfrienden</div>
+								<td th:text="${benutzer.benutzername}">Hallo Leute</td>
+								<td class="btn btn-large btn-default"><a href="#"
+									th:href="@{'/freunde/undo/' + ${benutzer.benutzername}}">Freundschaft
+										kündigen</a></td>
+							</tr>
+						</th:block>
+					</table>
 
-					<!-- optinal -->
-					<div>Freunde suchen</div>
+					<table class="table">
+						<!-- wichtig hier das listObject muss genauso im Controller stehen als Variable wenn er sie zurückgibt -->
+						<th:block th:each="benutzer : ${listkeineFreunde}">
+							<tr>
 
-					<!--  th:href=@{hinzufügen friend ${Benutzer}}  -->
-					<div>Freunde hinzufügen</div>
+								<td th:text="${benutzer.benutzername}">Hallo Leute</td>
+								<td class="btn btn-large btn-default"><a href="#"
+									th:href="@{'/freunde/add/' + ${benutzer.benutzername}}">Als
+										Freund hinzufügen</a></td>
+							</tr>
+						</th:block>
+					</table>
+
+					<table class="table">
+						<!-- wichtig hier das listObject muss genauso im Controller stehen als Variable wenn er sie zurückgibt -->
+						<th:block th:each="benutzer : ${listBenutzer}">
+							<tr>
+
+								<td th:text="${benutzer.benutzername}">Hallo Leute</td>
+								<td class="btn btn-large btn-default"><a href="#"
+									th:href="@{'/freunde/add/' + ${benutzer.benutzername}}">Als
+										Freund hinzufügen</a></td>
+							</tr>
+						</th:block>
+					</table>
 				</div>
 				<aside class="sidebar"></aside>
 			</div>

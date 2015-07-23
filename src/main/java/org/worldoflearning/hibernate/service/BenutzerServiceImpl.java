@@ -12,14 +12,14 @@ import org.worldoflearning.hibernate.serviceinterface.BenutzerService;
 
 @Service("benutzerService")
 public class BenutzerServiceImpl implements BenutzerService {
-	
+
 	@Autowired
 	private BenutzerDAO benutzerDAO;
 
 	public void setBenutzerDAO(BenutzerDAO benutzerDAO) {
 		this.benutzerDAO = benutzerDAO;
 	}
-	
+
 	@Override
 	@Transactional
 	public void hinzufuegenBenutzer(Benutzer benutzer) {
@@ -37,7 +37,7 @@ public class BenutzerServiceImpl implements BenutzerService {
 	public List<Benutzer> listBenutzer() {
 		return this.benutzerDAO.listBenutzer();
 	}
-	
+
 	@Override
 	@Transactional
 	public Benutzer findeBenutzerNachName(String benutzername) {
@@ -51,10 +51,21 @@ public class BenutzerServiceImpl implements BenutzerService {
 	}
 
 	@Override
+	@Transactional
 	public List<Benutzer> listBenutzer(Gruppe gruppe) {
 		return this.benutzerDAO.listBenutzer(gruppe);
 	}
-	
 
-	
+	@Override
+	@Transactional
+	public List<Benutzer> listBenutzer(Benutzer benutzer) {
+		return this.benutzerDAO.listBenutzer(benutzer);
+	}
+
+	@Override
+	@Transactional
+	public List<Benutzer> listnichtBenutzer(Benutzer benutzer) {
+		return this.benutzerDAO.listBenutzer(benutzer);
+	}
+
 }
