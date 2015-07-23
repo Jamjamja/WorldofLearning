@@ -19,29 +19,40 @@ public class BeitragDAOImpl implements BeitragDAO {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-	
+
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
 
-
 	@Override
 	public void erstelleBeitrag(Beitrag beitrag) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.save(beitrag);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.save(beitrag);
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Beitrag> listBeitrag(Thema thema) {
 		Session session = getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria criteria = session.createCriteria(Beitrag.class).add( Restrictions.like("thema", thema) );
-		List<Beitrag> listBeitrag = (List<Beitrag>)criteria.list();
-		session.getTransaction().commit();
-		return listBeitrag;
+		try {
+			session.beginTransaction();
+			Criteria criteria = session.createCriteria(Beitrag.class).add(
+					Restrictions.like("thema", thema));
+			List<Beitrag> listBeitrag = (List<Beitrag>) criteria.list();
+			session.getTransaction().commit();
+			return listBeitrag;
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
+		return null;
 	}
 
 }

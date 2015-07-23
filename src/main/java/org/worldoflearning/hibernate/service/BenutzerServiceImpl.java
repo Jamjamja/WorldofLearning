@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.worldoflearning.hibernate.daointerface.BenutzerDAO;
 import org.worldoflearning.hibernate.model.Benutzer;
+import org.worldoflearning.hibernate.model.Gruppe;
 import org.worldoflearning.hibernate.serviceinterface.BenutzerService;
 
 @Service("benutzerService")
@@ -47,6 +48,11 @@ public class BenutzerServiceImpl implements BenutzerService {
 	@Transactional
 	public void loescheBenutzer(String benutzername) {
 		this.benutzerDAO.loescheBenutzer(benutzername);
+	}
+
+	@Override
+	public List<Benutzer> listBenutzer(Gruppe gruppe) {
+		return this.benutzerDAO.listBenutzer(gruppe);
 	}
 	
 

@@ -25,20 +25,31 @@ public class ThemaDAOImpl implements ThemaDAO {
 	@Override
 	public void erstelleThema(Thema thema) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.save(thema);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.save(thema);
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Thema> listThema() {
 		Session session = getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria criteria = session.createCriteria(Thema.class);
-		List<Thema> listThema = (List<Thema>) criteria.list();
-		session.getTransaction().commit();
-		return listThema;
+		try {
+			session.beginTransaction();
+			Criteria criteria = session.createCriteria(Thema.class);
+			List<Thema> listThema = (List<Thema>) criteria.list();
+			session.getTransaction().commit();
+			return listThema;
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
+		return null;
 	}
 
 	@Override
@@ -58,12 +69,17 @@ public class ThemaDAOImpl implements ThemaDAO {
 	@Override
 	public Thema findeThemanachID(int thema_id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		Thema thema = (Thema) session.load(Thema.class, new Integer(thema_id));
-		session.getTransaction().commit();
-		return thema;
+		try {
+			session.beginTransaction();
+			Thema thema = (Thema) session.load(Thema.class, new Integer(
+					thema_id));
+			session.getTransaction().commit();
+			return thema;
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
+		return null;
 	}
-
-
 
 }

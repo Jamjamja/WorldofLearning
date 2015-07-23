@@ -11,7 +11,6 @@ import org.worldoflearning.hibernate.daointerface.GruppeDAO;
 import org.worldoflearning.hibernate.model.Benutzer;
 import org.worldoflearning.hibernate.model.Gruppe;
 
-
 @Repository("gruppeDAO")
 public class GruppeDAOImpl implements GruppeDAO {
 
@@ -29,50 +28,73 @@ public class GruppeDAOImpl implements GruppeDAO {
 	@Override
 	public List<Gruppe> listGruppe() {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		Criteria criteria = session.createCriteria(Gruppe.class);
-		List<Gruppe> listGruppe = (List<Gruppe>) criteria.list();
-		session.clear();
-		return listGruppe;
+		try {
+			session.beginTransaction();
+			Criteria criteria = session.createCriteria(Gruppe.class);
+			List<Gruppe> listGruppe = (List<Gruppe>) criteria.list();
+			session.clear();
+			return listGruppe;
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
+		return null;
 	}
 
 	@Override
 	public void loescheGruppe(String gruppenname) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Gruppe gruppe = (Gruppe) session.load(Gruppe.class, new String(
-				gruppenname));
-		if (null != gruppenname) {
-			session.delete(gruppe);
+		try {
+			Gruppe gruppe = (Gruppe) session.load(Gruppe.class, new String(
+					gruppenname));
+			if (null != gruppenname) {
+				session.delete(gruppe);
+			}
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
 		}
-		session.getTransaction().commit();
-//		logger.info("Benutzer deleted successfully, Benutzer details="
-//				+ gruppe);
+		// logger.info("Benutzer deleted successfully, Benutzer details="
+		// + gruppe);
 	}
 
 	@Override
 	public void hinzufuegenGruppe(Gruppe gruppe) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.persist(gruppe);
-//		logger.info("Benutzer saved successfully, Benutzer Details=" + gruppe);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.persist(gruppe);
+			// logger.info("Benutzer saved successfully, Benutzer Details=" +
+			// gruppe);
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Gruppe findeGruppeNachName(String gruppenname) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Gruppe> gruppenlist = new ArrayList<Gruppe>();
-		session.beginTransaction();
-		gruppenlist = sessionFactory.getCurrentSession()
-				.createQuery("from Gruppe where gruppenname=?")
-				.setParameter(0, gruppenname).list();
-		session.getTransaction().commit();
-		if (gruppenlist.size() > 0) {
-			return gruppenlist.get(0);
-		} else {
-			return null;
+		try {
+			List<Gruppe> gruppenlist = new ArrayList<Gruppe>();
+			session.beginTransaction();
+			gruppenlist = sessionFactory.getCurrentSession()
+					.createQuery("from Gruppe where gruppenname=?")
+					.setParameter(0, gruppenname).list();
+			session.getTransaction().commit();
+			if (gruppenlist.size() > 0) {
+				return gruppenlist.get(0);
+			} else {
+				return null;
+			}
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
 		}
+		return null;
 	}
 
 }

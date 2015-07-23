@@ -12,8 +12,9 @@ import org.worldoflearning.hibernate.model.Test;
 @Repository("testDAO")
 public class TestDAOImpl implements TestDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(BenutzerDAOImpl.class);
-	
+	private static final Logger logger = LoggerFactory
+			.getLogger(BenutzerDAOImpl.class);
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -26,36 +27,48 @@ public class TestDAOImpl implements TestDAO {
 
 	@Override
 	public void erstelleTest(Test test) {
-//		Session session = getSessionFactory().getCurrentSession();
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.persist(test);
-		logger.info("Test wurde erfolgreich erstellt, Test Details=" + test);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.persist(test);
+			logger.info("Test wurde erfolgreich erstellt, Test Details=" + test);
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
 	}
 
 	@Override
 	public void bearbeiteTest(Test test) {
-//		Session session = getSessionFactory().getCurrentSession();
 		Session session = this.sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		session.update(test);
-		logger.info("Test wurde erfolgreich bearbeitet, Test Details=" + test);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.update(test);
+			logger.info("Test wurde erfolgreich bearbeitet, Test Details="
+					+ test);
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
+		}
 
 	}
 
 	@Override
 	public void loescheTest(int test_id) {
-//		Session session = getSessionFactory().getCurrentSession();
 		Session session = this.sessionFactory.getCurrentSession();
-		Test test = (Test) session.load(Test.class, new Integer(test_id));
-		if (null != test) {
-			session.delete(test);
+		try {
+			Test test = (Test) session.load(Test.class, new Integer(test_id));
+			if (null != test) {
+				session.delete(test);
+			}
+			session.getTransaction().commit();
+			logger.info("Test wurde erfolgreich gelöscht, Test Details=" + test);
+		} catch (Exception ex) {
+			// Log the exception here
+			session.getTransaction().rollback();
 		}
-		session.getTransaction().commit();
-		logger.info("Test wurde erfolgreich gelöscht, Test Details=" + test);
-
 
 	}
 
